@@ -119,10 +119,12 @@
         </div>
         <div class="offre__body-home p-3 relative">
             <div class="product__offre sm:min-w-[200px]    md:min-w-[210px] lg:min-w-[270px]">
-                <div class="header-product bg-center bg-cover h-[50%]
+                <a href='{{route('product.details')}}'>
+                    <div class="header-product bg-center bg-cover h-[50%]
                 bg-color-rating bg-[url('https://falconreact18.prium.me/static/media/8.5337a0bb9c2ffd16669d.jpg')]
                     transition
                     hover:bg-[url('https://prium.github.io/falcon/v3.14.0/assets/img/products/2.jpg')]"></div>
+                </a>
                 <div class="body-product p-1">
                     <h3 class="md:text-sm lg:text-lg my-0">Logitech G305 Gaming Mouse</h3>
                     <a href="#" class="text-sm my-0 ">Computer & Accessories</a>

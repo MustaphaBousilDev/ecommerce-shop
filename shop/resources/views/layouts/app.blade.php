@@ -85,16 +85,18 @@
     <div class="navbar__home px-3   md:px-20">
         <div class="top-navbar  sm:px-4 md:px-0">
             <div>
-                <div class="logo-mugiwara">
-                    <img 
-                    src="https://seeklogo.com/images/M/mugiwara-logo-303FD55C54-seeklogo.com.png"
-                    alt="mugiwara logo"/>
-                </div>
-                <div class="font-bold name-logo">
-                    <a class="" href="#">Mugi
-                        <span class="text-color-gray-dark">wara</span>
-                    </a>
-                </div>
+                <a href='/'>
+                    <div class="logo-mugiwara">
+                        <img 
+                        src="https://seeklogo.com/images/M/mugiwara-logo-303FD55C54-seeklogo.com.png"
+                        alt="mugiwara logo"/>
+                    </div>
+                    <div class="font-bold name-logo">
+                        <a class="" href="#">Mugi
+                            <span class="text-color-gray-dark">wara</span>
+                        </a>
+                    </div>
+                </a>
             </div>
             <div>
                 <div>
@@ -116,11 +118,13 @@
             </div>
             <div>
                 <div class="icon-wishlist">
-                    <i class='bx bx-heart 
-                    text-color-gray-background-light rounded-full
-                    w-9 h-9 flex items-center justify-center
-                     p-2' >
-                    </i>
+                    <a href='{{route('product.wishlist')}}'>
+                        <i class='bx bx-heart 
+                        text-color-gray-background-light rounded-full
+                        w-9 h-9 flex items-center justify-center
+                        p-2' >
+                        </i>
+                    </a>
                     <p class="text-xs mx-2 hidden lg:block">wishlist</p>
                 </div>
                 <div class="account">
@@ -136,8 +140,8 @@
                     <div class="icon-cart-shopping cart">
                         <div class="relative cart">
                             <span class="absolute bg-color-red-button cart">1</span>
-                            <i class='bx bx-cart-alt 
-                            text-color-gray-background-light cart' ></i>
+                            <a href='{{route('cart')}}'><i class='bx bx-cart-alt 
+                                text-color-gray-background-light cart' ></i></a>
                         </div>
                     </div>
                     <div class="cart-boxing cart">
@@ -250,7 +254,7 @@
                             justify-center items-center w-[90%] mx-auto py-2 cursor-pointer text-while
                             ">
                             <i class='bx bxl-paypal text-[#455aab]'></i>
-                            <span>Check Out</span>
+                            <span><a href='{{route('checkout')}}'>Check Out</a></span>
                         </button>
                     </div>
                 </div>
@@ -355,8 +359,8 @@
             </div>
             <div class="links-page flex items-center">
                 <ul class="flex pr-3 bg-while">
-                    <li class="mx-7 lg:mx-4"><a href="index.html">Home</a></li>
-                    <li class="mx-7 lg:mx-4"><a href="shop.html">Shop</a></li>
+                    <li class="mx-7 lg:mx-4"><a href="/">Home</a></li>
+                    <li class="mx-7 lg:mx-4"><a href="{{route('shop')}}">Shop</a></li>
                     <li class="mx-7 lg:mx-4 relative account-link">
                         <a  href="#" class="relative">Account</a>
                         <ul class="fixed list-account-nav  left-[-10px]  p-5 shadow-sm rounded-md w-44 lg:w-56 top-10 bg-while">
@@ -384,6 +388,7 @@
                         </ul>
                     </li>
                     <li class="mx-7 lg:mx-4"><a href="#">Blogs</a></li>
+                    <li class="mx-7 lg:mx-4"><a href="{{route('contact')}}">Contact</a></li>
                     
                 </ul>
             </div>
@@ -498,6 +503,7 @@
                         <span class="mx-5 py-1"><a href="#" class="">Password Recovery</a></span>
                     </div>
                     <li><a href="#">Blogs</a></li>
+                    <li><a href="{{route('contact')}}">Contact</a></li>
                     
                 </ul>
             </div>
@@ -590,6 +596,22 @@
 <script src="{{asset('assets/js/slider-category-home.js')}}"></script>
 <script src="{{asset('assets/js/slider-product-offre-home.js')}}"></script>
 <script src="{{asset('assets/js/ads-offre-home.js')}}"></script>
+<!--shop page-->
+<script src="{{asset('assets/js/shop/drop_down-categories.js')}}"></script>
+<script src="{{asset('assets/js/shop/filter-colors.js')}}"></script>
+<script src="{{asset('assets/js/shop/range.js')}}"></script>
+<script src="{{asset('assets/js/shop/select.js')}}"></script>
+<!--product details-->
+<script src="{{asset('assets/js/product-details/info-filter.js')}}"></script>
+<script src="{{asset('assets/js/product-details/slider.js')}}"></script>
+<!--login-->
+<script src="{{asset('assets/js/login/change-img.js')}}"></script>
+<script src="{{asset('assets/js/login/validation.js')}}"></script>
+<!--register-->
+<script src="{{asset('assets/js/register/change-img.js')}}"></script>
+<script src="{{asset('assets/js/register/validation.js')}}"></script>
+<!--admin-->
+<script src="{{asset('assets/js/admin/sidebar.js')}}"></script>
 @livewireScripts
 </body>
 </html>
