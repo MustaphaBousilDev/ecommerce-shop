@@ -128,12 +128,32 @@
                     <p class="text-xs mx-2 hidden lg:block">wishlist</p>
                 </div>
                 <div class="account">
-                    <div class="icon-header">
-                        <i class='bx bx-user text-color-gray-background-light' ></i>
-                    </div>
-                    <div class="sign-in">
+                    @php
+                    use App\Models\User;
+                    $user=User::find(session('loginId'));
+                    @endphp 
+                    @if($user)
+                        <div class='icon-header'>
+                        <a href='{{route("admin.dashboard")}}'>
+                            <img class='w-9 h-9 rounded-full' src="{{$user->img}}" alt='profile img'/>
+                        </a>
+                        </div>
                         
-                        <p class=" text-[12px] md:text-[12px]">My Account</p>
+                    @else 
+                        <div class="icon-header">
+                              <i class="bx bx-user text-color-gray-background-light" ></i>
+                        </div>
+                    @endif
+                    <div class="sign-in">
+                            @if($user)
+                                @if($user->utype=='ADM')
+                                    <a href='{{route("admin.dashboard")}}'>Admin</a>
+                                @else
+                                    <a href='#'>{{$user->username}}</a>
+                                @endif
+                            @else 
+                                <a href='{{route('login')}}'>Sign In</a>
+                            @endif
                     </div>
                 </div>
                 <div class="cart-shopping relative cart cart__parent">
@@ -610,8 +630,7 @@
 <!--register-->
 <script src="{{asset('assets/js/register/change-img.js')}}"></script>
 <script src="{{asset('assets/js/register/validation.js')}}"></script>
-<!--admin-->
-<script src="{{asset('assets/js/admin/sidebar.js')}}"></script>
+
 @livewireScripts
 </body>
 </html>

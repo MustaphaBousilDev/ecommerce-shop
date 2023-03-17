@@ -11,16 +11,46 @@
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     Sign in to your account
                 </h1>
-                <form class="space-y-4 md:space-y-6" action="#">
+                @if(Session::has('cussess'))
+                    <span class='text-md text-color-red-button'>{{Session::get('success')}}</span>
+                @endif 
+                @if(Session::has('fail'))
+                    <span class='text-md text-color-red-button'>{{Session::get('fail')}}</span>
+                @endif 
+                <form class="space-y-4 md:space-y-6" method='POST' action="{{route('login.user')}}">
+                    @csrf
                     <div class="relative">
+                        @error('email')
+                        <i class='bx bx-error-circle text-color-red-button absolute top-[50%] translate-y-[-50%] left-[8px] text-xl'></i>
+                        @else 
                         <i class='bx bxs-user absolute top-[50%] translate-y-[-50%] left-[8px] text-xl'></i>
-                        
-                        <input type="email" name="email" id="email" class="bg-gray-50 px-8 py-4 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+                        @enderror 
+                        <input type="email" value='{{old("email")}}' name="email" id="email" 
+                        class="border border-gray-300 
+                        @error('email')
+                        border-color-red-button 
+                        @enderror
+                        bg-gray-50 px-8 py-4  text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
                     </div>
+                    @error('email')
+                    <span class='text-sm px-3 text-color-red-button'>{{$message}}</span>
+                    @enderror
                     <div class="relative">
+                        @error('password')
+                        <i class='bx bx-error-circle text-color-red-button absolute top-[50%] translate-y-[-50%] left-[8px] text-xl'></i>
+                        @else
                         <i class='bx bxs-lock-alt absolute top-[50%] translate-y-[-50%] left-[8px] text-xl' ></i>
-                        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 px-8 py-4 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                        @enderror
+                        <input type="password" name="password" id="password" placeholder="••••••••" 
+                        class="border border-gray-300 
+                        @error('password')
+                        border-color-red-button
+                        @enderror
+                        bg-gray-50 px-8 py-4  text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
                     </div>
+                    @error('password')
+                    <span class='text-sm px-3 text-color-red-button'>{{$message}}</span>
+                    @enderror
                     <div class="flex items-center justify-between">
                         <div class="flex items-start">
                             <div class="flex items-center h-5">

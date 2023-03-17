@@ -7,6 +7,8 @@
                     <div class="info__slider">
                         <p class="paragraph__slide hidden-motion">Has just arrived!</p>
                         <h2 class="heading__slide hidden-motion">Huge Summer Collection</h2>
+                        
+                            
                         <span class="span__slide hidden-motion">Swimwear , Tops,Shorts,Sunglasses,& much more</span>
                     </div>
                     <a class="btn__slide-shop hidden-motion" href="#">Show Now <i class='bx bx-chevron-right'></i></a>

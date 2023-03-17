@@ -10,8 +10,11 @@ use App\Http\Livewire\ContactComponent;
 use App\Http\Livewire\CheckoutComponent;
 use App\Http\Livewire\Auth\LoginComponent;
 use App\Http\Livewire\Auth\RegisterComponent;
+//Dashboard 
+use App\Http\Livewire\Admin\DashboardComponent;
 //controller 
 use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,5 +35,13 @@ Route::get('/wishlist',WishlistComponent::class)->name('product.wishlist');
 Route::get('/contact',ContactComponent::class)->name('contact');
 Route::get('/checkout',CheckoutComponent::class)->name('checkout');
 Route::get('/login',LoginComponent::class)->name('login');
+Route::post('/login-user',[LoginController::class,'loginUser'])->name('login.user');
 Route::get('/register',RegisterComponent::class)->name('register');
 Route::post('/register-user',[RegisterController::class,'register_user'])->name('register.user');
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+
+
+
+
+//dashboard 
+Route::get('/admin/dashboard',DashboardComponent::class)->name('admin.dashboard');
