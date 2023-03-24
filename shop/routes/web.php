@@ -20,6 +20,8 @@ use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SubCategoryController;
 use App\Http\Controllers\admin\BrandsController;
+//country 
+use App\Http\Controllers\admin\CountryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,5 +86,11 @@ Route::POST('admin/brands',[BrandsController::class,'search'])->name('brandss-se
 
 
 
-
+//country 
+Route::get('admin/country',[CountryController::class,'index'])->name('country');
+Route::post('admin/add-country',[CountryController::class,'store'])->name('country-add');
+Route::post('admin/country',[CountryController::class,'show'])->name('country-show');
+Route::post('/country-update',[CountryController::class,'update'])->name('country-update');
+Route::post('/country-delete',[CountryController::class,'delete'])->name('country-delete');
+Route::POST('/country',[CountryController::class,'search'])->name('country-search');
 
