@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('img')->default('https://s3.amazonaws.com/37assets/svn/765-default-avatar.png');
             $table->string('phone')->nullable();
             $table->rememberToken();
-
             $table->timestamps();
         });
     }

@@ -15,6 +15,9 @@ use App\Http\Livewire\Admin\DashboardComponent;
 //controller 
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\auth\LoginController;
+
+//category
+use App\Http\Controllers\admin\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +29,16 @@ use App\Http\Controllers\auth\LoginController;
 |
 */
 
+
+
+
+ 
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //user side routes
 Route::get('/',HomeComponent::class)->name('home');
 Route::get('/shop',ShopComponent::class)->name('shop');
@@ -41,7 +54,17 @@ Route::post('/register-user',[RegisterController::class,'register_user'])->name(
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 
-
-
 //dashboard 
-Route::get('/admin/dashboard',DashboardComponent::class)->name('admin.dashboard');
+Route::get('/admin/dashboard',DashboardComponent::class)->name('admin.dashboard')->middleware('admin.auth');
+//category
+Route::get('admin/category',[CategoryController::class,'index'])->name('category');
+
+Route::post('admin/add-category',[CategoryController::class,'store'])->name('category-add');
+//show 
+Route::post('admin/category',[CategoryController::class,'show'])->name('category-show');
+Route::post('/category-update',[CategoryController::class,'update'])->name('category-update');
+Route::post('/category-delete',[CategoryController::class,'delete'])->name('category-delete');
+Route::POST('/category',[CategoryController::class,'search'])->name('category-search');
+
+
+
