@@ -22,6 +22,8 @@ use App\Http\Controllers\admin\SubCategoryController;
 use App\Http\Controllers\admin\BrandsController;
 //country 
 use App\Http\Controllers\admin\CountryController;
+//city 
+use App\Http\Controllers\admin\CityController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -83,7 +85,7 @@ Route::post('/brands',[BrandsController::class,'show'])->name('brands-show');
 Route::post('/brands-update',[BrandsController::class,'update'])->name('brands-update');
 Route::post('/brands-delete',[BrandsController::class,'delete'])->name('brands-delete');
 Route::POST('admin/brands',[BrandsController::class,'search'])->name('brandss-search');
-
+ 
 
 
 //country 
@@ -93,4 +95,12 @@ Route::post('admin/country',[CountryController::class,'show'])->name('country-sh
 Route::post('/country-update',[CountryController::class,'update'])->name('country-update');
 Route::post('/country-delete',[CountryController::class,'delete'])->name('country-delete');
 Route::POST('/country',[CountryController::class,'search'])->name('country-search');
+
+//city 
+Route::get('admin/city',[CityController::class,'index'])->name('city');
+Route::post('admin/add-city',[CityController::class,'store'])->name('city-add');
+Route::post('admin/city',[CityController::class,'show'])->name('city-show');
+Route::post('/city-update',[CityController::class,'update'])->name('city-update');
+Route::post('/city-delete',[CityController::class,'delete'])->name('city-delete');
+Route::POST('/city',[CityController::class,'search'])->name('city-search');
 

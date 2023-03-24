@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\User;
 use App\Models\SubCategory;
+//city
+use App\Models\City;
 
 class Category extends Model
 {
@@ -27,5 +29,8 @@ class Category extends Model
     }
     public function subCategories(){
         return $this->hasMany(SubCategory::class); 
+    }
+    public function cities(){
+        return $this->hasMany(City::class);
     }
 }
