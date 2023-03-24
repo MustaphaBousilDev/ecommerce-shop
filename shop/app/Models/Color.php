@@ -8,12 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 //user
 use App\Models\User;
-//prodyct 
-//color 
-use App\Models\Color;
-use App\Models\Product;
+//size 
+use App\Models\Size;
 
-class Size extends Model
+class Color extends Model
 {
     use HasFactory;
     //sfor delete
@@ -21,6 +19,7 @@ class Size extends Model
     //fillable
     protected $fillable = [
         'name',
+        'code',
         'user_id',
         'status',
     ];
@@ -28,11 +27,8 @@ class Size extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-    //product
-    public function products(){
-        return $this->belongsToMany(Product::class,'product_sizes');
-    }
-    public function colors(){
-        return $this->belongsToMany(Color::class,'size_colors');
+    //size
+    public function sizes(){
+        return $this->belongsToMany(Size::class,'size_colors');
     }
 }

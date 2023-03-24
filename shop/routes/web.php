@@ -26,6 +26,8 @@ use App\Http\Controllers\admin\CountryController;
 use App\Http\Controllers\admin\CityController;
 //size 
 use App\Http\Controllers\admin\SizeController;
+//color
+use App\Http\Controllers\admin\ColorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -113,4 +115,15 @@ Route::post('admin/size',[SizeController::class,'show'])->name('size-show');
 Route::post('/size-update',[SizeController::class,'update'])->name('size-update');
 Route::post('/size-delete',[SizeController::class,'delete'])->name('size-delete');
 Route::POST('/size',[SizeController::class,'search'])->name('size-search');
+
+//color
+Route::get('admin/color',[ColorController::class,'index'])->name('color');
+Route::post('admin/add-color',[ColorController::class,'store'])->name('color-add');
+Route::post('admin/color',[ColorController::class,'show'])->name('color-show');
+Route::post('/color-update',[ColorController::class,'update'])->name('color-update');
+Route::post('/color-delete',[ColorController::class,'delete'])->name('color-delete');
+Route::POST('/color',[ColorController::class,'search'])->name('color-search');
+
+
+
 
