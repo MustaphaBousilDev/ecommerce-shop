@@ -4,28 +4,36 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+//soft delete
 use Illuminate\Database\Eloquent\SoftDeletes;
+//model user 
 use App\Models\User;
-use App\Models\SubCategory;
+//model category
+use App\Models\Category;
 
-class Category extends Model
+class SubCategory extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $dates=['deleted_at'];
+    protected $table = 'sub_categories';
     protected $fillable = [
         'name',
         'slug',
         'description',
-        'status',
         'image',
+        'status',
+        'category_id',
         'user_id',
-
     ];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+    public function category(){
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
     public function user(){
         return $this->belongsTo(User::class);
-    }
-    public function subCategories(){
-        return $this->hasMany(SubCategory::class); 
     }
 }
