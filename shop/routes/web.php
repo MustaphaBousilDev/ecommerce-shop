@@ -15,7 +15,7 @@ use App\Http\Livewire\Admin\DashboardComponent;
 //controller 
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\auth\LoginController;
-
+ 
 //category
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SubCategoryController;

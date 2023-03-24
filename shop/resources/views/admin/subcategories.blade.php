@@ -39,18 +39,24 @@
     
     <form action='' class='w-full form-add' id='form-add' enctype="multipart/form-data">
         @csrf
-        <h3 class='text-center heading-form'>Add Categories</h3>
+        <h3 class='text-center heading-form'>Add subcategory</h3>
         
             <div class="w-[80%] mx-auto">
                
                 <input type="text" name="name" placeholder='name' id="name" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
+            <select name='category_id' class='w-[80%] mx-auto mt-4'>
+                <option value="">Select Category</option>
+                @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+            </select>
             <div class="w-[80%] mx-auto mt-4">
                 <textarea name="description" id="description" cols="30" rows="10" class="w-full border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
             </div>
             <div class="w-[80%] mx-auto mt-4">
                 <input name='image' type="file" class="file__img-input" onchange="display_add_image(this.files[0])" 
-                hidden name="image" id="image" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                hidden id="image" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
             <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button' type='submit'>Save</button>
             <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
@@ -63,15 +69,21 @@
     flex items-center justify-center image-div-edit">
         <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
     </div>
-    
+     
     <form action='' class='w-full form-edit' id='form-edit' enctype="multipart/form-data">
         @csrf
-        <h3 class='text-center heading-form'>Edit Categories</h3>
+        <h3 class='text-center heading-form'>Edit SubCategories</h3>
         
             <div class="w-[80%] mx-auto">
-                <input type='hidden'  name='id' id='id_category'>
+                <input type='hidden'  name='id' id='id_subcategory'>
                 <input type="text" name="name_edit" placeholder='name_edit' id="name_edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
+            <select name='category_id_edit' id='category_id_edit' class='w-[80%] mx-auto mt-4'>
+                <option value="">Select Category</option>
+                @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+            </select>
             <div class="w-[80%] mx-auto mt-4">
                 <textarea name="description_edit" id="description_edit" cols="30" rows="10" class="w-full border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
             </div>
@@ -92,18 +104,18 @@
          <table class="w-full text-sm text-left text-blue-100 dark:text-blue-100">
               <thead class="text-xs text-white uppercase bg-blue-600 dark:text-white">
                    <tr>
-                        <th scope="col" class="px-6 py-3">Categories</th>
+                        <th scope="col" class="px-6 py-3">SubCategory</th>
                         <th scope="col" class="px-6 py-3">Status</th>
                         <th scope="col" class="px-6 py-3">Actions</th>
                    </tr>
               </thead>
               <tbody class='body__table'>
-                    @foreach ($categories as $category)
+                    @foreach ($subcategories as $subcategory)
                         <tr class="bg-blue-500 border-b border-b-color-gray-background-light border-blue-400">
                             <th scope="row" class="px-6 py-4 flex items-center gap-2 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                                <span><img src="{{ asset('categories/'.$category->image) }}" alt="products" class='w-14 h-14 rounded-full' />
+                                <span><img src="{{ asset('subcategories/'.$subcategory->image) }}" alt="products" class='w-14 h-14 rounded-full' />
                                 </span>
-                                <span>{{$category->name}}</span>
+                                <span>{{$subcategory->name}}</span>
                             </th>
                             <td class="px-6 py-4">
                                 <form>
@@ -119,10 +131,10 @@
                             </td>
                             <td class="px-6 py-4">
                                 <div class='flex gap-1 items-center'>
-                                    <span onclick='edit_category()' class='button_edit' data-id='{{$category->id}}'>
+                                    <span onclick='edit_category()' class='button_edit' data-id='{{$subcategory->id}}'>
                                         <i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i>
                                     </span>
-                                    <span class='button_delete' data-id='{{$category->id}}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
+                                    <span class='button_delete' data-id='{{$subcategory->id}}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
                                     <span><i class='bx bxs-detail text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#cffafe] text-[#22d3ee]' ></i></span>
                                 </div>
                             </td>
@@ -152,7 +164,7 @@ crossorigin="anonymous"></script>
         //get data from form
         //console.log(image)
         $.ajax({
-            url: "{{route('category-add')}}",
+            url: "{{route('subcategory-add')}}",
             type: 'POST',
             data: new FormData($('#form-add')[0]),
 
@@ -160,18 +172,18 @@ crossorigin="anonymous"></script>
             contentType: false,
             success: function (response){
                 console.log('success')
-                if(response.status=="success inserted categorie"){
+                if(response.status=="success inserted subcategories"){
                     $('#form-add')[0].reset()
                     
                     //console.log(response)
                     $('.body__table').empty()
-                    $.each(response.categories,function(key,value){
+                    $.each(response.subcategories,function(key,value){
                         console.log(value)
                         //empty table 
                         $('.body__table').append(`
                         <tr class="bg-blue-500 border-b border-b-color-gray-background-light border-blue-400">
                             <th scope="row" class="px-6 py-4 flex items-center gap-2 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                                <span><img src="{{ asset('categories/${value.image}') }}" alt="products" class='w-14 h-14 rounded-full' />
+                                <span><img src="{{ asset('subcategories/${value.image}') }}" alt="products" class='w-14 h-14 rounded-full' />
                                 </span>
                                 <span>${value.name}</span>
                             </th>
@@ -189,8 +201,8 @@ crossorigin="anonymous"></script>
                             </td>
                             <td class="px-6 py-4">
                                 <div class='flex gap-1 items-center'>
-                                    <span><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
-                                    <span><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
+                                    <span onclick='edit_category()' class='button_edit' data-id='${value.id}'><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
+                                    <span class='button_delete' data-id='${value.id}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
                                     <span><i class='bx bxs-detail text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#cffafe] text-[#22d3ee]' ></i></span>
                                 </div>
                             </td>
@@ -217,7 +229,7 @@ crossorigin="anonymous"></script>
             e.preventDefault()
             var id = $(this).data('id')
             $.ajax({
-                url: "{{route('category-show')}}",
+                url: "{{route('subcategory-show')}}",
                 type: 'POST',
                 data: {
                     id:id,
@@ -225,10 +237,11 @@ crossorigin="anonymous"></script>
                 },
                 success: function (response){
                     console.log(response)
-                    $('#name_edit').val(response.categories.name)
-                    $('#description_edit').val(response.categories.description)
-                    $('#old_img').val(response.categories.image)
-                    $('#id_category').val(response.categories.id)
+                    $('#name_edit').val(response.subcategories.name)
+                    $('#description_edit').val(response.subcategories.description)
+                    $('#category_id_edit').val(response.subcategories.category_id)
+                    $('#old_img').val(response.subcategories.image)
+                    $('#id_subcategory').val(response.subcategories.id)
                     //get element has class image-div-edit and set attribute src to image
                     //$('.image-div-edit').style.backgroundImage=`url({{ asset('categories/${response.categories.image}') }})`
                 },
@@ -247,23 +260,24 @@ crossorigin="anonymous"></script>
         $(document).on('click','.save_button_edit',function(e){
             e.preventDefault()
             $.ajax({
-                url: "{{route('category-update')}}",
+                url: "{{route('subcategory-update')}}",
                 type: 'POST',
                 data: new FormData($('#form-edit')[0]),
                 processData: false,
                 contentType: false,
                 success: function (response){
                     console.log('success')
-                    if(response.status=="success updated categories"){
+                    if(response.status=="success updated subcategories"){
                         $('#form-edit')[0].reset()
                         $('.body__table').empty()
-                        $.each(response.categories,function(key,value){
+                        $.each(response.subcategories,function(key,value){
                             console.log(value)
+                            console.log(response.status)
                             //empty table 
                             $('.body__table').append(`
                             <tr class="bg-blue-500 border-b border-b-color-gray-background-light border-blue-400">
                                 <th scope="row" class="px-6 py-4 flex items-center gap-2 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                                    <span><img src="{{ asset('categories/${value.image}') }}" alt="products" class='w-14 h-14 rounded-full' />
+                                    <span><img src="{{ asset('subcategories/${value.image}') }}" alt="products" class='w-14 h-14 rounded-full' />
                                     </span>
                                     <span>${value.name}</span>
                                 </th>
@@ -281,8 +295,8 @@ crossorigin="anonymous"></script>
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class='flex gap-1 items-center'>
-                                        <span onclick='edit_category()' class='button_edit' data-id='{{$category->id}}'><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
-                                        <span class='button_delete' data-id='{{$category->id}}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
+                                        <span onclick='edit_category()' class='button_edit' data-id='${value.id}'><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
+                                        <span class='button_delete' data-id='${value.id}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
                                         <span><i class='bx bxs-detail text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#cffafe] text-[#22d3ee]' ></i></span>
                                     </div>
                                 </td>
@@ -307,23 +321,23 @@ crossorigin="anonymous"></script>
             let id = $(this).data('id')
             if(confirm('are you sure to delete this category?')){
                 $.ajax({
-                    url:"{{route('category-delete')}}",
+                    url:"{{route('subcategory-delete')}}",
                     type: 'POST',
                     data: {
                         id:id,
                         _token:$('meta[name="csrf-token"]').attr('content')
                     },
                     success: function (response){
-                        if(response.status=="success delete categories"){
+                        if(response.status=="success delete subcategories"){
                             console.log('success')
                             $('.body__table').empty()
-                            $.each(response.categories,function(key,value){
+                            $.each(response.subcategories,function(key,value){
                                 console.log(value)
                                 //empty table 
                                 $('.body__table').append(`
                                 <tr class="bg-blue-500 border-b border-b-color-gray-background-light border-blue-400">
                                     <th scope="row" class="px-6 py-4 flex items-center gap-2 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                                        <span><img src="{{ asset('categories/${value.image}') }}" alt="products" class='w-14 h-14 rounded-full' />
+                                        <span><img src="{{ asset('subcategories/${value.image}') }}" alt="products" class='w-14 h-14 rounded-full' />
                                         </span>
                                         <span>${value.name}</span>
                                     </th>
@@ -341,8 +355,8 @@ crossorigin="anonymous"></script>
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class='flex gap-1 items-center'>
-                                            <span onclick='edit_category()' class='button_edit' data-id='{{$category->id}}'><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
-                                            <span class='button_delete' data-id='{{$category->id}}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
+                                            <span onclick='edit_category()' class='button_edit' data-id='${value.id}'><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
+                                            <span class='button_delete' data-id='${value.id}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
                                                 <span><i class='bx bxs-detail text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#cffafe] text-[#22d3ee]' ></i></span>
                                         </div>
                                     </td>
@@ -370,7 +384,7 @@ crossorigin="anonymous"></script>
             let search = $(this).val()
             console.log(search)
             $.ajax({
-                url:"{{route('category-search')}}",
+                url:"{{route('subcategory-search')}}",
                 type: 'POST',
                 data: {
                     search:search,
@@ -381,16 +395,15 @@ crossorigin="anonymous"></script>
                         console.log('success')
                         //code do while if response data is empty load true if not load false
                         var load = true
-                        
                             //filter table of categories by search 
                             $('.body__table').empty()
-                            $.each(response.categories,function(key,value){
+                            $.each(response.subcategories,function(key,value){
                                 console.log(value)
                                 //empty table 
                                 $('.body__table').append(`
                                 <tr class="bg-blue-500 border-b border-b-color-gray-background-light border-blue-400">
                                     <th scope="row" class="px-6 py-4 flex items-center gap-2 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                                        <span><img src="{{ asset('categories/${value.image}') }}" alt="products" class='w-14 h-14 rounded-full' />
+                                        <span><img src="{{ asset('subcategories/${value.image}') }}" alt="products" class='w-14 h-14 rounded-full' />
                                         </span>
                                         <span>${value.name}</span>
                                     </th>
@@ -408,8 +421,8 @@ crossorigin="anonymous"></script>
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class='flex gap-1 items-center'>
-                                            <span onclick='edit_category()' class='button_edit' data-id='{{$category->id}}'><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
-                                            <span class='button_delete' data-id='{{$category->id}}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
+                                            <span onclick='edit_category()' class='button_edit' data-id='${value.id}'><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
+                                            <span class='button_delete' data-id='${value.id}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
                                                 <span><i class='bx bxs-detail text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#cffafe] text-[#22d3ee]' ></i></span>
                                         </div>
                                     </td>

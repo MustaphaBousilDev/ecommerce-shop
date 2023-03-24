@@ -13,8 +13,8 @@ class SubCategoryController extends Controller
         //get all categories from database where deleted_at is null and status is 1
         $categories = Category::where('status',1)->whereNull('deleted_at')->get();
         //get all subategories from database where deleted_at is null and status 1 and category_id where category_id is null deteted_at 
-        $subcategories = SubCategory::where('status',1)->whereNull('deleted_at')->whereNull('category_id')->get();
-        return view('admin.subcategories.index',compact('categories','subcategories'));
+        $subcategories = SubCategory::where('status',1)->whereNull('deleted_at')->get();
+        return view('admin.subcategories',compact('categories','subcategories'));
     }
     public function store(Request $request){
         $request->validate([
@@ -53,7 +53,7 @@ class SubCategoryController extends Controller
             ]);
 
             //retuern message and all data categories in database 
-            return response()->json(['status'=>"success inserted categorie",
+            return response()->json(['status'=>"success inserted subcategories",
                 'subcategories'=>SubCategory::all()]
             );
         }
@@ -96,7 +96,7 @@ class SubCategoryController extends Controller
             ]);
 
             //retuern message and all data categories in database 
-            return response()->json(['status'=>"success updated categories",
+            return response()->json(['status'=>"success updated subcategories",
                 'subcategories'=>SubCategory::all()]
             );
         }
@@ -117,7 +117,7 @@ class SubCategoryController extends Controller
                 ]);
 
                 //retuern message and all data categories in database 
-                return response()->json(['status'=>"success updated categories",
+                return response()->json(['status'=>"success updated subcategories",
                     'subcategories'=>SubCategory::all()]
                 );
             }
@@ -173,10 +173,10 @@ class SubCategoryController extends Controller
     }
     public function search(Request $request){
         //get all categories from database where deleted_at is null and name like %$request->search%
-        $categories=Category::where('deleted_at',null)->where('name','like','%'.$request->search.'%')->get();
+        $subcategories=SubCategory::where('deleted_at',null)->where('name','like','%'.$request->search.'%')->get();
         return response()->json([
             'status'=>"success",
-            'categories'=>$categories
+            'subcategories'=>$subcategories
         ]);
     }
 }
