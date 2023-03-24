@@ -24,6 +24,8 @@ use App\Http\Controllers\admin\BrandsController;
 use App\Http\Controllers\admin\CountryController;
 //city 
 use App\Http\Controllers\admin\CityController;
+//size 
+use App\Http\Controllers\admin\SizeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -103,4 +105,12 @@ Route::post('admin/city',[CityController::class,'show'])->name('city-show');
 Route::post('/city-update',[CityController::class,'update'])->name('city-update');
 Route::post('/city-delete',[CityController::class,'delete'])->name('city-delete');
 Route::POST('/city',[CityController::class,'search'])->name('city-search');
+
+//size 
+Route::get('admin/size',[SizeController::class,'index'])->name('size');
+Route::post('admin/add-size',[SizeController::class,'store'])->name('size-add');
+Route::post('admin/size',[SizeController::class,'show'])->name('size-show');
+Route::post('/size-update',[SizeController::class,'update'])->name('size-update');
+Route::post('/size-delete',[SizeController::class,'delete'])->name('size-delete');
+Route::POST('/size',[SizeController::class,'search'])->name('size-search');
 
