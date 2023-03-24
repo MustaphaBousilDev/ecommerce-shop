@@ -19,6 +19,7 @@ use App\Http\Controllers\auth\LoginController;
 //category
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SubCategoryController;
+use App\Http\Controllers\admin\BrandsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,6 +73,15 @@ Route::post('admin/subcategory',[SubCategoryController::class,'show'])->name('su
 Route::post('/subcategory-update',[SubCategoryController::class,'update'])->name('subcategory-update');
 Route::post('/subcategory-delete',[SubCategoryController::class,'delete'])->name('subcategory-delete');
 Route::POST('/subcategory',[SubCategoryController::class,'search'])->name('subcategory-search');
+
+//brands
+Route::get('admin/brands',[BrandsController::class,'index'])->name('brands');
+Route::post('admin/add-brands',[BrandsController::class,'store'])->name('brands-add');
+Route::post('/brands',[BrandsController::class,'show'])->name('brands-show');
+Route::post('/brands-update',[BrandsController::class,'update'])->name('brands-update');
+Route::post('/brands-delete',[BrandsController::class,'delete'])->name('brands-delete');
+Route::POST('admin/brands',[BrandsController::class,'search'])->name('brandss-search');
+
 
 
 
