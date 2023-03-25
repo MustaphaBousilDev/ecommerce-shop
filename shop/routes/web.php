@@ -28,6 +28,8 @@ use App\Http\Controllers\admin\CityController;
 use App\Http\Controllers\admin\SizeController;
 //color
 use App\Http\Controllers\admin\ColorController;
+//product
+use App\Http\Controllers\admin\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -123,6 +125,15 @@ Route::post('admin/color',[ColorController::class,'show'])->name('color-show');
 Route::post('/color-update',[ColorController::class,'update'])->name('color-update');
 Route::post('/color-delete',[ColorController::class,'delete'])->name('color-delete');
 Route::POST('/color',[ColorController::class,'search'])->name('color-search');
+
+
+//product
+Route::get('admin/product',[ProductController::class,'index'])->name('product');
+Route::post('admin/add-product',[ProductController::class,'store'])->name('product-add');
+Route::post('admin/product',[ProductController::class,'show'])->name('product-show');
+Route::post('/product-update',[ProductController::class,'update'])->name('product-update');
+Route::post('/product-delete',[ProductController::class,'delete'])->name('product-delete');
+Route::POST('/product',[ProductController::class,'search'])->name('product-search');
 
 
 

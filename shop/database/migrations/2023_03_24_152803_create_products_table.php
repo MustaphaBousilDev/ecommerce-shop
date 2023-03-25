@@ -39,6 +39,8 @@ return new class extends Migration
             $table->foreign('img3_id')->references('id')->on('images')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedInteger('img4_id')->nullable();
             $table->foreign('img4_id')->references('id')->on('images')->onDelete('cascade')->onUpdate('cascade');
+            //soft delete
+            $table->softDeletes();
             //
 
 

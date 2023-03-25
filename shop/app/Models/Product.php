@@ -11,12 +11,14 @@ use App\Models\User;
 //country
 use App\Models\Country;
 //brand
-use App\Models\Brand;
+use App\Models\Brands;
 //sub_category
 use App\Models\SubCategory;
 //image
 use App\Models\Image;
 //order
+//tag 
+use App\Models\Tag;
 //sieze
 use App\Models\Size;
 class Product extends Model
@@ -55,7 +57,7 @@ class Product extends Model
     }
     //brand
     public function brand(){
-        return $this->belongsTo(Brand::class);
+        return $this->belongsTo(Brands::class);
     }
     //sub_category
     public function sub_category(){
@@ -68,5 +70,8 @@ class Product extends Model
     //size 
     public function sizes(){
         return $this->belongsToMany(Size::class,'product_sizes');
+    }
+    public function tags(){
+        return $this->belongsToMany(Tag::class,'product_tags');
     }
 }
