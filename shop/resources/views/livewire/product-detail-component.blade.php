@@ -82,15 +82,17 @@
                 <button class="btn__qty-product-details flex bg-color-red-button w-[25%] items-center 
                     outline-none rounded">
                     <span class="w-[30%] flex justify-center items-center ">-</span>
-                    <span class="w-[40%] flex justify-center items-center">1</span>
+                    <span class="w-[40%] flex justify-center items-center">3</span>
                     <span class="w-[30%] flex justify-center items-center">+</span>
                 </button>
-                <button class="btn__cart-shopping-product-details flex bg-color-red-button w-[35%] items-center 
+                <button
+                    wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->sale_price}})" 
+                    class="btn__cart-shopping-product-details flex bg-color-red-button w-[35%] items-center 
                     outline-none rounded justify-center text-[#fff]">
                     <span class="flex  items-center mx-2">
                         <i class='bx bxs-cart-add text-lg'></i>
                     </span>
-                    <span class="flex items-center text-xs font-semibold">
+                    <span  class="flex items-center text-xs font-semibold">
                         Add To Cart
                     </span>
                 </button>

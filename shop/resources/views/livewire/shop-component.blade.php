@@ -1115,8 +1115,8 @@
                                     <a href="#" class="text-sm my-0 ">{{$tag->name}}</a> &
                                 @endforeach
                                 <div class="flex items-center">
-                                    <h2 class="text-xl font-bold text-color-red-button mx-1">$34.56</h2>
-                                    <span class="text-xs old__price-span">$95.00</span>
+                                    <h2 class="text-xl font-bold text-color-red-button mx-1">${{$product->sale_price}}</h2>
+                                    <span class="text-xs old__price-span">${{$product->regular_price}}</span>
                                 </div>
                                 <p class="text-sm text-color-gray-background-light">Shipping Cost: <span class="font-bold">$20</span></p>
                                 <p class="text-sm text-color-gray-background-light">Stock: <span class="font-bold" style="color:rgb(106, 240, 106)">Available</span></p>
@@ -1130,7 +1130,11 @@
                                         <span class="text-color-gray-background-light text-sm ">(6)</span>
                                     </div>
                                     <div class="btns-cart-wish flex">
-                                        <button class="btn__cart-shopping"><a href="#"><i class='bx bx-cart-alt'></i></a></button>
+                                        <button class="btn__cart-shopping">
+                                            <a wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->sale_price}})" 
+                                                href="#"><i class='bx bx-cart-alt'></i>
+                                            </a>
+                                        </button>
                                         <button class="btn__cart-wishlist"><a href="#"><i class='bx bx-heart'></i></a></button>
                                     </div>
                                 </div>

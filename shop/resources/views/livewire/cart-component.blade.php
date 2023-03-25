@@ -1,6 +1,20 @@
 <div>
     <!--cart shopping-->
     <div class="cart-shopping__ecommerce mt-3  w-[95%] lg:w-[90%] mx-auto" >
+        <style>
+            .success-message{
+                background-color: #e6f4ea;
+                color: #2a8f42;
+                border-color: #c3e6cb;
+            }
+            .button-delete{
+                background-color: #ffd7cb;
+                color: #ff5959;
+                border-color: #cbd5e0;
+                padding:5px 10px;
+                border-radius: 5px;
+            }
+        </style>
         <div class="cart-shopping__product">
             <div class="content__products-cart flex flex-col">
                 <div class="products-cart-shopping-columns p-2">
@@ -21,108 +35,62 @@
                     </div>
                 </div> 
                 <hr class="border-none bg-color-gray-background-light h-[1px]"/>
-                <div class="products-cart-shopping-columns p-1 border-b border-color-gray-background-light">
-                    <div class="product-img-name photo-img-column">
-                        <div class="flex items-center ">
-                            <img src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/12/598584/1.jpg?2316" 
-                            alt="" class="w-[80px] lg:w-[100px] h-[80px] lg:h-[110px] object-cover" />
-                            <p class="mx-3 text-xs md:text-sm lg:text-md">Clothes one big red </p>
+                @if(Session::has('success_message'))
+                    <div class="alert alert-success success-message py-3 text-center">
+                        <strong>Success |  {{Session::get('success_message')}}</strong>
+                    </div>
+                @endif 
+                @if(Cart::count() > 0)
+                @foreach(Cart::content() as $item)
+                    <div class="products-cart-shopping-columns p-1 border-b border-color-gray-background-light">
+                        <div class="product-img-name photo-img-column">
+                            <div class="flex items-center ">
+                                @foreach($images as $image)
+                                    @if($image->id == $item->model->img_id)
+                                    <img 
+                                    src="{{asset('products/'.$image->img)}}" 
+                                    alt="" class="w-[80px] lg:w-[100px] h-[80px] lg:h-[110px] object-cover" />
+                                    @endif
+                                @endforeach
+                                <p class="mx-3 text-xs md:text-sm lg:text-md">{{$item->model->name}}</p>
+                            </div>
+                        </div>
+                        <div class="product-price-cart-shoppping justify-center flex items-center"> 
+                            <p>{{$item->model->sale_price}}$</p>
+                        </div>
+                        <div class="product-quantity-cart-shoppping flex items-center justify-center">
+                            <button class="bg-while flex w-[120px] items-center   overflow-hidden rounded-xl 
+                                text-sm cursor-pointer p-0 outline-none border border-color-gray-background-light">
+                                <i wire:click.prevent="decreaseQuantity('{{$item->rowId}}')" class='bx bx-minus w-[33.33%] flex justify-center h-[100%]  p-1'></i>
+                                <span class="w-[33.33%] flex justify-center border-r border-l h-[100%] border-r-color-gray-background-light border-l-color-gray-background-light p-1">
+                                    {{$item->qty}}
+                                </span>
+                                <i wire:click.prevent="increaseQuantity('{{$item->rowId}}')" class='bx bx-plus flex justify-center w-[33.33%] h-[100%]  p-1'></i>
+                            </button>
+                        </div>
+                        <div class="product-total-cart-shoppping flex justify-center items-center">
+                            <h3>{{$item->subtotal}}$</h3>
+                        </div>
+                        <div class="product-action-cart-shoppping flex items-center">
+                            <button wire:click.prevent="destroy('{{$item->rowId}}')" 
+                            class="p-1 rounded-md text-xl">
+                                <i class='bx bx-trash text-color-red-button'></i>
+                            </button>
+                            <button class="text-xl">
+                                <i class='bx bx-heart '></i>
+                            </button>
+                            <button class="text-xl">
+                                <i class='bx bx-edit-alt' ></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="product-price-cart-shoppping justify-center flex items-center"> 
-                        <p>120$</p>
-                    </div>
-                    <div class="product-quantity-cart-shoppping flex items-center justify-center">
-                        <button class="bg-while flex w-[120px] items-center   overflow-hidden rounded-xl 
-                            text-sm cursor-pointer p-0 outline-none border border-color-gray-background-light">
-                            <i class='bx bx-minus w-[33.33%] flex justify-center h-[100%]  p-1   '></i>
-                            <span class="w-[33.33%] flex justify-center border-r border-l h-[100%] border-r-color-gray-background-light border-l-color-gray-background-light p-1">3</span>
-                            <i class='bx bx-plus flex justify-center w-[33.33%] h-[100%]  p-1'></i>
-                        </button>
-                    </div>
-                    <div class="product-total-cart-shoppping flex justify-center items-center">
-                        <h3>1200$</h3>
-                    </div>
-                    <div class="product-action-cart-shoppping flex items-center">
-                        <button class="p-1 rounded-md text-xl">
-                            <i class='bx bx-trash text-color-red-button'></i>
-                        </button>
-                        <button class="text-xl">
-                            <i class='bx bx-heart '></i>
-                        </button>
-                        <button class="text-xl">
-                            <i class='bx bx-edit-alt' ></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="products-cart-shopping-columns p-1 border-b border-color-gray-background-light">
-                    <div class="product-img-name">
-                        <div class="flex items-center ">
-                            <img src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/12/598584/1.jpg?2316" 
-                            alt="" class="w-[80px] lg:w-[100px] h-[80px] lg:h-[110px] object-cover" />
-                            <p class="mx-3 text-xs md:text-sm lg:text-md">Clothes one big red </p>
-                        </div>
-                    </div>
-                    <div class="product-price-cart-shoppping justify-center flex items-center"> 
-                        <p>120$</p>
-                    </div>
-                    <div class="product-quantity-cart-shoppping flex items-center justify-center">
-                        <button class="bg-while flex w-[120px] items-center   overflow-hidden rounded-xl 
-                            text-sm cursor-pointer p-0 outline-none border border-color-gray-background-light">
-                            <i class='bx bx-minus w-[33.33%] flex justify-center h-[100%]  p-1   '></i>
-                            <span class="w-[33.33%] flex justify-center border-r border-l h-[100%] border-r-color-gray-background-light border-l-color-gray-background-light p-1">3</span>
-                            <i class='bx bx-plus flex justify-center w-[33.33%] h-[100%]  p-1'></i>
-                        </button>
-                    </div>
-                    <div class="product-total-cart-shoppping flex justify-center items-center">
-                        <h3>1200$</h3>
-                    </div>
-                    <div class="product-action-cart-shoppping flex items-center">
-                        <button class="p-1 rounded-md text-xl">
-                            <i class='bx bx-trash text-color-red-button'></i>
-                        </button>
-                        <button class="text-xl">
-                            <i class='bx bx-heart '></i>
-                        </button>
-                        <button class="text-xl">
-                            <i class='bx bx-edit-alt' ></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="products-cart-shopping-columns p-1 border-b border-color-gray-background-light">
-                    <div class="product-img-name">
-                        <div class="flex items-center ">
-                            <img src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/12/598584/1.jpg?2316" 
-                            alt="" class="w-[80px] lg:w-[100px] h-[80px] lg:h-[110px] object-cover" />
-                            <p class="mx-3 text-xs md:text-sm lg:text-md">Clothes one big red </p>
-                        </div>
-                    </div>
-                    <div class="product-price-cart-shoppping justify-center flex items-center"> 
-                        <p>120$</p>
-                    </div>
-                    <div class="product-quantity-cart-shoppping flex items-center justify-center">
-                        <button class="bg-while flex w-[120px] items-center   overflow-hidden rounded-xl 
-                            text-sm cursor-pointer p-0 outline-none border border-color-gray-background-light">
-                            <i class='bx bx-minus w-[33.33%] flex justify-center h-[100%]  p-1   '></i>
-                            <span class="w-[33.33%] flex justify-center border-r border-l h-[100%] border-r-color-gray-background-light border-l-color-gray-background-light p-1">3</span>
-                            <i class='bx bx-plus flex justify-center w-[33.33%] h-[100%]  p-1'></i>
-                        </button>
-                    </div>
-                    <div class="product-total-cart-shoppping flex justify-center items-center">
-                        <h3>1200$</h3>
-                    </div>
-                    <div class="product-action-cart-shoppping flex items-center">
-                        <button class="p-1 rounded-md text-xl">
-                            <i class='bx bx-trash text-color-red-button'></i>
-                        </button>
-                        <button class="text-xl">
-                            <i class='bx bx-heart '></i>
-                        </button>
-                        <button class="text-xl">
-                            <i class='bx bx-edit-alt' ></i>
-                        </button>
-                    </div>
-                </div>
+                @endforeach
+                @else 
+                <p>No Item in cart</p>
+                @endif 
+            </div>
+            <div style='justify-content:flex-end' class='flex mt-2'>
+                <button wire:click.prevent="destroyAll()" class='button-delete'>Clear All</button>
             </div>
             <div class="flex justify-between mt-3">
                 <a href="#" class="flex opacity-90 transition hover:opacity-100 text-while justify-center items-center py-1 px-3  bg-color-red-button rounded-lg">
@@ -148,15 +116,19 @@
                 <ul>
                     <li class="flex justify-between mb-2">
                         <span>Total Price</span>
-                        <span>$12.00</span>
+                        <span>${{Cart::subtotal()}}</span>
                     </li>
                     <li class="flex justify-between mb-2">
-                        <span>Discount</span>
-                        <span>$05.00</span>
+                        <span>Tax</span>
+                        <span>${{Cart::tax()}}</span>
+                    </li>
+                    <li class="flex justify-between mb-2">
+                        <span>Shipping</span>
+                        <span>Free Shipping</span>
                     </li>
                     <li class="flex justify-between ">
                         <span>Total</span>
-                        <span class="font-bold">$99.00</span>
+                        <span class="font-bold">${{Cart::total()}}</span>
                     </li>
                 </ul>
                 <hr class="border-0 w-[100%] inline-block  h-[1px] bg-color-gray-background-light" />
