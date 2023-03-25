@@ -57,7 +57,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/',HomeComponent::class)->name('home');
 Route::get('/shop',ShopComponent::class)->name('shop');
 Route::get('/cart',CartComponent::class)->name('cart');
-Route::get('/product-details',ProductDetailComponent::class)->name('product.details');
+//route product detail with slug but parametre not required 
+Route::get('/product-details/{slug?}',ProductDetailComponent::class)->name('product.details');
 Route::get('/wishlist',WishlistComponent::class)->name('product.wishlist');
 Route::get('/contact',ContactComponent::class)->name('contact');
 Route::get('/checkout',CheckoutComponent::class)->name('checkout');

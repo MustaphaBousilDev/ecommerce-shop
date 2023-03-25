@@ -3,28 +3,57 @@
     <div class="product__details-page mx-2 md:mx-8 lg:mx-24 flex">
         <div class="products__details">
             <div class="product__principalte-details ">
-                <img class="w-[100%] h-[370px]" src="https://ma.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/07/509464/1.jpg?3167" alt="" />
+                @foreach($images as $image)
+                    @if($image->id==$product->img_id)
+                        <img class="w-[100%] h-[370px]" 
+                        src="{{asset('products/'.$image->img)}}" alt="" />
+                    @endif 
+                @endforeach
                 <i class='bx bxs-chevron-right right-icon__product-details'></i>
                 <i class='bx bxs-chevron-left  left-icon__product-details' ></i>
             </div>
             <div class="products__secondaires-details">
                 <div class="product__secondary-detail">
-                    <img data-index="0" class="w-[100%] h-[100%]" src="https://ma.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/07/509464/1.jpg?3167" alt="" />
+                    @foreach($images as $image)
+                        @if($image->id==$product->img_id)
+                            <img data-index="0" class="w-[100%] h-[100%]" 
+                            src="{{asset('products/'.$image->img)}}" alt="" />
+                        @endif 
+                    @endforeach
                 </div>
                 <div class="product__secondary-detail">
-                    <img data-index="1" class="w-[100%] h-[100%]" src="https://ma.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/07/509464/3.jpg?3167" alt="" />
+                    @foreach($images as $image)
+                        @if($image->id==$product->img2_id)
+                            <img data-index="1" class="w-[100%] h-[100%]" 
+                            src="{{asset('products/'.$image->img)}}" alt="" />
+                        @endif 
+                    @endforeach
                 </div>
                 <div class="product__secondary-detail">
-                    <img data-index="2" class="w-[100%] h-[100%]" src="https://ma.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/07/509464/4.jpg?3167" alt="" />
+                    @foreach($images as $image)
+                        @if($image->id==$product->img3_id)
+                            <img data-index="2" class="w-[100%] h-[100%]" 
+                            src="{{asset('products/'.$image->img)}}" alt="" />
+                        @endif 
+                    @endforeach
                 </div>
                 <div class="product__secondary-detail">
-                    <img data-index="3" class="w-[100%] h-[100%]" src="https://ma.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/07/509464/5.jpg?3167" alt="" />
+                    @foreach($images as $image)
+                        @if($image->id==$product->img3_id)
+                            <img data-index="3" class="w-[100%] h-[100%]" 
+                            src="{{asset('products/'.$image->img)}}" alt="" />
+                        @endif 
+                    @endforeach
                 </div>
             </div>
         </div>
         <div class="details___product-details">
-            <h3>Apple MacBook Pro  (15" Retina, Touch Bar, 2.2GHz 6-Core Intel Core i7, 16GB RAM, 256GB SSD) - Space Gray (Latest Model)</h3>
-            <p><a href="#">Computer Accesoirs</a></p>
+            <h3>{{$product->name}}</h3>
+            <p>
+                @foreach($product->tags as $tag)
+                    <a href="#" class="">{{$tag->name}}</a> 
+                @endforeach
+            </p>
             <div class="ratings-product-details">
                 <i class='bx bxs-star'></i>
                 <i class='bx bxs-star'></i>
@@ -33,27 +62,19 @@
                 <i class='bx bxs-star'></i>
             </div>
             <p class="description-details-products">
-                Testing conducted by Apple in October 2018 using pre-production 2.9GHz 
-                6‑core Intel Core i9‑based 15-inch MacBook Pro systems with Radeon Pro Vega 
-                20 graphics, and shipping 2.9GHz 6‑core Intel Core i9‑based 15‑inch MacBook Pro 
-                systems with Radeon Pro 560X graphics, both configured with 32GB of RAM and 4TB SSD.
-                Testing conducted by Apple in October 2018 using pre-production 2.9GHz 
-                6‑core Intel Core i9‑based 15-inch MacBook Pro systems with Radeon Pro Vega 
-                20 graphics, and shipping 2.9GHz 6‑core Intel Core i9‑based 15‑inch MacBook Pro 
-                systems with Radeon Pro 560X graphics, both configured with 32GB of RAM and 4TB SSD.
-                
+                {{$product->short_description}}
             </p>
             <div class="price__product-details">
-                <h3>$1200 <span>$2400 -50%</span></h3>
+                <h3>${{$product->regular_price}} <span>${{$product->sale_price}} -50%</span></h3>
             </div>
             <p class="shipping-product-details">Shipping Cost: <span>$50</span></p>
             <p class="stock__product-details">Stock: <span class="font-bold">Available</span></p>
             <div class="tags__product-details">
                 <p><span>Tags : </span>
                     <span>
-                        <a href="#">Computer</a>,
-                        <a href="#">Mac Book</a>,
-                        <a href="#">Pro,Laptop</a>
+                        @foreach($product->tags as $tag)
+                            <a href="#" class="">{{$tag->name}}</a> 
+                        @endforeach
                     </span>
                 </p>
             </div>

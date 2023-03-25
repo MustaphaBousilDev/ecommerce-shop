@@ -7,6 +7,26 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{asset('assets/css-tailwind/main.css')}}">
     <link rel="stylesheet" href="{{asset('assets/scss/dist/styles.css')}}"/>
+    <style>
+        .details___product-details{
+        width: 30%;
+        
+        //background-color: blue;
+    }
+    @media screen and (max-width:1300px){
+        .products__details,
+        .details___product-details{
+            width: 49%;
+        } 
+    }
+    @media screen and (max-width:1090px){
+        .products__details,
+        .details___product-details{
+            width: 100%;
+            
+        }
+    }
+    </style>
     @livewireStyles
     <title>Home</title>
 </head> 

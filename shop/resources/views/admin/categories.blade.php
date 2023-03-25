@@ -281,8 +281,8 @@ crossorigin="anonymous"></script>
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class='flex gap-1 items-center'>
-                                        <span onclick='edit_category()' class='button_edit' data-id='{{$category->id}}'><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
-                                        <span class='button_delete' data-id='{{$category->id}}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
+                                        <span onclick='edit_category()' class='button_edit' data-id='${value.id}'><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
+                                        <span class='button_delete' data-id='${value.id}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
                                         <span><i class='bx bxs-detail text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#cffafe] text-[#22d3ee]' ></i></span>
                                     </div>
                                 </td>
@@ -341,8 +341,8 @@ crossorigin="anonymous"></script>
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class='flex gap-1 items-center'>
-                                            <span onclick='edit_category()' class='button_edit' data-id='{{$category->id}}'><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
-                                            <span class='button_delete' data-id='{{$category->id}}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
+                                            <span onclick='edit_category()' class='button_edit' data-id='${value.id}'><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
+                                            <span class='button_delete' data-id='${value.id}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
                                                 <span><i class='bx bxs-detail text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#cffafe] text-[#22d3ee]' ></i></span>
                                         </div>
                                     </td>
@@ -408,8 +408,8 @@ crossorigin="anonymous"></script>
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class='flex gap-1 items-center'>
-                                            <span onclick='edit_category()' class='button_edit' data-id='{{$category->id}}'><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
-                                            <span class='button_delete' data-id='{{$category->id}}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
+                                            <span onclick='edit_category()' class='button_edit' data-id='${value.id}'><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
+                                            <span class='button_delete' data-id='${value.id}'><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
                                                 <span><i class='bx bxs-detail text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#cffafe] text-[#22d3ee]' ></i></span>
                                         </div>
                                     </td>
