@@ -50,11 +50,12 @@
         <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
     </div>
     </div>
-    <form class='w-full'>
-     <input type='file' hidden class='file__img-input1' name='image1' id='image1' onchange="display_add_image(this.files[0],event)" />
-     <input type='file' hidden class='file__img-input2' name='image2' id='image2' onchange="display_add_image(this.files[0],event)" />
-     <input type='file' hidden class='file__img-input3' name='image3' id='image3' onchange="display_add_image(this.files[0],event)" />
-     <input type='file' hidden class='file__img-input4' name='image4' id='image4' onchange="display_add_image(this.files[0],event)" />
+    <form class='w-full' id='form__images'>
+     @csrf
+     <input type='file' hidden class='file__img-input1 imagepro' name='image1' id='image1' onchange="display_add_image(this.files[0],event);add(this.files[0])" />
+     <input type='file' hidden class='file__img-input2 imagepro' name='image2' id='image2' onchange="display_add_image(this.files[0],event);add(this.files[0])" />
+     <input type='file' hidden class='file__img-input3 imagepro' name='image3' id='image3' onchange="display_add_image(this.files[0],event);add(this.files[0])" />
+     <input type='file' hidden class='file__img-input4 imagepro' name='image4' id='image4' onchange="display_add_image(this.files[0],event);add(this.files[0])" />
     </form>
     <form action='' class='w-full form-add' id='form-add' enctype="multipart/form-data">
         @csrf
@@ -62,30 +63,60 @@
                
             <div class="w-[90%] mx-auto flex gap-2">
                 <input type="text" name="name" placeholder='name' id="name" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
-                <input type="text" name="name" placeholder='name' id="name" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                <input type="text" name="sku" placeholder='sku' id="sku" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
             <div class="w-[90%] mx-auto flex gap-2">
-               <input type="text" name="name" placeholder='name' id="name" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
-               <input type="text" name="name" placeholder='name' id="name" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+               <input type="number" name="r_price" placeholder='r_price' id="r_price" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+               <input type="number" name="s_price" placeholder='s_price' id="s_price" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
            </div>
            <div class="w-[90%] mx-auto flex gap-2">
-               <input type="text" name="name" placeholder='name' id="name" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
-               <input type="text" name="name" placeholder='name' id="name" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+               <input type="text" name="barcode" placeholder='barcode' id="barcode" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                <select name='made_in' id='made_in' class='w-full h-40px rounded-md mt-2 outline-none'>
+                    <option>made_in</option>
+                    @foreach ($countries as $country)
+                        <option value="{{$country->id}}">{{$country->name}}</option>
+                    @endforeach
+                </select>
            </div>
            <div class="w-[90%] mx-auto flex gap-2">
-               <input type="text" name="name" placeholder='name' id="name" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
-               <input type="text" name="name" placeholder='name' id="name" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+            <select name='brands' id='brands' class='w-full h-40px py-3 rounded-md mt-2 outline-none'>
+                <option>brands</option>
+                @foreach ($brands as $brand)
+                    <option value="{{$brand->id}}">{{$brand->name}}</option>
+                @endforeach
+            </select>
+            <select name='subcategory' id='subcategory' class='w-full h-40px rounded-md mt-2 outline-none'>
+                <option>subcategory</option>
+                @foreach ($subcategories as $subcategory)
+                    <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+                @endforeach
+            </select>
            </div>
-            <div class="w-[80%] mx-auto mt-4 flex gap-2">
-                <textarea name="description" id="description" cols="30" rows="10" class="w-full border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
-                <textarea name="description" id="description" cols="30" rows="10" class="w-full border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
+            <div class="w-[90%] mx-auto mt-4 flex gap-2">
+                <textarea style='height:60px' name="short_description"  id="short_description" cols="30" rows="10" class="w-full border border-color-gray-background-light h-[60px] rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
+                <textarea style='height:60px' name="description" id="description" cols="30" rows="10" class="w-full border border-color-gray-background-light h-[60px]  rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
             </div>
-            <div class="w-[80%] mx-auto mt-4">
-                <input name='image' type="file" class="file__img-input" onchange="display_add_image(this.files[0])" 
-                hidden name="image" id="image" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+            <div class="w-[90%] mx-auto mt-4 flex flex-wrap">
+                @foreach ($sizes as $size)
+                    <div class='our__size w-[33%]'>
+                        <label for='size'>{{$size->name}}</label>
+                        <input type='checkbox' name='size[]' id='size' class='size' value="{{$size->id}}" /><br>
+                        @foreach ($colors as $color)
+                                <div class='ml-3 my-2'>
+                                    <label for='color'>{{$color->name}}</label>
+                                    <input type='checkbox' name='color[]' id='color' class='color' value="{{$color->id}}" />
+                                    <input type='number' name='qty[]' id='qty' class='qty mx-2 border rounded-md outline-none' value='10' />
+                                </div>
+                        @endforeach
+                    </div>
+                @endforeach
             </div>
-            <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button' type='submit'>Save</button>
-            <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
+            <div class='w-[90%] mx-auto mt-4 flex'>
+                <input type="text" name="tags" placeholder='tags' id="tags" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                <input type="number" name="quantity_total" placeholder='qty' id="quantity_total" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+            </div>
+            <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer my-2 inline-block mx-1 save_button' type='submit'>Save</button>
+            <button class='bg-primary-200 px-5 py-2 my-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
     </form>
 </div> 
 <!--end-->
@@ -134,59 +165,64 @@
                </tr>
               </thead>
               <tbody class='body__table'>
-               <tr class="bg-blue-500 border-b border-b-color-gray-background-light border-blue-400">
+               
+               @foreach($products as $product)
+                
+                <tr class="bg-blue-500 border-b border-b-color-gray-background-light border-blue-400">
                     <th scope="row" class="px-6 py-4 flex items-center gap-2 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                         <span><img src='https://ma.jumia.is/cms/000_2022/Z-Categories/4-TV&HiTech/44-Camera&Video/300/Cam-gris-300-(1).png' 
-                              alt="products" class='w-14 h-14 rounded-full' />
-                         </span>
-                         <span>Apple MacBook Pro 17"</span>
+                        @foreach ($images as $image)
+                            @if ($product->img_id == $image->id)
+                                <img width="50px" height="50px" src="{{asset('products/'.$image->img)}}" alt="" class='w-[50px] h-[50px] rounded-md'>
+                            @endif
+                        @endforeach
+                        <span>{{$product->name}}</span>
                     </th>
                     <td class="px-6 py-4">
-                         <button class='border border-color-gray-background-light w-32 cursor-pointer outline-none rounded-md bg-while flex items-center'>
-                              <span class="w-[30%] hover:bg-color-gray-background-light transition text-lg  border-r p-2 border-r-color-gray-background-light">-</span>
-                              <span class='w-[40%] hover:bg-color-gray-background-light p-2 transition text-lg'>4</span>
-                              <span class='w-[30%] hover:bg-color-gray-background-light transition text-lg border-l p-2 border-l-color-gray-background-light'>+</span>
-                         </button>
+                        <button class='border border-color-gray-background-light w-32 cursor-pointer outline-none rounded-md bg-while flex items-center'>
+                            <span class="w-[30%] hover:bg-color-gray-background-light transition text-lg  border-r p-2 border-r-color-gray-background-light">-</span>
+                            <span class='w-[40%] hover:bg-color-gray-background-light p-2 transition text-lg'>{{$product->quantity_total}}</span>
+                            <span class='w-[30%] hover:bg-color-gray-background-light transition text-lg border-l p-2 border-l-color-gray-background-light'>+</span>
+                        </button>
                     </td>
                     <td class="px-6 py-4">
-                         <div class='flex gap-1'>
-                              <span class='w-6 h-6 rounded-full bg-color-rating'></span>
-                              <span class='w-6 h-6 rounded-full bg-color-red-button'></span>
-                              <span class='w-6 h-6 rounded-full bg-[#0ea5e9]'></span>
-                         </div>
+                        <div class='flex gap-1'>
+                            <span class='w-6 h-6 rounded-full bg-color-rating'></span>
+                            <span class='w-6 h-6 rounded-full bg-color-red-button'></span>
+                            <span class='w-6 h-6 rounded-full bg-[#0ea5e9]'></span>
+                        </div>
                     </td>
                     <td class="px-6 py-4">
-                         <div class='flex gap-1'>
-                              <span class='bg-color-gray-background-light p-1 px-3 rounded-md text-xs font-bold'>XL</span>
-                              <span class='bg-color-gray-background-light p-1 px-3 rounded-md text-xs font-bold'>L</span>
-                              <span class='bg-color-gray-background-light p-1 px-3 rounded-md text-xs font-bold'>M</span>
-                              <span class='bg-color-gray-background-light p-1 px-3 rounded-md text-xs font-bold'>XS</span>
-                         </div>
+                        <div class='flex gap-1'>
+                            @foreach($product->sizes as $size)
+                                <span class='bg-color-gray-background-light p-1 px-3 rounded-md text-xs font-bold'>{{$size->name}}</span>
+                            @endforeach
+                        </div>
                     </td>
                     <td class="px-6 py-4">
-                         <div class='flex flex-col items-center'>
-                              <span><img src='https://img.huffingtonpost.com/asset/5ce6bd0c210000b90ed0ed6a.jpeg?ops=scalefit_720_noupscale' alt='category img'
-                                   class="w-14 h-14 rounded-full"
-                                   />
-                              </span>
-                              <span>Clothes</span>
-                         </div>
+                        <div class='flex flex-col items-center'>
+                            <span><img src="{{asset('subcategories/'.$product->sub_category->image)}}" alt='category img'
+                                class="w-14 h-14 rounded-full"
+                                />
+                            </span>
+                            <span>{{$product->sub_category->name}}</span>
+                        </div>
                     </td>
                     <td class="px-6 py-4">
-                         <div class='flex flex-col items-center'>
-                              <span><img src='data:image/png;base64,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' 
-                                   alt='brands products' class="w-14 h-14 rounded-full"/></span>
-                              <span>Adidas</span>
-                         </div>
+                        <div class='flex flex-col items-center'>
+                            <span><img src='{{asset('brands/'.$product->brand->image)}}' 
+                                alt='brands products' class="w-14 h-14 rounded-full"/></span>
+                            <span>{{$product->brand->name}}</span>
+                        </div>
                     </td>
                     <td class="px-6 py-4">
-                         <div class='flex gap-1 items-center'>
-                              <span><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
-                              <span><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
-                              <span><i class='bx bxs-detail text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#cffafe] text-[#22d3ee]' ></i></span>
-                         </div>
+                        <div class='flex gap-1 items-center'>
+                            <span><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
+                            <span><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
+                            <span><i class='bx bxs-detail text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#cffafe] text-[#22d3ee]' ></i></span>
+                        </div>
                     </td>
-               </tr>
+                </tr>
+               @endforeach
               </tbody>
          </table>
     </div>
@@ -204,47 +240,133 @@ src="https://code.jquery.com/jquery-3.6.3.min.js"
 integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
 crossorigin="anonymous"></script>
 <script>
-    
-    $(document).ready(function(){
-        $(document).on('click','.save_button',function (e){
-        e.preventDefault()
-        //get data from form
-        //console.log(image)
-        $.ajax({
-            url: "{{route('category-add')}}",
-            type: 'POST',
-            data: new FormData($('#form-add')[0]),
-
-            processData: false,
-            contentType: false,
-            success: function (response){
-                console.log('success')
-                if(response.status=="success inserted categorie"){
-                    $('#form-add')[0].reset()
-                    
-                    //console.log(response)
-                    $('.body__table').empty()
-                    $.each(response.categories,function(key,value){
-                        console.log(value)
-                        //empty table 
-                        $('.body__table').append(`
-                        
-                        `)
-                    })
-                    
-
-
-                    
-                }
-                console.log(response)
+var counter=0
+var images=[]
+function add(file){
+    let formData=new FormData()
+    formData.append(`image${counter}`,file)
+    if(counter==4){
+    console.log('fuck ready')
+    $.ajax({
+            url:"{{route('images-add')}}",
+            type:'post',
+            data:new FormData($('#form__images')[0]),
+            contentType:false,
+            processData:false,
+            success:function(response){
+            console.log(response)
+            //insert id images inserted to array images
+                console.log(response.images)
+                images=response.images
+                console.log('my array')
+                console.log(images)
             },
-            error: function (error){
-                console.log("error")
-                $.each(error.responseJSON.errors,function(key,value) {
-                    console.log(value)
-                })
+            error:function(error){
+            console.log(error)
             }
+    })
+    }
+}
+
+    $(document).ready(function(){
+        //insert images
+        $(document).on('change','.imagepro',function (e){
+            e.preventDefault()
+            //get file from input
+            counter++
+            let file=e.target.files[0]
+            console.log(file)
+            //call function add
+            display_add_image(file,e)
+            console.log(`image number ${counter}`)
+            add(file)
         })
+        $(document).on('click','.save_button',function (e){
+            e.preventDefault()
+            let data=[]
+            data['name']=$('#name').val()
+            data['short_description']=$('#short_description').val()
+            data['sku']=$('#sku').val()
+            data['barcode']=$('#barcode').val()
+            data['brands']=$('#brands').val()
+            data['subcategory']=$('#subcategory').val()
+            data['description']=$('#description').val()
+            data['images']=images
+            data['made_in']=$('#made_in').val()
+            data['r_price']=$('#r_price').val()
+            data['s_price']=$('#s_price').val()
+            data['quantity_total']=$('#quantity_total').val()
+
+            let sizes=[]
+            //get all sizes
+            let all_sizes=$('input[name="size[]"]')
+            //loop all sizes
+            let i=0
+            $.each(all_sizes,function(key,value){
+               if($(value).is(':checked')){
+                    let size={}
+                    size['size_id']=$(value).val()
+                    let colors=[]
+                    let all_colors=$('.our__size')[key].querySelectorAll('.color')
+                    var indice=key
+                    var j=0
+                    $.each(all_colors,function(key,value){
+                    if($(value).is(':checked')){
+                        let color={}
+                        color['color_id']=$(value).val()
+                        color['quantity']=document.querySelectorAll('.our__size')[indice].querySelectorAll('.qty')[j].value
+                        colors.push(color)
+                    }
+                    j++
+                    i++
+                    })
+                    size['colors']=colors
+                    sizes.push(size)
+                }
+            })
+            data['sizes']=sizes
+            data['tag']=['one','two','three']
+            console.log(data)
+            
+
+
+            $.ajax({
+                url: "{{route('product-add')}}",
+                type: 'POST',
+                data:{
+                    name:data['name'],
+                    short_description:data['short_description'],
+                    sku:data['sku'],
+                    barcode:data['barcode'],
+                    brand_id:data['brands'],
+                    sub_category_id:data['subcategory'],
+                    description:data['description'],
+                    image:data['images'],
+                    made_in:data['made_in'],
+                    r_price:data['r_price'],
+                    s_price:data['s_price'],
+                    quantity_total:data['quantity_total'],
+                    sizes:data['sizes'],
+                    tag:data['tag'],
+                    _token:$('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response){
+                    console.log('success yow')
+                    if(response.status=="success inserted products"){
+                        $('#form-add')[0].reset()
+                        //console.log(response)
+                        $('.body__table').empty()
+                        console.log('you re realy son of the bitch')
+                    }
+                    console.log(response)
+                },
+                error: function (error){
+                    console.log("error")
+                    $.each(error.responseJSON.errors,function(key,value) {
+                        console.log(value)
+                    })
+                }
+            })
         })
         //show 
         $(document).on('click','.button_edit',function (e){
@@ -308,7 +430,7 @@ crossorigin="anonymous"></script>
                     })
                 }
 
-        })
+            })
         })
         //delete categories
         $(document).on('click','.button_delete',function(e){
@@ -346,8 +468,6 @@ crossorigin="anonymous"></script>
 
 
         })
-            
-        
         //search
         $(document).on('keyup','#search-categories',function(e){
             e.preventDefault()
@@ -415,22 +535,22 @@ crossorigin="anonymous"></script>
     document.querySelector('.file__img-input-edit').click()})
 
     function display_add_image(file,e){
-    console.log(e.target)
+    //console.log(e.target)
     let allowed = ['jpg','jpeg','png'];
     let ext = file.name.split(".").pop();
     if(allowed.includes(ext.toLowerCase())){
     image_added=true
     //set image in background-img of div
-    if(e.target.className=='file__img-input1'){
+    if(e.target.classList.contains('file__img-input1')){
             document.querySelector('.image-div1').style.backgroundImage=`url(${URL.createObjectURL(file)})`
     }
-     if(e.target.className=='file__img-input2'){
+     if(e.target.classList.contains('file__img-input2')){
                document.querySelector('.image-div2').style.backgroundImage=`url(${URL.createObjectURL(file)})`
      }
-     if(e.target.className=='file__img-input3'){
+     if(e.target.classList.contains('file__img-input3')){
                document.querySelector('.image-div3').style.backgroundImage=`url(${URL.createObjectURL(file)})`
      }
-     if(e.target.className=='file__img-input4'){
+     if(e.target.classList.contains('file__img-input4')){
                document.querySelector('.image-div4').style.backgroundImage=`url(${URL.createObjectURL(file)})`
      }
     }else {

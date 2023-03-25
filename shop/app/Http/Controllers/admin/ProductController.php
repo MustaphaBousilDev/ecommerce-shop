@@ -25,7 +25,8 @@ class ProductController extends Controller
     //
     //function index get all products in table products and get all sizes in table sizes and get all tags in table tags and get all colors in table colors and get all categories in table categories and get all subcategories in table subcategories and get all brands in table brands and get all countries in table countries
     public function index(){
-        $products=Product::with('sizes','tags','subcategory','brand','country')->get();
+        $products=Product::with('sizes','tags','sub_category','brand','country')->get();
+        $images=Image::all();
         $subcategories=Subcategory::where('status',1)->whereNull('deleted_at')->get();
         $countries=Country::where('status',1)->whereNull('deleted_at')->get();
         $brands=Brands::where('status',1)->whereNull('deleted_at')->get();
@@ -33,11 +34,12 @@ class ProductController extends Controller
         $colors=Color::where('status',1)->whereNull('deleted_at')->get();
         $sizes=Size::where('status',1)->whereNull('deleted_at')->get();
         $tags=Tag::where('status',1)->whereNull('deleted_at')->get();
-        return view('admin.products',compact('products','subcategories','countries','brands','cities','colors','sizes','tags'));
+        return view('admin.products',compact('products','subcategories','countries','brands','cities','colors','sizes','tags','images'));
     }
     //function store product in table products and get id of product and store in table product_sizes and get id size and store in table product_sizes and get id tag and store in table product_tags and store tags in table tags and store id colors in table sizes_colors and store image in table images and store id images in table products 
     public function store(Request $request){ 
         //return response()->json($request->image[0]);
+        
         $request->validate([
             'name'=>'required|string',
             'quantity_total'=>'required|numeric',
@@ -81,20 +83,26 @@ class ProductController extends Controller
             'barcode.required'=>'barcode is required',
             'barcode.string'=>'barcode must be string',
         ]);
+        //create slug 
+        $slug=str_replace(' ','-',$request->name);
         $product=Product::create([
             'name'=>$request->name,
+            'slug'=>$slug,
             //img
 
             'quantity_total'=>$request->quantity_total,
             'description'=>$request->description,
-            'subcategory_id'=>$request->sub_category_id,
+            'short_description'=>$request->short_description,
+            'sub_category_id'=>$request->sub_category_id,
             'made_in'=>$request->made_in,
             'brand_id'=>$request->brand_id,
-            //transofrm to integer
             'img_id'=>$request->image[0],
+            'img2_id'=>$request->image[1],
+            'img3_id'=>$request->image[2],
+            'img4_id'=>$request->image[3],
             'regular_price'=>$request->r_price,
             'sale_price'=>$request->s_price,
-            'sku'=>$request->sku,
+            'SKU'=>$request->sku,
             'barcode'=>$request->barcode,
         ]);
         $product_id=$product->id;
@@ -107,25 +115,11 @@ class ProductController extends Controller
         }
         //return response()->json($arr);
         foreach($request->tag as $tag){
-            Tag::create(['tag_name'=>$tag]);
-            $tag_id=Tag::where('tag_name',$tag)->first()->id;
+            Tag::create(['name'=>$tag]);
+            $tag_id=Tag::where('name',$tag)->first()->id;
             $product->tags()->attach($tag_id);
         }
-        //upload image
-
-        //$image_name=$request->image[0];
-        //$request->image[0]->move(public_path('images'),$image_name);
-        //return response()->json(['status'=>"success insert product",'data'=>$image_name]);
-
-
-        //$image_db=new Image();
-        //$image_db->img=$image_name;
-        //$image_db->save();
-        //$image_id=Image::where('img',$image_name)->first()->id;
-        //$product=Product::find($product_id);
-        /*$product->update([
-            'img_id'=>$image_id,
-        ]);*/
+        
         $result='';
         foreach($request->sizes as $size){
             foreach($size['colors'] as $color){
@@ -137,7 +131,7 @@ class ProductController extends Controller
                 $result=$color['color_id'];
             }
         }
-        return response()->json(['status'=>"success insert product",'data'=>$request->all()]);
+        return response()->json(['status'=>"success inserted products",'data'=>$request->all()]);
     }
 
     //update products 
@@ -205,10 +199,10 @@ class ProductController extends Controller
             $product->sizes()->attach($size['size_id']);
             $arr=$size;
         }
-        $product->tags()->detach();
+        //$product->tags()->detach();
         foreach($request->tag as $tag){
-            Tag::create(['tag_name'=>$tag]);
-            $tag_id=Tag::where('tag_name',$tag)->first()->id;
+            Tag::create(['name'=>$tag]);
+            $tag_id=Tag::where('name',$tag)->first()->id;
             $product->tags()->attach($tag_id);
         }
         //upload image

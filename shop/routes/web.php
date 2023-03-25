@@ -30,6 +30,8 @@ use App\Http\Controllers\admin\SizeController;
 use App\Http\Controllers\admin\ColorController;
 //product
 use App\Http\Controllers\admin\ProductController;
+//images 
+use App\Http\Controllers\admin\ImagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -134,6 +136,10 @@ Route::post('admin/product',[ProductController::class,'show'])->name('product-sh
 Route::post('/product-update',[ProductController::class,'update'])->name('product-update');
 Route::post('/product-delete',[ProductController::class,'delete'])->name('product-delete');
 Route::POST('/product',[ProductController::class,'search'])->name('product-search');
+
+//images
+Route::get('admin/images',[ImagesController::class,'index'])->name('images');
+Route::post('admin/add-images',[ImagesController::class,'store'])->name('images-add');
 
 
 
