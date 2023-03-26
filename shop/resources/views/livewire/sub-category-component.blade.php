@@ -71,7 +71,7 @@
                                 </form>
                                 <div class="px-4 py-2 flex flex-col h-[170px] overflow-hidden overflow-y-scroll mt-2 other__categories">
                                     @foreach($category->subCategories as $subcategory)
-                                        <a href="{{route('product.subcategory',['slug'=>$subcategory->slug])}}" class="flex justify-between items-center w-full mb-2">
+                                        <a href="#" class="flex justify-between items-center w-full mb-2">
                                             <span class="text-md font-medium text-color-gray-dark hover:text-color-red-button 
                                             opacity-[0.7] transition">{{$subcategory->name}}</span>
                                             <span class="text-md font-medium text-color-gray-dark hover:text-color-red-button  

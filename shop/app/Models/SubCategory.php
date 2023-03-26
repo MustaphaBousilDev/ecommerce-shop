@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\User;
 //model category
 use App\Models\Category;
+//model product
+use App\Models\Product;
 
 class SubCategory extends Model
 {
@@ -35,5 +37,8 @@ class SubCategory extends Model
     }
     public function user(){
         return $this->belongsTo(User::class);
+    }
+    public function products(){
+        return $this->hasMany(Product::class);
     }
 }

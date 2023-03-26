@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\ShopComponent;
 use App\Http\Livewire\CartComponent;
+use App\Http\Livewire\SubCategoryComponent;
 use App\Http\Livewire\ProductDetailComponent;
 use App\Http\Livewire\WishlistComponent;
 use App\Http\Livewire\ContactComponent;
@@ -57,6 +58,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/',HomeComponent::class)->name('home');
 Route::get('/shop',ShopComponent::class)->name('shop');
 Route::get('/cart',CartComponent::class)->name('cart');
+Route::get('/product-subcategory/{slug}',SubCategoryComponent::class)->name('product.subcategory');
 //route product detail with slug but parametre not required 
 Route::get('/product-details/{slug?}',ProductDetailComponent::class)->name('product.details');
 Route::get('/wishlist',WishlistComponent::class)->name('product.wishlist');

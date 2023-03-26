@@ -186,9 +186,9 @@
                     </td>
                     <td class="px-6 py-4">
                         <div class='flex gap-1'>
-                            <span class='w-6 h-6 rounded-full bg-color-rating'></span>
-                            <span class='w-6 h-6 rounded-full bg-color-red-button'></span>
-                            <span class='w-6 h-6 rounded-full bg-[#0ea5e9]'></span>
+
+                            
+
                         </div>
                     </td>
                     <td class="px-6 py-4">

@@ -26,6 +26,7 @@ class ProductController extends Controller
     //function index get all products in table products and get all sizes in table sizes and get all tags in table tags and get all colors in table colors and get all categories in table categories and get all subcategories in table subcategories and get all brands in table brands and get all countries in table countries
     public function index(){
         $products=Product::with('sizes','tags','sub_category','brand','country')->get();
+        
         $images=Image::all();
         $subcategories=Subcategory::where('status',1)->whereNull('deleted_at')->get();
         $countries=Country::where('status',1)->whereNull('deleted_at')->get();
