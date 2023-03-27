@@ -9,6 +9,7 @@ use App\Http\Livewire\ProductDetailComponent;
 use App\Http\Livewire\WishlistComponent;
 use App\Http\Livewire\ContactComponent;
 use App\Http\Livewire\CheckoutComponent;
+use App\Http\Livewire\SearchComponent;
 use App\Http\Livewire\Auth\LoginComponent;
 use App\Http\Livewire\Auth\RegisterComponent;
 //Dashboard 
@@ -59,6 +60,7 @@ Route::get('/',HomeComponent::class)->name('home');
 Route::get('/shop',ShopComponent::class)->name('shop');
 Route::get('/cart',CartComponent::class)->name('cart');
 Route::get('/product-subcategory/{slug}',SubCategoryComponent::class)->name('product.subcategory');
+Route::get('/search',SearchComponent::class)->name('search.products');
 //route product detail with slug but parametre not required 
 Route::get('/product-details/{slug?}',ProductDetailComponent::class)->name('product.details');
 Route::get('/wishlist',WishlistComponent::class)->name('product.wishlist');
