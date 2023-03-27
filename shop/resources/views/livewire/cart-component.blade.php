@@ -40,8 +40,8 @@
                         <strong>Success |  {{Session::get('success_message')}}</strong>
                     </div>
                 @endif 
-                @if(Cart::count() > 0)
-                @foreach(Cart::content() as $item)
+                @if(Cart::instance('cart')->count() > 0)
+                @foreach(Cart::instance('cart')->content() as $item)
                     <div class="products-cart-shopping-columns p-1 border-b border-color-gray-background-light">
                         <div class="product-img-name photo-img-column">
                             <div class="flex items-center ">
@@ -116,11 +116,11 @@
                 <ul>
                     <li class="flex justify-between mb-2">
                         <span>Total Price</span>
-                        <span>${{Cart::subtotal()}}</span>
+                        <span>${{Cart::instance('cart')->subtotal()}}</span>
                     </li>
                     <li class="flex justify-between mb-2">
                         <span>Tax</span>
-                        <span>${{Cart::tax()}}</span>
+                        <span>${{Cart::instance('cart')->tax()}}</span>
                     </li>
                     <li class="flex justify-between mb-2">
                         <span>Shipping</span>
@@ -128,7 +128,7 @@
                     </li>
                     <li class="flex justify-between ">
                         <span>Total</span>
-                        <span class="font-bold">${{Cart::total()}}</span>
+                        <span class="font-bold">${{Cart::instance('cart')->total()}}</span>
                     </li>
                 </ul>
                 <hr class="border-0 w-[100%] inline-block  h-[1px] bg-color-gray-background-light" />

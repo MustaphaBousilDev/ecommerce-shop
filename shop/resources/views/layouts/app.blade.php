@@ -124,16 +124,7 @@
                 </div>
             </div>
             <div>
-                <div class="icon-wishlist">
-                    <a href='{{route('product.wishlist')}}'>
-                        <i class='bx bx-heart 
-                        text-color-gray-background-light rounded-full
-                        w-9 h-9 flex items-center justify-center
-                        p-2' >
-                        </i>
-                    </a>
-                    <p class="text-xs mx-2 hidden lg:block">wishlist</p>
-                </div>
+                    @livewire('wishlist-icon-component')
                 <div class="account">
                     @php
                     use App\Models\User;
@@ -517,6 +508,9 @@
 <script src="{{asset('assets/js/register/change-img.js')}}"></script>
 <script src="{{asset('assets/js/register/validation.js')}}"></script>
 
+
+
 @livewireScripts
+
 </body>
 </html>

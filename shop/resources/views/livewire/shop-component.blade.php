@@ -10,6 +10,14 @@
             .paginations  div nav div:nth-child(1){
                 display: none;
             }
+            .wishlested{
+                background-color: red !important;
+               
+            }
+            .wishlested i{
+                color: white !important;
+            }
+            
         </style>
         <div class="header__controll__shopping__page md:px-20 bg-color-red-button">
             <div class="empty__row">
@@ -98,8 +106,8 @@
                         </div>
                     </div>
                     <div class="range-input">
-                        <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
-                        <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
+                        <input type="range" class="range-min" min="{{$min_price}}" max="{{$max_price}}" value="500" step="100">
+                        <input type="range" class="range-max" min="{{$min_price}}" max="{{$max_price}}" value="700" step="100">
                     </div>
                     <div class="price-input">
                         <div class="field border  rounded-md">
@@ -355,6 +363,9 @@
             </div>
             <div class="products-shop-page p-2 py-5">
                 <div class="products-shop">
+                    @php 
+                    $witems=Cart::instance('wishlist')->content()->pluck('id');
+                    @endphp
                     @foreach($products as $product)
                         <div class="product ">
                             @foreach ($images as $image)
@@ -392,7 +403,13 @@
                                                 href="#"><i class='bx bx-cart-alt'></i>
                                             </a>
                                         </button>
-                                        <button class="btn__cart-wishlist"><a href="#"><i class='bx bx-heart'></i></a></button>
+                                        @if($witems->contains($product->id))
+                                        <button class="btn__cart-wishlist wishlested"><a href="#"><i class='bx bx-heart'></i></a></button>
+                                        @else 
+                                        <button wire:click.prevent="addToWishlist({{$product->id}},'{{$product->name}}',{{$product->sale_price}})" class="btn__cart-wishlist">
+                                            <a href="#"><i class='bx bx-heart'></i></a>
+                                        </button>
+                                        @endif 
                                     </div>
                                 </div>
                             </div>

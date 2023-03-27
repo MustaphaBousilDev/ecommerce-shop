@@ -1,9 +1,9 @@
 <div class="cart-shopping relative cart cart__parent">
     <div class="icon-cart-shopping cart">
         <div class="relative cart">
-            @if(Cart::count() >0)
+            @if(Cart::instance('cart')->count() >0)
             <span class="absolute bg-color-red-button cart">
-                {{Cart::count()}}
+                {{Cart::instance('cart')->count()}}
             </span>
             @endif 
             <a href='{{route('cart')}}'><i class='bx bx-cart-alt 
@@ -13,7 +13,7 @@
     <div class="cart-boxing cart">
         <span class="cart">My Cart</span>
         <p class="text-md cart">
-            @if(Cart::count() > 0)
+            @if(Cart::instance('cart')->count() > 0)
                 289$ 
                 <i class='bx bx-chevron-down text-lg text-left font-bold cart '></i>
             @else 
@@ -23,14 +23,14 @@
             
         </p>
     </div>
-    @if(Cart::count() >0)
+    @if(Cart::instance('cart')->count() >0)
         <div class="body  box-carts fixed z-[900000] rounded w-60 h-[360px]  md:w-[400px] md:h-[400px] 
                 shadow-lg top-[120px]  md:top-[120px] border-[#cbd5e1] border 
                 bg-while
                 right-[30px]    md:right-[70px]  p-5  flex flex-col cart-menu">
             <p class="p-2 h-[70%] 
                 overflow-y-auto w-[100%] relative">
-                @foreach(Cart::content() as $item)
+                @foreach(Cart::instance('cart')->content() as $item)
                     <span class="border-[#cbd5e1] bg-while h-20 flex items-center cursor-pointer
                         border-b border-[#cbd5e1]">
                         @foreach($images as $image)
