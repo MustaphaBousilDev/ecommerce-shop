@@ -5,6 +5,7 @@
     </i>
     <input
      name='q'
+     value="{{$q}}"
      class="
         bg-gray-200 appearance-none border-2 
         border-color-gray-background-light

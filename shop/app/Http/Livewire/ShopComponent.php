@@ -49,6 +49,16 @@ class ShopComponent extends Component
         ->associate('App\Models\Product');   
         $this->emitTo('wishlist-icon-component','refreshComponent');  
     }
+    //remove from wishlist
+    public function removeFromWishlist($product_id){
+        foreach(Cart::instance('wishlist')->content() as $witem){
+            if($witem->id==$product_id){
+                Cart::instance('wishlist')->remove($witem->rowId);
+                $this->emitTo('wishlist-icon-component','refreshComponent');
+                return;
+            }
+        }
+    }
     //render 
     public function render(){
         //get all products with tags and status = 1 and paginate 12
