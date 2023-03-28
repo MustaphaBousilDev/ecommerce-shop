@@ -2,16 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-//pagination 
+use Livewire\Component; 
 use Livewire\WithPagination;
-//products
 use App\Models\Product;
-//subcategories
 use App\Models\SubCategory;
-//category 
 use App\Models\Category;
-//images 
 use App\Models\Image;
 use Cart;
 class ShopComponent extends Component

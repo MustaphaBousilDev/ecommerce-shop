@@ -403,7 +403,7 @@
                                                 href="#"><i class='bx bx-cart-alt'></i>
                                             </a>
                                         </button>
-                                        @if($witems->contains($product->id))
+                                        @if($witems->contains($product->id)) 
                                         <button wire:click.prevent="removeFromWishlist({{$product->id}})" class="btn__cart-wishlist wishlested"><a href="#"><i class='bx bx-heart'></i></a></button>
                                         @else 
                                         <button wire:click.prevent="addToWishlist({{$product->id}},'{{$product->name}}',{{$product->sale_price}})" class="btn__cart-wishlist">
