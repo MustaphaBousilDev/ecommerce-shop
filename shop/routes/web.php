@@ -34,6 +34,8 @@ use App\Http\Controllers\admin\ColorController;
 use App\Http\Controllers\admin\ProductController;
 //images 
 use App\Http\Controllers\admin\ImagesController;
+//sliders 
+use App\Http\Controllers\admin\SliderComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -146,6 +148,13 @@ Route::POST('/product',[ProductController::class,'search'])->name('product-searc
 Route::get('admin/images',[ImagesController::class,'index'])->name('images');
 Route::post('admin/add-images',[ImagesController::class,'store'])->name('images-add');
 
+
+//sliders
+Route::get('admin/sliders',[SliderComponent::class,'index'])->name('sliders');
+Route::post('admin/add-sliders',[SliderComponent::class,'store'])->name('sliders-add');
+Route::post('admin/sliders',[SliderComponent::class,'show'])->name('sliders-show');
+Route::post('/sliders-update',[SliderComponent::class,'update'])->name('sliders-update');
+Route::post('/sliders-delete',[SliderComponent::class,'delete'])->name('sliders-delete');
 
 
 

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 //user 
 use App\Models\User;
+use App\Models\Slider;
 //soft delete
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -19,4 +20,10 @@ class Brands extends Model
     public function user(){
         return $this->belongsTo(User::class,'user_id','id');
     }
+
+    public function slider(){
+        return $this->hasMany(Slider::class,'brand_id','id');
+    }
+
+
 }
