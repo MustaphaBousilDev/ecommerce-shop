@@ -11,6 +11,7 @@ use App\Http\Livewire\ContactComponent;
 use App\Http\Livewire\CheckoutComponent;
 use App\Http\Livewire\SearchComponent;
 use App\Http\Livewire\Auth\LoginComponent;
+use App\Http\Livewire\Admin\AdminSaleComponent;
 use App\Http\Livewire\Auth\RegisterComponent;
 //Dashboard 
 use App\Http\Livewire\Admin\DashboardComponent;
@@ -160,6 +161,10 @@ Route::post('admin/add-sliders',[SliderComponent::class,'store'])->name('sliders
 Route::post('admin/sliders',[SliderComponent::class,'show'])->name('sliders-show');
 Route::post('/sliders-update',[SliderComponent::class,'update'])->name('sliders-update');
 Route::post('/sliders-delete',[SliderComponent::class,'delete'])->name('sliders-delete');
+
+//Sale
+Route::get('admin/sale',AdminSaleComponent::class)->name('admin.sale');
+
 
 
 

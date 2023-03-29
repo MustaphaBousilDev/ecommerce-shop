@@ -8,6 +8,7 @@ use App\Models\Product;
 use Cart;
 use App\Models\Slider;
 use App\Models\SubCategory;
+use App\Models\Sale;
 use App\Models\Image;
 class HomeComponent extends Component{
     //store in cart shopping 
@@ -50,6 +51,13 @@ class HomeComponent extends Component{
         $images=Image::all();
         //get all subcategory where status 1 and deleted_at null
         $subcategories=SubCategory::where('status',1)->whereNull('deleted_at')->get();
-        return view('livewire.home-component',['sliders'=>$sliders,'lproducts'=>$lproducts,'images'=>$images,'subcategories'=>$subcategories]);      
+
+        //carousel product offres
+        $carousel_product_offre=Product::where('status',1)
+        ->whereNull('deleted_at')
+        ->where('sale_price','>',0)->inRandomOrder()->get()->take(10);
+        //sale
+        $sale=Sale::find(1); 
+        return view('livewire.home-component',['sliders'=>$sliders,'lproducts'=>$lproducts,'images'=>$images,'subcategories'=>$subcategories,'carousel_product_offre'=>$carousel_product_offre,'sale'=>$sale]);      
     }
 }
