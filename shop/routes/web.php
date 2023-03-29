@@ -36,6 +36,8 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ImagesController;
 //sliders 
 use App\Http\Controllers\admin\SliderComponent;
+//slider products page 
+use App\Http\Livewire\SliderProductComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,6 +75,9 @@ Route::post('/login-user',[LoginController::class,'loginUser'])->name('login.use
 Route::get('/register',RegisterComponent::class)->name('register');
 Route::post('/register-user',[RegisterController::class,'register_user'])->name('register.user');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+
+//slider products 
+Route::get('/slider-products/{slug}',SliderProductComponent::class)->name('slider.products');
 
 
 //dashboard 

@@ -1,61 +1,23 @@
 <div>
     <!--navbar slider img-->
     <div class="slider__home">
-        <div class="container-slide bg-color-rating">
-            <div>
-                <div class="content-slider" style="background-color:#3AAFD2">
-                    <div class="info__slider">
-                        <p class="paragraph__slide hidden-motion">Has just arrived!</p>
-                        <h2 class="heading__slide hidden-motion">Huge Summer Collection</h2>
-                        
-                            
-                        <span class="span__slide hidden-motion">Swimwear , Tops,Shorts,Sunglasses,& much more</span>
-                    </div>
-                    <a class="btn__slide-shop hidden-motion" href="#">Show Now <i class='bx bx-chevron-right'></i></a>
-                </div>
-                <div 
-                style="background-image: url('https://cartzilla.createx.studio/img/home/hero-slider/01.jpg');
-                background-size: cover;
-                background-position: center;
-                "
-                class="img-slider bg-color-red-button">
-                    
-                </div>
-            </div>
-        </div>
-        <div class="container-slide" >
-            <div>
-                <div class="content-slider" style="background-color: #F5B1B0;">
-                    <div class="info__slider">
-                        <p class="paragraph__slide hidden-motion">Has just arrived!</p>
-                        <h2 class="heading__slide hidden-motion">Huge Summer Collection</h2>
-                        <span class="span__slide hidden-motion">Swimwear , Tops,Shorts,Sunglasses,& much more</span>
-                    </div>
-                    <a class="btn__slide-shop hidden-motion" href="#">Show Now <i class='bx bx-chevron-right'></i></a>
-                </div>
-                <div class="img-slider bg-color-red-button" 
-                style="background-image: url('https://cartzilla.createx.studio/img/home/hero-slider/02.jpg');
-                background-size: cover;
-                background-position: center;
-                "
-                >
-                    
-                </div>
-            </div>
-        </div>
+        @foreach($sliders as $slider)
         <div class="container-slide">
             <div>
                 <div  
-                class="content-slider"  style="background-color: #EBA170;">
+                class="content-slider"  style="background-color:{{$slider->colors}};">
                 <div class="info__slider">
                     <p class="paragraph__slide hidden-motion">Has just arrived!</p>
-                    <h2 class="heading__slide hidden-motion">Huge Summer Collection</h2>
-                    <span class="span__slide hidden-motion">Swimwear , Tops,Shorts,Sunglasses,& much more</span>
+                    <h2 class="heading__slide hidden-motion">{{$slider->title}}</h2>
+                    <span class="span__slide hidden-motion">{{$slider->description}}</span>
                 </div>
-                <a class="btn__slide-shop hidden-motion" href="#">Show Now <i class='bx bx-chevron-right'></i></a>
+                @php  $slug = Str::slug($slider->title, '-'); @endphp
+                <a style="z-index: 10000" class="btn__slide-shop hidden-motion opacity-100" href="{{route('slider.products',['slug'=>$slug])}}">
+                    Show Now <i class='bx bx-chevron-right'></i>
+                </a>
                 </div>
                 <div class="img-slider bg-color-red-button" 
-                style="background-image: url('https://cartzilla.createx.studio/img/home/hero-slider/03.jpg');
+                style="background-image: url('{{asset('sliders/'.$slider->image)}}');
                 background-size: cover;
                 background-position: center;
                 "
@@ -64,8 +26,9 @@
                 </div>
             </div>
         </div>
+        @endforeach 
         <ul class="bullets-pagination left-[50%] z-30  
-            absolute flex bottom-2 w-24 h-5 
+            absolute flex bottom-2  h-5 
             translate-x-[-50%] items-center justify-center">
         <!--
             
