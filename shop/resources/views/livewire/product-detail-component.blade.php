@@ -81,9 +81,9 @@
             <div class="buttons__product-details mt-3 flex gap-2">
                 <button class="btn__qty-product-details flex bg-color-red-button w-[25%] items-center 
                     outline-none rounded">
-                    <span class="w-[30%] flex justify-center items-center ">-</span>
-                    <span class="w-[40%] flex justify-center items-center">3</span>
-                    <span class="w-[30%] flex justify-center items-center">+</span>
+                    <span wire:click.prevent="decreaseQuantity()" class="w-[30%] flex justify-center items-center ">-</span>
+                    <span wire:model="qty" class="w-[40%] flex justify-center items-center">1</span>
+                    <span wire:click.prevent="increaseQuantity()" class="w-[30%] flex justify-center items-center">+</span>
                 </button>
                 <button
                     wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->sale_price}})" 

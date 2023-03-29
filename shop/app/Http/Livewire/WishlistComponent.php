@@ -16,6 +16,15 @@ class WishlistComponent extends Component
             }
         }
     }
+    //move to cart
+    public function moveToCart($rowId){
+        $item = Cart::instance('wishlist')->get($rowId);
+        //dd($item);
+        Cart::instance('wishlist')->remove($rowId);
+        Cart::instance('cart')->add($item->id,$item->name,1,$item->price)->associate('App\Models\Product');
+        $this->emitTo('cart-icon-component','refreshComponent');
+        $this->emitTo('wishlist-icon-component','refreshComponent');
+    }
     public function render()
     {
         $images = Image::all();

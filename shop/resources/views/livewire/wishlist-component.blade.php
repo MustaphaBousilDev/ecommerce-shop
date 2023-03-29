@@ -53,7 +53,7 @@
                             </div>
                             <div class="btns-cart-wish flex">
                                 <button class="btn__cart-shopping">
-                                    <a wire:click.prevent="store({{$item->model->id}},'{{$item->model->name}}',{{$item->model->sale_price}})" 
+                                    <a wire:click.prevent="moveToCart('{{$item->rowId}}')" 
                                         href="#"><i class='bx bx-cart-alt'></i>
                                     </a>
                                 </button>
