@@ -72,17 +72,14 @@
     <div class="category__slider-product-home h-[100px] sm:h-[100px] md:h-[150px] lg:h-[160]  mx-1 md:mx-10 lg:mx-28 my-1 bg-color-red-button relative shadow-md">
         <div class="content__categories">
             <div class="category-home">
-                <div class="box-category mx-2 md:mx-3 sm:min-w-[80px] sm:h-[80px] md:min-w-[120px] md:h-[120px] lg:min-w-[140px] lg:h-[140px] bg-[url('https://i.ytimg.com/vi/q2LqMlxE8eY/maxresdefault.jpg')] bg-cover bg-center"></div>
-                <div class="box-category mx-2 md:mx-3 sm:min-w-[80px] sm:h-[80px] md:min-w-[120px] md:h-[120px] lg:min-w-[140px] lg:h-[140px] bg-[url('https://mir-s3-cdn-cf.behance.net/project_modules/disp/38d7f640108731.5606d146b9bb7.jpg')] bg-cover bg-center"></div>
-                <div class="box-category mx-2 md:mx-3 sm:min-w-[80px] sm:h-[80px] md:min-w-[120px] md:h-[120px] lg:min-w-[140px] lg:h-[140px] bg-[url('https://i.wfcdn.de/teaser/1920/49296.jpg')] bg-cover bg-center"></div>
-                <div class="box-category mx-2 md:mx-3 sm:min-w-[80px] sm:h-[80px] md:min-w-[120px] md:h-[120px] lg:min-w-[140px] lg:h-[140px] bg-[url('https://i.pinimg.com/736x/25/ca/42/25ca426cad1148ceff2270fe153b078e.jpg')] bg-center bg-cover"></div>
-                <div class="box-category mx-2 md:mx-3 sm:min-w-[80px] sm:h-[80px] md:min-w-[120px] md:h-[120px] lg:min-w-[140px] lg:h-[140px] bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqlGDjIG-Wwu_HqboZZVg2vKxSjlXDWE2tZG6Qaz3xslUWbyA6L9oW0346D5xodDMXS-E&usqp=CAU')] bg-center bg-cover"></div>
-                <div class="box-category mx-2 md:mx-3 sm:min-w-[80px] sm:h-[80px] md:min-w-[120px] md:h-[120px] lg:min-w-[140px] lg:h-[140px] bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7W3kSjtKsOQQUm1jP6WjXv3mtiRt27mg5Qg&usqp=CAU')] bg-center bg-cover"></div>
-                <div class="box-category mx-2 md:mx-3 sm:min-w-[80px] sm:h-[80px] md:min-w-[120px] md:h-[120px] lg:min-w-[140px] lg:h-[140px] bg-[url('https://img.huffingtonpost.com/asset/5ce6bd0c210000b90ed0ed6a.jpeg?ops=scalefit_720_noupscale')] bg-center bg-cover"></div>
-                <div class="box-category mx-2 md:mx-3 sm:min-w-[80px] sm:h-[80px] md:min-w-[120px] md:h-[120px] lg:min-w-[140px] lg:h-[140px] bg-[url('https://ma.jumia.is/cms/slider-Nivea-desktop.jpg')] bg-right bg-cover"></div>
-                <div class="box-category mx-2 md:mx-3 sm:min-w-[80px] sm:h-[80px] md:min-w-[120px] md:h-[120px] lg:min-w-[140px] lg:h-[140px] bg-[url('https://ma.jumia.is/cms/000_2022/Z-Categories/7-Supermarche/z-provi/220/epsuc-220-gris.jpg')] bg-center bg-cover"></div>
-                <div class="box-category mx-2 md:mx-3 sm:min-w-[80px] sm:h-[80px] md:min-w-[120px] md:h-[120px] lg:min-w-[140px] lg:h-[140px] bg-[url('https://images.yourstory.com/cs/7/1da9ec3014cc11e9a1b2b928167b6c62/mensfashionbanner1572434751640png?w=752&fm=auto&ar=2:1&mode=crop&crop=face')] bg-center bg-cover"></div>
-                <div class="box-category mx-2 md:mx-3 sm:min-w-[80px] sm:h-[80px] md:min-w-[120px] md:h-[120px] lg:min-w-[140px] lg:h-[140px] bg-[url('https://img.huffingtonpost.com/asset/5ce6bd0c210000b90ed0ed6a.jpeg?ops=scalefit_720_noupscale')] bg-center bg-cover"></div>
+                @foreach($subcategories as $subcategory)
+                    <a href="{{route('product.subcategory',['slug'=>$subcategory->slug])}}">
+                        <div style="overflow:hidden" 
+                        class="box-category mx-2 md:mx-3 sm:min-w-[80px] sm:h-[80px] md:min-w-[120px] md:h-[120px] lg:min-w-[140px] lg:h-[140px]">
+                            <img style="width:100%;height:100%" src="{{asset('subcategories/'.$subcategory->image)}}"/>
+                        </div>
+                    </a>
+                @endforeach 
             </div>
         </div>
         <i class='bx bx-chevron-right arrow-categories-slider-home arrow_right-categories-slider-home'></i>

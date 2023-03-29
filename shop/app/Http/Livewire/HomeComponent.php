@@ -4,10 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\User;
-//model sliders 
 use App\Models\Product;
 use Cart;
 use App\Models\Slider;
+use App\Models\SubCategory;
 use App\Models\Image;
 class HomeComponent extends Component{
     //store in cart shopping 
@@ -48,6 +48,8 @@ class HomeComponent extends Component{
         ->take(8);
         //image 
         $images=Image::all();
-        return view('livewire.home-component',['sliders'=>$sliders,'lproducts'=>$lproducts,'images'=>$images]);      
+        //get all subcategory where status 1 and deleted_at null
+        $subcategories=SubCategory::where('status',1)->whereNull('deleted_at')->get();
+        return view('livewire.home-component',['sliders'=>$sliders,'lproducts'=>$lproducts,'images'=>$images,'subcategories'=>$subcategories]);      
     }
 }
