@@ -110,21 +110,56 @@
             </div>
         </div>
         <div class="total__checkout  h-[500px] p-8">
+            @if(!Session::has('coupon'))
             <div class="coupon__product-cart-shopping border border-color-gray-background-light rounded-xl overflow-hidden p-3">
-                <p class="text-sm text-color-gray-dark">Have Coupon?</p>
-                <form>
+                <div class="flex">
+                    <input value="1" wire:model="haveCouponCode" type="checkbox"/>
+                    <p class="text-sm mx-1 text-color-gray-dark">Have Coupon?</p>
+                </div>
+                @if($haveCouponCode==1)
+                <form wire:submit.prevent="applyCouponCode">
+                    @if(Session::has('coupon_message'))
+                        <div class="alert ">{{Session::get('coupon_message')}}</div>
+                    @endif
                     <div class=" w-[95%] mt-2 relative border border-color-gray-background-light rounded-md overflow-hidden"> 
-                        <input type="text" placeholder="Coupon Code"  class=" p-2 outline-none text-sm"/>
-                        <button class="absolute text-sm text-while right-0 top-0 h-[100%] w-[70px] bg-color-red-button">Apply</button>
+                        <input wire:model="couponCode" name="coupon-code" type="text" placeholder="Coupon Code"  class=" p-2 outline-none text-sm"/>
+                        <button class="absolute text-sm text-while right-0 top-0 h-[100%] w-[70px] bg-color-red-button">
+                            Apply
+                        </button>
                     </div>
                 </form>
+                @endif
             </div>
+            @endif 
             <div class="coupon__product-cart-shopping border mt-3 border-color-gray-background-light rounded-xl overflow-hidden p-5">
                 <ul>
                     <li class="flex justify-between mb-2">
-                        <span>Total Price</span>
+                        <span>SubTotal Price</span>
                         <span>${{Cart::instance('cart')->subtotal()}}</span>
                     </li>
+                    @if(Session::has('coupon'))
+                    <li class="flex justify-between mb-2">
+                        <span class="flex items-center gap-3">
+                            Discount ({{Session::get('coupon')['code']}})
+                            <a href="#"  wire:click.prevent="removeCoupon">
+                                <i style='color:red' class='bx bx-x text-xl'></i>
+                            </a>
+                        </span>
+                        <span>${{number_format($discount,2)}}</span>
+                    </li>
+                    <li class="flex justify-between mb-2">
+                        <span>SubTotal with Discount</span>
+                        <span>${{number_format($subtotalAfterDiscount,2)}}</span>
+                    </li>
+                    <li class="flex justify-between mb-2">
+                        <span>Tax ({{config('cart.tax')}}%)</span>
+                        <span>${{number_format($taxAfterDiscount,2)}}</span>
+                    </li>
+                    <li class="flex justify-between ">
+                        <span>Total</span>
+                        <span class="font-bold">${{number_format($totalAfterDiscount,2)}}</span>
+                    </li>
+                    @else 
                     <li class="flex justify-between mb-2">
                         <span>Tax</span>
                         <span>${{Cart::instance('cart')->tax()}}</span>
@@ -137,6 +172,7 @@
                         <span>Total</span>
                         <span class="font-bold">${{Cart::instance('cart')->total()}}</span>
                     </li>
+                    @endif 
                 </ul>
                 <hr class="border-0 w-[100%] inline-block  h-[1px] bg-color-gray-background-light" />
                 <ul class="flex mt-2">

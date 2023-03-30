@@ -39,13 +39,15 @@ class AdminEditCouponsComponent extends Component
             'value'=>'required',
             'cart_value'=>'required',
         ]);
-        //save using method ORM create 
+        //update 
+        $coupon=Coupon::find($this->coupon_id);
+        //method opdate orm 
+        $update=
         
 
         session()->flash('message','Coupon has been edited successfully');
     }
-    public function render()
-    {
+    public function render(){
         return view('livewire.admin.admin-edit-coupons-component')->layout('layouts.base');
     }
 }
