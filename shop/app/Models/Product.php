@@ -19,6 +19,8 @@ use App\Models\Image;
 //order
 //tag 
 use App\Models\Tag;
+//order
+use App\Models\Order;
 //sieze
 use App\Models\Size;
 class Product extends Model
@@ -75,4 +77,9 @@ class Product extends Model
         return $this->belongsToMany(Tag::class,'product_tags');
     }
     //colors 
+
+    //order
+    public function orders(){
+        return $this->belongsToMany(Order::class,'order_items');
+    }
 }
