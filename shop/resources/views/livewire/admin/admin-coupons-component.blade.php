@@ -50,6 +50,7 @@
                         <th scope="col" class="px-6 py-3">Code</th>
                         <th scope="col" class="px-6 py-3">Value</th>
                         <th scope="col" class="px-6 py-3">Cart Value</th>
+                        <th scope="col" class="px-6 py-3">Expiry Date</th>
                         <th scope="col" class="px-6 py-3">Actions</th>
                    </tr>
               </thead>
@@ -72,6 +73,9 @@
                     </td>
                     <td class="px-6 py-4">
                         {{$coupon->cart_value}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{$coupon->expiry_date}}
                     </td>
                     <td class="px-6 py-4">
                         <div class='flex gap-1 items-center'>

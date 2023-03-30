@@ -11,7 +11,7 @@ class AdminAddCouponsComponent extends Component
     public $type;
     public $value;
     public $cart_value;
-
+    public $expiry_date;
     //updated only 
     public function updated($fields){
         $this->validateOnly($fields,[
@@ -19,6 +19,7 @@ class AdminAddCouponsComponent extends Component
             'type'=>'required',
             'value'=>'required',
             'cart_value'=>'required',
+            'expiry_date'=>'required',
         ]);
     }
     public function storeCoupon(){
@@ -28,6 +29,7 @@ class AdminAddCouponsComponent extends Component
             'type'=>'required',
             'value'=>'required',
             'cart_value'=>'required',
+            'expiry_date'=>'required',
         ]);
         //save using method ORM create 
         $save=Coupon::create([
@@ -35,6 +37,7 @@ class AdminAddCouponsComponent extends Component
             'type'=>$this->type,
             'value'=>$this->value,
             'cart_value'=>$this->cart_value, 
+            'expiry_date'=>$this->expiry_date,
         ]);
         //redirect to admin coupons page
         return redirect()->route('admin.coupons');
