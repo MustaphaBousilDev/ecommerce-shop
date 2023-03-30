@@ -18,7 +18,10 @@ use App\Http\Livewire\Admin\DashboardComponent;
 //controller 
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\auth\LoginController;
- 
+//coupons 
+use App\Http\Livewire\Admin\AdminCouponsComponent;
+use App\Http\Livewire\Admin\AdminAddCouponsComponent;
+use App\Http\Livewire\Admin\AdminEditCouponsComponent;
 //category
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SubCategoryController;
@@ -164,6 +167,14 @@ Route::post('/sliders-delete',[SliderComponent::class,'delete'])->name('sliders-
 
 //Sale
 Route::get('admin/sale',AdminSaleComponent::class)->name('admin.sale');
+
+
+
+//coupons 
+Route::get('admin/coupons',AdminCouponsComponent::class)->name('admin.coupons');
+Route::get('admin/add-coupons',AdminAddCouponsComponent::class)->name('admin.add.coupons');
+Route::get('admin/edit-coupons/{coupon_id}',AdminEditCouponsComponent::class)->name('admin.edit.coupons');
+
 
 
 
