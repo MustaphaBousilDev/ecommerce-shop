@@ -33,6 +33,8 @@ class Size extends Model
         return $this->belongsToMany(Product::class,'product_sizes');
     }
     public function colors(){
-        return $this->belongsToMany(Color::class,'size_colors');
+        return $this->belongsToMany(Color::class,'size_colors')
+        ->withPivot('quantity','product_id')
+        ;
     }
 }

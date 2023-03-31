@@ -58,6 +58,9 @@ class HomeComponent extends Component{
         ->where('sale_price','>',0)->inRandomOrder()->get()->take(10);
         //sale
         $sale=Sale::find(1); 
+
+        
+        
         return view('livewire.home-component',['sliders'=>$sliders,'lproducts'=>$lproducts,'images'=>$images,'subcategories'=>$subcategories,'carousel_product_offre'=>$carousel_product_offre,'sale'=>$sale]);      
     }
 }

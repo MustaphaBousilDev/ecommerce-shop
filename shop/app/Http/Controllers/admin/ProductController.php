@@ -128,6 +128,7 @@ class ProductController extends Controller
                 $sizecolor->size_id=$size['size_id'];
                 $sizecolor->color_id=$color['color_id'];
                 $sizecolor->quantity=$color['quantity'];
+                $sizecolor->product_id=$product_id;
                 $sizecolor->save();
                 $result=$color['color_id'];
             }

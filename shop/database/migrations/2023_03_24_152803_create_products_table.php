@@ -23,6 +23,8 @@ return new class extends Migration
             $table->integer('status')->default(1);
             $table->integer('quantity_total');
             $table->string('barecode')->nullable();
+            //stock status
+            
             $table->unsignedInteger('made_in')->nullable();
             $table->foreign('made_in')->references('id')->on('countries')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedInteger('user_id')->nullable();

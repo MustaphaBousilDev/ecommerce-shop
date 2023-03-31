@@ -186,9 +186,27 @@
                     </td>
                     <td class="px-6 py-4">
                         <div class='flex gap-1'>
-
-                            
-
+                            @php $colorss=array() @endphp
+                            @foreach($product->sizes as $size)
+                                @foreach($size->colors as $color)
+                                  @if($color->pivot->product_id == $product->id)
+                                    @php $colorss[]=$color->id  @endphp
+                                  @endif 
+                                @endforeach 
+                            @endforeach 
+                            @php 
+                                $colorss=array_unique($colorss);
+                                sort($colorss);
+                                $i=0; 
+                            @endphp
+                            @foreach($colors as $key=>$color)
+                                @if($i < count($colorss) )
+                                    @if($color->id==$colorss[$i])
+                                        <span style="background: {{$color->code}}"  class='rounded-full w-6 h-6'></span>
+                                        @php $i++ @endphp
+                                    @endif
+                                @endif 
+                            @endforeach 
                         </div>
                     </td>
                     <td class="px-6 py-4">
