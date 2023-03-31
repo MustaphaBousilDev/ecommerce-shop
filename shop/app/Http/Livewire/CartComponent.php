@@ -6,7 +6,9 @@ use Livewire\Component;
 use App\Models\Image;
 use App\Models\Coupon;
 use Carbon\Carbon;
+use App\Models\User;
 use Cart;
+use Auth;
 class CartComponent extends Component{
     //coupon code 
     public $haveCouponCode;
@@ -75,7 +77,7 @@ class CartComponent extends Component{
         session()->flash('r_success_message','Item has been removed');
     }
     //apply coupon code
-    public function applyCouponCode(){
+    public function applyCouponCode(){ 
         $coupon=Coupon::where('code',$this->couponCode)
         ->where('expiry_date','>=',Carbon::today())
         ->where('cart_value','<=',Cart::instance('cart')->subtotal())
@@ -109,6 +111,34 @@ class CartComponent extends Component{
     public function removeCoupon(){
         session()->forget('coupon');
     }
+
+    //checkout
+    public function checkout(){
+        $user=User::find(session('loginId'));
+        if($user){
+            return redirect()->route('checkout');
+        }else{
+            return redirect()->route('login');
+        }
+    }
+    //set amount for checkout
+    public function setAmountForCheckout(){
+        if(session()->has('coupon')){
+           session()->put('checkout',[
+               'discount'=>$this->discount,
+               'subtotal'=>$this->subtotalAfterDiscount,
+               'tax'=>$this->taxAfterDiscount,
+               'total'=>$this->totalAfterDiscount,
+           ]);
+        }else{
+            session()->put('checkout',[
+                'discount'=>0,
+                'subtotal'=>Cart::instance('cart')->subtotal(),
+                'tax'=>Cart::instance('cart')->tax(),
+                'total'=>Cart::instance('cart')->total(),
+            ]);
+        }
+    }
     //render
     public function render(){
         $images = Image::all();
@@ -120,7 +150,7 @@ class CartComponent extends Component{
             }
         }
 
-        
+        $this->setAmountForCheckout();
         return view('livewire.cart-component',['images'=>$images]);
     }
 }

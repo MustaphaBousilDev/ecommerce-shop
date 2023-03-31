@@ -22,7 +22,7 @@ class ProductDetailComponent extends Component
         session()->flash('success_message','Item added in cart');
         return redirect()->route('cart');
     }
-
+ 
     //increase quantity
     public function increaseQuantity(){
         $this->qty++;
