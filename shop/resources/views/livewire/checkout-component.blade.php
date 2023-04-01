@@ -115,10 +115,35 @@
                         </div>
                     </div>
                 @endif 
-                <div class="information___check-out bg-color-rating py-2 md:p-6  w-[100%] md:w-[100%] shadow-md">
+                <div class="information___check-out  py-2 md:p-6  w-[100%] md:w-[100%] shadow-md">
                     <div class="payments__method w-[100%] flex-wrap flex gap-2 border-color-gray-background-light">
                         <div class="payment-method w-[100%]  md:w-[49%]">
                             <h2 class="font-bold border-b-color-gray-background-light p-5">PAYMENT METHOD</h2>
+                            @if($paymentmode_card=="card")
+                                @if(Session::has('stripe_error'))
+                                    <div class='error'>{{Session::get('stripe_error')}}</div>
+                                @endif 
+                                <div class="w-[90%] mx-auto md:w-[45%] flex flex-col">
+                                    <label class='text-sm'>Card Number :<span class='text-color-red-button'>*</span></label>
+                                    <input placeholder="Card" wire:model="card_no" class='p-3 mt-2 rounded-md border border-color-gray-background-light overflow-hidden outline-none ' type="text" name="card_no" />
+                                    @error('card_no') @enderror 
+                                </div>
+                                <div class="w-[90%] mx-auto md:w-[45%] flex flex-col">
+                                    <label class='text-sm'>Expiry Month :<span class='text-color-red-button'>*</span></label>
+                                    <input wire:model="exp_month" placeholder="MM" class='p-3 mt-2 rounded-md border border-color-gray-background-light overflow-hidden outline-none ' type="text" name="expiry-month" />
+                                    @error('exp_month') @enderror 
+                                </div>
+                                <div class="w-[90%] mx-auto md:w-[45%] flex flex-col">
+                                    <label class='text-sm'>Expiry Year :<span class='text-color-red-button'>*</span></label>
+                                    <input wire:model="exp_year" placeholder="YYYY" class='p-3 mt-2 rounded-md border border-color-gray-background-light overflow-hidden outline-none ' type="text" name="expiry-year" />
+                                    @error('exp_year') @enderror 
+                                </div>
+                                <div class="w-[90%] mx-auto md:w-[45%] flex flex-col">
+                                    <label class='text-sm'>CVC :<span class='text-color-red-button'>*</span></label>
+                                    <input wire:model="cvc" placeholder="YYYY" class='p-3 mt-2 rounded-md border border-color-gray-background-light overflow-hidden outline-none ' type="password" name="cvc" />
+                                    @error('cvc') @enderror 
+                                </div>
+                            @endif
                             <div class="border-b-color-gray-background-light p-5">
                                 <span>Check /Money Order</span>
                                 <span>Credit Cart(saved)</span>
