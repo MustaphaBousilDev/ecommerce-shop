@@ -103,9 +103,9 @@ class CheckoutComponent extends Component
             'phone'=>$this->phone,
             'line1'=>$this->address1,
             'line2'=>$this->address2,
-            'city'=>$this->city,
+            'city_id'=>$this->city,
             'province'=>$this->s_province,
-            'country'=>$this->country,
+            'country_id'=>$this->country,
             'zipcode'=>$this->zipcode,
             'status'=>'ordered',
             'is_shipping_different'=>$this->ship_to_different ? 1 : 0,
@@ -146,7 +146,7 @@ class CheckoutComponent extends Component
                 'line1'=>$this->s_address1,
                 'line2'=>$this->s_address2,
                 'province'=>$this->s_province,
-                'country'=>$this->s_country,
+                'country_id'=>$this->s_country,
                 'zipcode'=>$this->s_zipcode,
             ]);
 

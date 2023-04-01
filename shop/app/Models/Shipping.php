@@ -20,7 +20,7 @@ class Shipping extends Model
         'line1',
         'line2',
         'province',
-        'country',
+        'country_id',
         'zipcode',
     ];
 
