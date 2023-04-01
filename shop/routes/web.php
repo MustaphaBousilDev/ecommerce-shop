@@ -7,6 +7,8 @@ use App\Http\Livewire\CartComponent;
 use App\Http\Livewire\SubCategoryComponent;
 use App\Http\Livewire\ProductDetailComponent;
 use App\Http\Livewire\WishlistComponent;
+//controller thank you
+use App\Http\Livewire\ThankYouComponent;
 use App\Http\Livewire\ContactComponent;
 use App\Http\Livewire\CheckoutComponent;
 use App\Http\Livewire\SearchComponent;
@@ -69,6 +71,7 @@ Route::get('/shop',ShopComponent::class)->name('shop');
 Route::get('/cart',CartComponent::class)->name('cart');
 Route::get('/product-subcategory/{slug}',SubCategoryComponent::class)->name('product.subcategory');
 Route::get('/search',SearchComponent::class)->name('search.products');
+Route::get('/thankyou',ThankYouComponent::class)->name('thankyou');
 //route product detail with slug but parametre not required 
 Route::get('/product-details/{slug?}',ProductDetailComponent::class)->name('product.details');
 Route::get('/wishlist',WishlistComponent::class)->name('product.wishlist');

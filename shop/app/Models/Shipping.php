@@ -10,6 +10,19 @@ class Shipping extends Model
 {
     use HasFactory;
     protected $table='shippings';
+    //$fillable 
+    protected $fillable = [
+        'order_id',
+        'firstname',
+        'lastname',
+        'email',
+        'phone',
+        'line1',
+        'line2',
+        'province',
+        'country',
+        'zipcode',
+    ];
 
 
     public function order(){

@@ -10,6 +10,13 @@ class Transaction extends Model
 {
     use HasFactory;
     protected $table='transactions';
+    //$fillable
+    protected $fillable = [
+        'order_id',
+        'user_id',
+        'mode',
+        'status',
+    ];
 
 
     public function order(){
