@@ -95,7 +95,7 @@ class CheckoutComponent extends Component
         $this->validate([
             'firstname'=>'required',
             'lastname'=>'required',
-            'email'=>'required|email',
+            'email'=>'required|email', 
             //validation phone regex accept +212 6 00 00 00 00 or 06 00 00 00 00 or 06-00-00-00-00 or +212600000000 or 0600000000 
             'phone'=>'required',
             'address1'=>'required',

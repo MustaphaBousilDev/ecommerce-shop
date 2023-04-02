@@ -11,6 +11,10 @@ use App\Models\User;
 //shipping
 use App\Models\Shipping;
 //transaction
+//country 
+use App\Models\Country;
+//city
+use App\Models\City;
 //product
 use App\Models\Product;
 use App\Models\Transaction;
@@ -36,9 +40,9 @@ class Order extends Model
         'phone',
         'line1',
         'line2',
-        'city',
+        'city_id',
         'province',
-        'country',
+        'country_id',
         'zipcode',
         'status',
         'is_shipping_different',
@@ -65,6 +69,18 @@ class Order extends Model
     public function products(){
         return $this->belongsToMany(Product::class,'order_items');
     }
+
+    //country
+    public function country(){
+        return $this->belongsTo(Country::class);
+    }
+
+    //city
+    public function city(){
+        return $this->belongsTo(City::class);
+    }
+
+
 
 
 }
