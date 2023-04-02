@@ -25,6 +25,7 @@ use App\Http\Livewire\Admin\AdminCouponsComponent;
 use App\Http\Livewire\Admin\AdminAddCouponsComponent;
 use App\Http\Livewire\Admin\AdminEditCouponsComponent;
 use App\Http\Livewire\Admin\AdminOrderComponent;
+use App\Http\Livewire\Admin\AdminOrderDetailsComponent;
 //category
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SubCategoryController;
@@ -181,6 +182,10 @@ Route::get('admin/edit-coupons/{coupon_id}',AdminEditCouponsComponent::class)->n
 
 //orders
 Route::get('admin/orders',AdminOrderComponent::class)->name('admin.orders');
+
+//order details
+Route::get('admin/order-details/{order_id}',AdminOrderDetailsComponent::class)->name('admin.order.details');
+
 
 
 

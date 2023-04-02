@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 //order 
+//country 
+use App\Models\Country;
 use App\Models\Order;
 class Shipping extends Model
 {
@@ -27,6 +29,10 @@ class Shipping extends Model
 
     public function order(){
         return $this->belongsTo(Order::class);
+    }
+
+    public function country(){
+        return $this->belongsTo(Country::class);
     }
 
 }
