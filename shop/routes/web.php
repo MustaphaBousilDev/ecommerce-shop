@@ -15,6 +15,9 @@ use App\Http\Livewire\SearchComponent;
 use App\Http\Livewire\Auth\LoginComponent;
 use App\Http\Livewire\Admin\AdminSaleComponent;
 use App\Http\Livewire\Auth\RegisterComponent;
+//userorder
+use App\Http\Livewire\User\UserOrderDetailsComponent;
+use App\Http\Livewire\User\UserOrdersComponent;
 //Dashboard 
 use App\Http\Livewire\Admin\DashboardComponent;
 //controller 
@@ -186,6 +189,9 @@ Route::get('admin/orders',AdminOrderComponent::class)->name('admin.orders');
 //order details
 Route::get('admin/order-details/{order_id}',AdminOrderDetailsComponent::class)->name('admin.order.details');
 
+//order user 
+Route::get('/user/orders',UserOrdersComponent::class)->name('user.orders');
+Route::get('/user/orders/{order_id}',UserOrderDetailsComponent::class)->name('user.order.details');
 
 
 

@@ -28,6 +28,8 @@ class LoginController extends Controller
             if(Hash::check($request->password,$user->password)){
                 //set auth 
                 Session::put('loginId',$user->id);
+                //create Session has users data auth 
+                Session::put('user',$user);
                 return redirect()->route('home');
             }else{
                 session()->flash('fail','Invalid password');
@@ -43,8 +45,10 @@ class LoginController extends Controller
     //logout function 
     public function logout(){
         if(Session::has('loginId')){
-            Session::has('loginId');
-            Session::pull('loginId');
+            //destroy session loginId
+            Session::forget('loginId');
+            //destroy session user
+            Session::forget('user');
             return redirect('login');
         }
     }

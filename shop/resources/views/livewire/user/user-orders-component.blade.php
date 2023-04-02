@@ -1,7 +1,9 @@
 <div class="products__tables">
     <div class='header__product-lists'>
          <div class='left__product-header flex justify-between'>
-              <h1 class='text-xl md:text-3xl font-bold'>Products</h1>
+              <h1 class='text-xl md:text-3xl font-bold'>
+                
+                Orders User : {{Session::get('user')['username']}}</h1>
               <a href="{{route('admin.add.coupons')}}">
                  <button onClick="console.log('fuck that shet ')" class='bg-color-red-button opacity-80 transition hover:opacity-100
                  cursor-pointer outline-none border-none rounded-md text-while py-1 px-3 add-button'>
@@ -128,7 +130,7 @@
                     <td class="flex items-center px-6 py-4 space-x-3">
                         <i class='bx bxs-edit-alt transition cursor-pointer hover:text-[#0ea5e9] hover:bg-[#e0f2fe] text-xl flex items-center justify-center p-1 w-9 h-9 rounded-full bg-[#f8fafc]'></i>
                         <i class='bx bx-trash transition cursor-pointer hover:text-[#0ea5e9] hover:bg-[#e0f2fe] text-xl p-1 flex items-center justify-center rounded-full w-9 h-9 bg-[#f8fafc]' ></i>
-                        <a href="{{route('user.order.details',$order->id)}}">
+                        <a href="{{route('admin.order.details',$order->id)}}">
                             <i class='bx bx-detail transition cursor-pointer hover:text-[#0ea5e9] hover:bg-[#e0f2fe] text-xl flex items-center justify-center p-1 w-9 h-9 rounded-full bg-[#f8fafc]'></i>
                         </a>
                     </td>

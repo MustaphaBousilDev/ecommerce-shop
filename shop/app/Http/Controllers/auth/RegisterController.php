@@ -5,6 +5,7 @@ namespace App\Http\Controllers\auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Session;
 use Hash;
 
 class RegisterController extends Controller
@@ -20,15 +21,21 @@ class RegisterController extends Controller
         ]);
         //ORM for save data
         //dd($request->all());
-        $user=new User();
-        $user->username=$request->input('username');
-        $user->email=$request->input('email');
-        $user->password=Hash::make($request->input('password'));
-        $user->phone=$request->input('phone_number');
-        $res=$user->save();
+
+         $res=User::create([
+             'username'=>$request->input('username'),
+             'email'=>$request->input('email'),
+             'password'=>Hash::make($request->input('password')),
+             'phone'=>$request->input('phone_number')
+         ]);
+
         if($res){
-            //redirect to home page 
+            //create session has user data
+            Session::put('user',$res);
+            //create session has user id
+            Session::put('loginId',$res->id);
             return redirect()->route('home');
+
         }else{
             return back()->with('fail','Something went wrong, try again later');
         }
