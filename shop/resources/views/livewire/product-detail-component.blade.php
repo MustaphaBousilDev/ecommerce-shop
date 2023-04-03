@@ -1,5 +1,21 @@
 <div>
     <!--product details-->
+    <style>
+        .sizes{
+            opacity: .5;
+            transition: .3s
+        }
+        .colors{
+            opacity: .5;
+            transition: .3s
+        }
+        .sizes:hover,.colors:hover{
+            opacity: 1;
+        }
+        .sizes.click,.colors.click{
+            opacity:1;
+        }
+    </style>
     <div class="product__details-page mx-2 md:mx-8 lg:mx-24 flex">
         <div class="products__details">
             <div class="product__principalte-details ">
@@ -76,6 +92,81 @@
                             <a href="#" class="">{{$tag->name}}</a> 
                         @endforeach
                     </span>
+                </p>
+            </div>
+            <div class="size___products">
+                <p><span>Size : </span>
+                    <div class="flex gap-2">
+                        @foreach($product->sizes as $size)
+                            <div>
+                                <label onClick="add(event)" for="{{$size->id}}" class="w-8 items-center justify-center h-8 bg-color-gray-background-light 
+                                    font-bold inline-block p-3 rounded-sm cursor-pointer flex sizes">
+                                    {{$size->name}}
+                                </label>
+                                <input hidden type="radio" id="{{$size->id}}" name="size" value="{{$size->id}}" />
+                            </div>
+                        @endforeach
+                    </div>
+                </p>
+            </div>
+            <div class="color__products">
+                <p><span>Color : </span>
+                    @php 
+                        $colorss=array() ;
+                        $quantity=array();
+                        $pro=array();
+                    @endphp
+                    @foreach($product->sizes as $size)
+                        @foreach($size->colors as $color)
+                            @if($color->pivot->product_id == $product->id)
+                            @php 
+                            $colorss[]=$color->id  ;
+                            $quantity['id']=$color->id;
+                            $quantity['qty']=$color->pivot->quantity;
+                            //push to array
+                            array_push($pro,$quantity);
+
+                            
+                            @endphp
+                            
+                            @endif 
+                        @endforeach 
+                    @endforeach 
+                    
+                    @for($i=0;$i<count($pro);$i++)
+                        @for($j=$i+1;$j<count($pro);$j++)
+                            @if($pro[$i]['id']==$pro[$j]['id'])
+                                @php 
+                                    $pro[$i]['qty']=$pro[$i]['qty']+$pro[$j]['qty'];
+                                    unset($pro[$j]);
+                                    $pro=array_values($pro);
+                                @endphp
+                            @endif
+                        @endfor
+                    @endfor
+                    
+                    @php 
+
+                        $colorss=array_unique($colorss);
+                        sort($colorss);
+                        
+                        $i=0; 
+                    @endphp
+                    <div class="flex gap-2">
+                        @foreach($colors as $key=>$color)
+                        @if($i < count($pro))
+                            @if($color->id==$pro[$i]['id'])
+                                <label style="background:{{$color->code}}" onClick="addc(event)" for="{{$color->id}}" class="cursor-pointer relative rounded-full w-11 h-11 flex colors">
+                                    <span style="font-size:10px;color:#000;background:#fff;padding:0.5px" class="absolute  font-bold rounded-full bottom-0 right-0 z-40 flex">
+                                        {{$pro[$i]['qty']}}
+                                    </span>
+                                </label>
+                                <input hidden type="radio" id="{{$color->id}}" name="color" value="{{$color->id}}" />
+                                @php $i++ @endphp
+                            @endif
+                        @endif 
+                       @endforeach 
+                    </div>
                 </p>
             </div>
             <div class="buttons__product-details mt-3 flex gap-2">
@@ -648,4 +739,21 @@
         <i class='bx bxs-chevron-right icon-offre-home right-icon-offre-product-home'></i>
         <i class='bx bxs-chevron-left  icon-offre-home left-icon-offre-product-home' ></i>
     </div>
+
+    <script>
+        function add(e){
+            document.querySelectorAll('.sizes').forEach((item)=>{
+                item.classList.remove('click')
+            })
+            e.target.classList.add('click')
+            console.log(e.target)
+        }
+        function addc(e){
+            document.querySelectorAll('.colors').forEach((item)=>{
+                item.classList.remove('click')
+            })
+            e.target.classList.add('click')
+            console.log(e.target)
+        }
+    </script>
 </div>

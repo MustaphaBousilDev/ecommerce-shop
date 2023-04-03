@@ -17,6 +17,8 @@ class CartComponent extends Component{
     public $subtotalAfterDiscount;
     public $taxAfterDiscount;
     public $totalAfterDiscount;
+    public $color;
+    public $size;
     //increment quantity
     public function increaseQuantity($rowId){
         $product = Cart::instance('cart')->get($rowId);

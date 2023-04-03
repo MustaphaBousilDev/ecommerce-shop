@@ -43,7 +43,7 @@
  <div class="alert alert-success" role="alert">{{Session::get('message')}}</div>
 @endif
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-[95%] mx-auto text-sm text-left text-gray-500 dark:text-gray-400">
+    <table class="w-[98%] mx-auto text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
@@ -79,58 +79,68 @@
                 <th scope="col" class="px-6 py-3">
                     Order Date 
                 </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+                <th>
+
+                </th>
             </tr>
         </thead>
         <tbody>
             @foreach($orders as $order)
                 <tr class="bg-white border-b border-b-color-gray-background-light  
                 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" class="px-1 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         #{{$order->id}}
                     </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" class="px-1 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$order->subtotal}}$
                     </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" class="px-1 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$order->discount}}$
                     </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" class="px-1 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$order->tax}}$
                     </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" class="px-1 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$order->total}}$
                     </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" class="px-1 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <div class='flex items-center flex-col justify-center mx-2'>
                             <img src='{{$order->user->img}}' class="w-8 h-8 rounded-full" />
                             <span> {{$order->firstname . $order->lastname}} </span>
                         </div>
                     </th>
-                    <td class="px-6 py-4">
+                    <td class="px-1 py-4">
                         {{$order->phone}}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-1 py-4">
                         {{$order->email}}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-1 py-4">
                         {{$order->zipcode}}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-1 py-4">
                         <span>
                             {{$order->status}}
                         </span>
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-1 py-4">
                         <span>
                             {{$order->created_at}}
                         </span>
                     </td>
-                    <td class="flex items-center px-6 py-4 space-x-3">
+                    <td class="flex items-center px-1 py-4 space-x-1">
                         <i class='bx bxs-edit-alt transition cursor-pointer hover:text-[#0ea5e9] hover:bg-[#e0f2fe] text-xl flex items-center justify-center p-1 w-9 h-9 rounded-full bg-[#f8fafc]'></i>
                         <i class='bx bx-trash transition cursor-pointer hover:text-[#0ea5e9] hover:bg-[#e0f2fe] text-xl p-1 flex items-center justify-center rounded-full w-9 h-9 bg-[#f8fafc]' ></i>
-                        <a href="{{route('user.order.details',$order->id)}}">
+                        <a href="{{route('admin.order.details',$order->id)}}">
                             <i class='bx bx-detail transition cursor-pointer hover:text-[#0ea5e9] hover:bg-[#e0f2fe] text-xl flex items-center justify-center p-1 w-9 h-9 rounded-full bg-[#f8fafc]'></i>
                         </a>
+                    </td>
+                    <td class="px-1 py-4">
+                        <button  wire:click.prevent="updateStatusOrder({{$order->id}},'delivered')" href="#"><i  style="color:rgb(123, 243, 123);" class='bx bx-check-circle text-2xl cursor-pointer'></i></button>
+                        <a href="#" wire:click.prevent="updateStatusOrder({{$order->id}},'canceled')"><i  style="color:rgb(250, 145, 145);" class='bx bx-x-circle text-2xl cursor-pointer'  ></i></a>
                     </td>
                 </tr>
             @endforeach 

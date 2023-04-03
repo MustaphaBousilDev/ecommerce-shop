@@ -143,8 +143,8 @@ class CheckoutComponent extends Component
                 'order_id'=>$order->id,
                 'quantity'=>$item->qty,
                 'price'=>$item->price,
-                'color'=>4,
-                'size'=>5,
+                'color_id'=>$item->color,
+                'size_id'=>$item->size,
             ]);
         }
 

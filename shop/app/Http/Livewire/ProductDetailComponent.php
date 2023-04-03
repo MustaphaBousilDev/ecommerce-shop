@@ -5,6 +5,10 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Product;
 use App\Models\Image;
+//color
+use App\Models\Color;
+//size
+use App\Models\Size;
 use Cart;
 
 class ProductDetailComponent extends Component
@@ -38,11 +42,13 @@ class ProductDetailComponent extends Component
 
     //render
     public function render(){
-        $product = Product::with('tags')->where('slug',$this->slug)->first();
+        $product = Product::with('tags')->with('sizes')->where('slug',$this->slug)->first();
         //slider product 
         //$sliderProducts=Product::where('sub_category_id',$product->sub_category_id)->inRandomOrder()->limit(10)->get();
         $nporduct=Product::latest()->take(4)->get();
         $images = Image::all();
-        return view('livewire.product-detail-component',['product'=>$product,'images'=>$images]);
+        $colors=Color::where('status',1)->whereNull('deleted_at')->get();
+        $sizes=Size::where('status',1)->whereNull('deleted_at')->get();
+        return view('livewire.product-detail-component',['product'=>$product,'images'=>$images,'colors'=>$colors,'sizes'=>$sizes]);
     }
 }
