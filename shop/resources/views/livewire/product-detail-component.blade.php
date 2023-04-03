@@ -103,7 +103,7 @@
                                     font-bold inline-block p-3 rounded-sm cursor-pointer flex sizes">
                                     {{$size->name}}
                                 </label>
-                                <input hidden type="radio" id="{{$size->id}}" name="size" value="{{$size->id}}" />
+                                <input wire:model="size_id" hidden type="radio" id="{{$size->id}}" name="size" value="{{$size->id}}" />
                             </div>
                         @endforeach
                     </div>
@@ -161,7 +161,7 @@
                                         {{$pro[$i]['qty']}}
                                     </span>
                                 </label>
-                                <input hidden type="radio" id="{{$color->id}}" name="color" value="{{$color->id}}" />
+                                <input wire:model="color_id" hidden type="radio" id="{{$color->id}}" name="color" value="{{$color->id}}" />
                                 @php $i++ @endphp
                             @endif
                         @endif 
