@@ -12,10 +12,10 @@ class AdminOrderComponent extends Component
 
     //update order status 
     use WithPagination;
+    public $delivered;
+    
     public function updateStatusOrder($order_id,$status){
-        dd($order_id);
         $order = Order::find($order_id);
-        
         $order->status = $status;
         if($status=="delivered"){
             $order->delivered_date = DB::raw('CURRENT_DATE');

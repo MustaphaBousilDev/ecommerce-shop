@@ -7,7 +7,6 @@ use App\Http\Livewire\CartComponent;
 use App\Http\Livewire\SubCategoryComponent;
 use App\Http\Livewire\ProductDetailComponent;
 use App\Http\Livewire\WishlistComponent;
-//controller thank you
 use App\Http\Livewire\ThankYouComponent;
 use App\Http\Livewire\ContactComponent;
 use App\Http\Livewire\CheckoutComponent;
@@ -15,39 +14,26 @@ use App\Http\Livewire\SearchComponent;
 use App\Http\Livewire\Auth\LoginComponent;
 use App\Http\Livewire\Admin\AdminSaleComponent;
 use App\Http\Livewire\Auth\RegisterComponent;
-//userorder
 use App\Http\Livewire\User\UserOrderDetailsComponent;
 use App\Http\Livewire\User\UserOrdersComponent;
-//Dashboard 
 use App\Http\Livewire\Admin\DashboardComponent;
-//controller 
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\auth\LoginController;
-//coupons 
 use App\Http\Livewire\Admin\AdminCouponsComponent;
 use App\Http\Livewire\Admin\AdminAddCouponsComponent;
 use App\Http\Livewire\Admin\AdminEditCouponsComponent;
 use App\Http\Livewire\Admin\AdminOrderComponent;
 use App\Http\Livewire\Admin\AdminOrderDetailsComponent;
-//category
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SubCategoryController;
 use App\Http\Controllers\admin\BrandsController;
-//country 
 use App\Http\Controllers\admin\CountryController;
-//city 
 use App\Http\Controllers\admin\CityController;
-//size 
 use App\Http\Controllers\admin\SizeController;
-//color
 use App\Http\Controllers\admin\ColorController;
-//product
 use App\Http\Controllers\admin\ProductController;
-//images 
 use App\Http\Controllers\admin\ImagesController;
-//sliders 
 use App\Http\Controllers\admin\SliderComponent;
-//slider products page 
 use App\Http\Livewire\SliderProductComponent;
 /*
 |--------------------------------------------------------------------------

@@ -33,6 +33,10 @@ class User extends Model
     public function subcategory(){
         return $this->hasMany(SubCategory::class,'user_id','id');
     }
+
+
+    //user belongs to hopital only admin  but user 
+
     
 
 }
