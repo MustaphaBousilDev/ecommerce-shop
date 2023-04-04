@@ -4,7 +4,7 @@
                <div class='header__product-lists'>
                     <div class='left__product-header flex justify-between'>
                          <h1 class='text-xl md:text-3xl font-bold'>Products</h1>
-                         <button onClick="console.log('fuck that shet ')" class='bg-color-red-button opacity-80 transition hover:opacity-100
+                         <button onClick="" class='bg-color-red-button opacity-80 transition hover:opacity-100
                          cursor-pointer outline-none border-none rounded-md text-while py-1 px-3 add-button'>
                               <span class='font-bold'>+</span> Add
                          </button>
@@ -121,38 +121,98 @@
 </div> 
 <!--end-->
 <!--start edit --> 
-<div class='w-[500px] h-[60vh]  bg-primary-50 rounded-lg z-[10000] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] active-showing model_form_edit '>
-    <div class="w-[140px] m-4 mx-auto  h-[140px] rounded-full bg-color-gray-background-light border border-color-gray-background-light cursor-pointer 
-    flex items-center justify-center image-div-edit">
-        <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
+<div style='width:60%' class='w-[500px]  bg-primary-50 rounded-lg z-[10000] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] active-showing model_form_edit '>
+    <div class='flex'>
+        <div onclick="img_div_edit()"  class="w-[140px] m-4 mx-auto  h-[140px] rounded-full bg-color-gray-background-light border border-color-gray-background-light cursor-pointer 
+       flex items-center justify-center image-div1-edit">
+           <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
+       </div>
+       <div onclick="img_div2_edit()" class="w-[140px] m-4 mx-auto  h-[140px] rounded-full bg-color-gray-background-light border border-color-gray-background-light cursor-pointer 
+       flex items-center justify-center image-div2-edit">
+           <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
+       </div>
+       <div onclick="img_div3_edit()" class="w-[140px] m-4 mx-auto  h-[140px] rounded-full bg-color-gray-background-light border border-color-gray-background-light cursor-pointer 
+       flex items-center justify-center image-div3-edit">
+           <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
+       </div>
+       <div onclick="img_div4_edit()" class="w-[140px] m-4 mx-auto  h-[140px] rounded-full bg-color-gray-background-light border border-color-gray-background-light cursor-pointer 
+       flex items-center justify-center image-div4-edit">
+           <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
+       </div>
     </div>
-    
-    <form action='' class='w-full form-edit' id='form-edit' enctype="multipart/form-data">
+    <form class='w-full' id='form__images-edit'>
         @csrf
-        <h3 class='text-center heading-form'>Edit Categories</h3>
-        
-            <div class="w-[80%] mx-auto">
-                <input type='hidden'  name='id' id='id_category'>
-                <input type="text" name="name_edit" placeholder='name_edit' id="name_edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
-            </div>
-            <div class="w-[80%] mx-auto mt-4">
-                <textarea name="description_edit" id="description_edit" cols="30" rows="10" class="w-full border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
-            </div>
-            <div class="w-[80%] mx-auto mt-4">
-                <input type='hidden' name='old_image' id='old_image'>
-                <input name='image_edit' type="file" class="file__img-input-edit" onchange="display_edit_image(this.files[0])" 
-                hidden  id="image_edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
-            </div>
-            <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button_edit' type='submit'>Save</button>
-            <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button_edit'>Cancel</button>
-    </form>
+        <input type='file' hidden class='file__img-input1-edit imagepro' name='image1-edit'  id='image1-edit' onchange="display_edit_image(this.files[0],event);add(this.files[0])" />
+        <input type='file' hidden class='file__img-input2-edit imagepro' name='image2-edit'  id='image2-edit' onchange="display_edit_image(this.files[0],event);add(this.files[0])" />
+        <input type='file' hidden class='file__img-input3-edit imagepro' name='image3-edit'  id='image3-edit' onchange="display_edit_image(this.files[0],event);add(this.files[0])" />
+        <input type='file' hidden class='file__img-input4-edit imagepro' name='image4-edit'  id='image4-edit' onchange="display_edit_image(this.files[0],event);add(this.files[0])" />
+       </form>
+       <form action='' class='w-full form-edit' id='form-edit' enctype="multipart/form-data">
+           @csrf
+               <div class="w-[90%] mx-auto flex gap-2">
+                   <input type="text" name="name-edit" placeholder='name-edit' id="name-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                   <input type="text" name="sku-edit" placeholder='sku-edit' id="sku-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+               </div>
+               <div class="w-[90%] mx-auto flex gap-2">
+                  <input type="number" name="r_price-edit" placeholder='r_price-edit' id="r_price-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                  <input type="number" name="s_price-edit" placeholder='s_price-edit' id="s_price-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+              </div>
+              <div class="w-[90%] mx-auto flex gap-2">
+                  <input type="text" name="barcode-edit" placeholder='barcode-edit' id="barcode-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                   <select name='made_in-edit' id='made_in-edit' class='w-full h-40px rounded-md mt-2 outline-none'>
+                       <option>made_in</option>
+                       @foreach ($countries as $country)
+                           <option value="{{$country->id}}">{{$country->name}}</option>
+                       @endforeach
+                   </select>
+              </div>
+              <div class="w-[90%] mx-auto flex gap-2">
+               <select name='brands-edit' id='brands-edit' class='w-full h-40px py-3 rounded-md mt-2 outline-none'>
+                   <option>brands</option>
+                   @foreach ($brands as $brand)
+                       <option value="{{$brand->id}}">{{$brand->name}}</option>
+                   @endforeach
+               </select>
+               <select name='subcategory-edit' id='subcategory-edit' class='w-full h-40px rounded-md mt-2 outline-none'>
+                   <option>subcategory</option>
+                   @foreach ($subcategories as $subcategory)
+                       <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+                   @endforeach
+               </select>
+              </div>
+               <div class="w-[90%] mx-auto mt-4 flex gap-2">
+                   <textarea style='height:60px' name="short_description-edit"  id="short_description-edit" cols="30" rows="10" class="w-full border border-color-gray-background-light h-[60px] rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
+                   <textarea style='height:60px' name="description-edit" id="description-edit" cols="30" rows="10" class="w-full border border-color-gray-background-light h-[60px]  rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
+               </div>
+               <div class="w-[90%] mx-auto mt-4 flex flex-wrap">
+                   @foreach ($sizes as $size)
+                       <div class='our__size w-[33%]'>
+                           <label for='size'>{{$size->name}}</label>
+                           <input type='checkbox' name='size-edit[]' id='size-edit' class='size' value="{{$size->id}}" /><br>
+                           @foreach ($colors as $color)
+                                   <div class='ml-3 my-2'>
+                                       <label for='color'>{{$color->name}}</label>
+                                       <input type='checkbox' name='color-edit[]' id='color-edit' class='color-edit' value="{{$color->id}}" />
+                                       <input type='number' name='qty-edit[]' id='qty-edit' class='qty-edit mx-2 border rounded-md outline-none' value='10' />
+                                   </div>
+                           @endforeach
+                       </div>
+                   @endforeach
+               </div>
+               <div class='w-[90%] mx-auto mt-4 flex'>
+                   <input type="text" name="tags-edit" placeholder='tags-edit' id="tags-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                   <input type="number" name="quantity_total-edit" placeholder='qty' id="quantity_total-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+               </div>
+               <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer my-2 inline-block mx-1 save_button' type='submit'>Save</button>
+               <button class='bg-primary-200 px-5 py-2 my-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
+       </form>
 </div> 
 <!--end edit -->
 <div class="flex flex-col gap-2 md:flex-row mt-7">
     <div class='relative overflow-x-auto w-[99%]  md:w-[60%]  shadow-lg sm:rounded-lg mt-6'>
         <!--model insert categories to database-->
          
-         <table class="w-full text-sm text-left text-blue-100 dark:text-blue-100">
+         <table id="table__data" class="w-full text-sm text-left text-blue-100 dark:text-blue-100">
               <thead class="text-xs text-white uppercase bg-blue-600 dark:text-white">
                <tr>
                     <th scope="col" class="px-6 py-3">Product name</th>
@@ -185,7 +245,7 @@
                         </button>
                     </td>
                     <td class="px-6 py-4">
-                        <div class='flex gap-1'>
+                        {{-- <div class='flex gap-1'>
                             @php $colorss=array() @endphp
                             @foreach($product->sizes as $size)
                                 @foreach($size->colors as $color)
@@ -207,7 +267,63 @@
                                     @endif
                                 @endif 
                             @endforeach 
-                        </div>
+                        </div> --}}
+                        @php 
+                        $colorss=array() ;
+                        $quantity=array();
+                        $pro=array();
+                        @endphp
+                        @foreach($product->sizes as $size)
+                            @foreach($size->colors as $color)
+                                @if($color->pivot->product_id == $product->id)
+                                @php 
+                                $colorss[]=$color->id  ;
+                                $quantity['id']=$color->id;
+                                $quantity['qty']=$color->pivot->quantity;
+                                //push to array
+                                array_push($pro,$quantity);
+
+                                
+                                @endphp
+                                
+                                @endif 
+                            @endforeach 
+                        @endforeach 
+                        
+                        @for($i=0;$i<count($pro);$i++)
+                            @for($j=$i+1;$j<count($pro);$j++)
+                                @if($pro[$i]['id']==$pro[$j]['id'])
+                                    @php 
+                                        $pro[$i]['qty']=$pro[$i]['qty']+$pro[$j]['qty'];
+                                        unset($pro[$j]);
+                                        $pro=array_values($pro);
+                                    @endphp
+                                @endif
+                            @endfor
+                        @endfor
+                    
+                        @php 
+
+                            $colorss=array_unique($colorss);
+                            sort($colorss);
+                            
+                            $i=0; 
+                        @endphp
+                    <td class="px-6 py-4 flex gap-1" >
+                        @foreach($colors as $key=>$color)
+                        @if($i < count($pro))
+                            @if($color->id==$pro[$i]['id'])
+                                <label wire:click.model="color({{$color->id}})" style="background:{{$color->code}}" onClick="addc(event)" for="{{$color->id}}" class="cursor-pointer relative rounded-full w-8 h-8 flex colors">
+                                    <span style="font-size:7px;color:#000;background:#fff;padding:0.3px;width:16px;height:16px;" class="absolute  font-bold rounded-full bottom-0 right-0 z-40 flex justify-center items-center">
+                                        {{$pro[$i]['qty']}}
+                                    </span>
+                                </label>
+                                <input  hidden type="radio" id="{{$color->id}}" name="color" value="{{$color->id}}" />
+                                @php $i++ @endphp
+                            @endif
+                        @endif 
+                       @endforeach 
+                    </td>
                     </td>
                     <td class="px-6 py-4">
                         <div class='flex gap-1'>
@@ -234,7 +350,7 @@
                     </td>
                     <td class="px-6 py-4">
                         <div class='flex gap-1 items-center'>
-                            <span><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
+                            <span onclick="edit()"><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
                             <span><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
                             <span><i class='bx bxs-detail text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#cffafe] text-[#22d3ee]' ></i></span>
                         </div>
@@ -264,7 +380,7 @@ function add(file){
     let formData=new FormData()
     formData.append(`image${counter}`,file)
     if(counter==4){
-    console.log('fuck ready')
+    
     $.ajax({
             url:"{{route('images-add')}}",
             type:'post',
@@ -272,15 +388,15 @@ function add(file){
             contentType:false,
             processData:false,
             success:function(response){
-            console.log(response)
+            //console.log(response)
             //insert id images inserted to array images
-                console.log(response.images)
+                //console.log(response.images)
                 images=response.images
-                console.log('my array')
-                console.log(images)
+                //console.log('my array')
+                //console.log(images)
             },
             error:function(error){
-            console.log(error)
+            //console.log(error)
             }
     })
     }
@@ -293,10 +409,10 @@ function add(file){
             //get file from input
             counter++
             let file=e.target.files[0]
-            console.log(file)
+            //console.log(file)
             //call function add
             display_add_image(file,e)
-            console.log(`image number ${counter}`)
+            //console.log(`image number ${counter}`)
             add(file)
         })
         $(document).on('click','.save_button',function (e){
@@ -305,7 +421,7 @@ function add(file){
             data['name']=$('#name').val()
             data['short_description']=$('#short_description').val()
             data['sku']=$('#sku').val()
-            data['barcode']=$('#barcode').val()
+            data['barcode-edit']=$('#barcode').val()
             data['brands']=$('#brands').val()
             data['subcategory']=$('#subcategory').val()
             data['description']=$('#description').val()
@@ -344,7 +460,7 @@ function add(file){
             })
             data['sizes']=sizes
             data['tag']=['one','two','three']
-            console.log(data)
+            //console.log(data)
             
 
 
@@ -369,19 +485,18 @@ function add(file){
                     _token:$('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (response){
-                    console.log('success yow')
+                    //console.log('success yow')
                     if(response.status=="success inserted products"){
                         $('#form-add')[0].reset()
-                        //console.log(response)
-                        $('.body__table').empty()
-                        console.log('you re realy son of the bitch')
+                        //load data to table
+                        $('#table__data').load(location.href + ' #table__data')
                     }
-                    console.log(response)
+                    //console.log(response)
                 },
                 error: function (error){
-                    console.log("error")
+                    //console.log("error")
                     $.each(error.responseJSON.errors,function(key,value) {
-                        console.log(value)
+                        //console.log(value)
                     })
                 }
             })
@@ -390,29 +505,7 @@ function add(file){
         $(document).on('click','.button_edit',function (e){
             e.preventDefault()
             var id = $(this).data('id')
-            $.ajax({
-                url: "{{route('category-show')}}",
-                type: 'POST',
-                data: {
-                    id:id,
-                    _token: "{{ csrf_token() }}"
-                },
-                success: function (response){
-                    console.log(response)
-                    $('#name_edit').val(response.categories.name)
-                    $('#description_edit').val(response.categories.description)
-                    $('#old_img').val(response.categories.image)
-                    $('#id_category').val(response.categories.id)
-                    //get element has class image-div-edit and set attribute src to image
-                    //$('.image-div-edit').style.backgroundImage=`url({{ asset('categories/${response.categories.image}') }})`
-                },
-                error: function (error){
-                    console.log("error")
-                    $.each(error.responseJSON.errors,function(key,value) {
-                        console.log(value)
-                    })
-                }
-            })
+            //get all value from form add input 
 
 
             //set file img data to form
@@ -427,12 +520,12 @@ function add(file){
                 processData: false,
                 contentType: false,
                 success: function (response){
-                    console.log('success')
+                    //console.log('success')
                     if(response.status=="success updated categories"){
                         $('#form-edit')[0].reset()
                         $('.body__table').empty()
                         $.each(response.categories,function(key,value){
-                            console.log(value)
+                            //console.log(value)
                             //empty table 
                             $('.body__table').append(`
                            
@@ -442,9 +535,9 @@ function add(file){
                     }
                 },
                 error: function (error){
-                    console.log("error")
+                    //console.log("error")
                     $.each(error.responseJSON.errors,function(key,value) {
-                        console.log(value)
+                        //console.log(value)
                     })
                 }
 
@@ -464,10 +557,10 @@ function add(file){
                     },
                     success: function (response){
                         if(response.status=="success delete categories"){
-                            console.log('success')
+                            //console.log('success')
                             $('.body__table').empty()
                             $.each(response.categories,function(key,value){
-                                console.log(value)
+                                //console.log(value)
                                 //empty table 
                                 $('.body__table').append(`
                                 
@@ -476,9 +569,9 @@ function add(file){
                         }
                     }, 
                     error: function (error){
-                        console.log("error")
+                        //console.log("error")
                         $.each(error.responseJSON.errors,function(key,value) {
-                            console.log(value)
+                            //console.log(value)
                         })
                     },
                 })
@@ -490,7 +583,7 @@ function add(file){
         $(document).on('keyup','#search-categories',function(e){
             e.preventDefault()
             let search = $(this).val()
-            console.log(search)
+            //console.log(search)
             $.ajax({
                 url:"{{route('category-search')}}",
                 type: 'POST',
@@ -500,14 +593,14 @@ function add(file){
                 },
                 success: function (response){
                     if(response.status=="success"){
-                        console.log('success')
+                        //console.log('success')
                         //code do while if response data is empty load true if not load false
                         var load = true
                         
                             //filter table of categories by search 
                             $('.body__table').empty()
                             $.each(response.categories,function(key,value){
-                                console.log(value)
+                                //console.log(value)
                                 //empty table 
                                 $('.body__table').append(`
                                 
@@ -517,7 +610,7 @@ function add(file){
                     }
                 },
                 error:function (error){
-                    console.log('error')
+                    //console.log('error')
                 }
             })
         })
@@ -547,33 +640,69 @@ function add(file){
     function img_div4(){
           document.querySelector('.file__img-input4').click()
     }
+    //edit 
+    function img_div_edit(){
+          document.querySelector('.file__img-input1-edit').click()
+    }
+    function img_div2_edit(){
+          document.querySelector('.file__img-input2-edit').click()
+    }
+    function img_div3_edit(){
+          document.querySelector('.file__img-input3-edit').click()
+    }
+    function img_div4_edit(){
+          document.querySelector('.file__img-input4-edit').click()
+    }
     
 
     document.querySelector('.image-div-edit').addEventListener('click',(e)=>{
     document.querySelector('.file__img-input-edit').click()})
 
     function display_add_image(file,e){
-    //console.log(e.target)
-    let allowed = ['jpg','jpeg','png'];
-    let ext = file.name.split(".").pop();
-    if(allowed.includes(ext.toLowerCase())){
-    image_added=true
-    //set image in background-img of div
-    if(e.target.classList.contains('file__img-input1')){
-            document.querySelector('.image-div1').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+    ////console.log(e.target)
+        let allowed = ['jpg','jpeg','png'];
+        let ext = file.name.split(".").pop();
+        if(allowed.includes(ext.toLowerCase())){
+        image_added=true
+        //set image in background-img of div
+        if(e.target.classList.contains('file__img-input1')){
+                document.querySelector('.image-div1').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        if(e.target.classList.contains('file__img-input2')){
+                document.querySelector('.image-div2').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        if(e.target.classList.contains('file__img-input3')){
+                document.querySelector('.image-div3').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        if(e.target.classList.contains('file__img-input4')){
+                document.querySelector('.image-div4').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        }else {
+        alert("Only the following image types are allowed:"+ allowed.toString(", "));
+        }
     }
-     if(e.target.classList.contains('file__img-input2')){
-               document.querySelector('.image-div2').style.backgroundImage=`url(${URL.createObjectURL(file)})`
-     }
-     if(e.target.classList.contains('file__img-input3')){
-               document.querySelector('.image-div3').style.backgroundImage=`url(${URL.createObjectURL(file)})`
-     }
-     if(e.target.classList.contains('file__img-input4')){
-               document.querySelector('.image-div4').style.backgroundImage=`url(${URL.createObjectURL(file)})`
-     }
-    }else {
-    alert("Only the following image types are allowed:"+ allowed.toString(", "));
-    }
+    function display_edit_image(file,e){
+    ////console.log(e.target)
+        let allowed = ['jpg','jpeg','png'];
+        let ext = file.name.split(".").pop();
+        if(allowed.includes(ext.toLowerCase())){
+        image_added=true
+        //set image in background-img of div
+        if(e.target.classList.contains('file__img-input1-edit')){
+                document.querySelector('.image-div1-edit').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        if(e.target.classList.contains('file__img-input2-edit')){
+                document.querySelector('.image-div2-edit').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        if(e.target.classList.contains('file__img-input3-edit')){
+                document.querySelector('.image-div3-edit').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        if(e.target.classList.contains('file__img-input4-edit')){
+                document.querySelector('.image-div4-edit').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        }else {
+        alert("Only the following image types are allowed:"+ allowed.toString(", "));
+        }
     }
     //edit 
     function display_edit_image(file){
@@ -594,10 +723,15 @@ function add(file){
     //hidden and ashow button 
     ///////////////////////////////////////////////////////////////////////////////
     document.querySelector('.add-button').addEventListener('click',()=>{
-    console.log('ffuckk')
+    //console.log('ffuckk')
     document.querySelector('.overlay').classList.remove('active-showing')
     document.querySelector('.model_form').classList.remove('active-showing')
     })
+    //edit 
+    function edit(){
+        document.querySelector('.overlay').classList.remove('active-showing')
+        document.querySelector('.model_form_edit').classList.remove('active-showing')
+    }
     document.querySelector('.overlay').addEventListener('click',()=>{
     document.querySelector('.overlay').classList.add('active-showing')
     document.querySelector('.model_form').classList.add('active-showing')
