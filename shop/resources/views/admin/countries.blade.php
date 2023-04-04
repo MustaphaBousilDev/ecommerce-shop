@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('content')
+@section('content') 
             <div class="products__tables">
                <div class='header__product-lists'>
                     <div class='left__product-header flex justify-between'>
