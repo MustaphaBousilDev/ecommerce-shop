@@ -1,5 +1,24 @@
 <div>
-
+    <style>
+        .ordered{
+            color: #f6e05e;
+            background:rgb(255, 233, 191);
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+        }
+        .delivered{
+            color: #38a169;
+            background:rgb(209, 250, 229);
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+        }
+        .canceled{
+            color: #e53e3e;
+            background:rgb(253, 230, 230);
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+        }
+    </style>
     <div class="products__tables">
         <div class='header__product-lists'>
              <div class='left__product-header flex justify-between'>
@@ -116,7 +135,7 @@
                                     {{$order->zipcode}}
                                 </td>
                                 <td class="px-1 py-4">
-                                    <span> 
+                                    <span class="rounded-md {{$order->status=='delivered' ? 'delivered' : ($order->status=='canceled' ? 'canceled' : 'ordered')}}"> 
                                         {{$order->status}}
                                     </span>
                                 </td>
@@ -133,8 +152,8 @@
                                     </a>
                                 </td>
                                 <td class="px-1 py-4">
-                                    <a href="#" wire:click.prevent="updateStatusOrder({{$order->id}},'delivered')"><i  style="color:rgb(250, 145, 145);" class='bx bx-x-circle text-2xl cursor-pointer'  ></i></a>
-                                    <a href="#" wire:click.prevent="updateStatusOrder({{$order->id}},'canceled')"><i  style="color:rgb(250, 145, 145);" class='bx bx-x-circle text-2xl cursor-pointer'  ></i></a>
+                                    <a href="#" wire:click.prevent="updateStatusOrder({{$order->id}},'delivered')"><i style="color:rgb(150, 255, 150);"  class='bx bx-check-circle text-2xl cursor-pointer'  ></i></a>
+                                    <a href="#" wire:click.prevent="updateStatusOrder({{$order->id}},'canceled')"><i    style="color:rgb(250, 145, 145);"  class=' bx bx-x-circle text-2xl cursor-pointer'></i></a>
                                 </td>
                             </tr>
                         @endforeach 

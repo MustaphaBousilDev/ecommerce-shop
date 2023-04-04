@@ -99,11 +99,11 @@
                     <div class="flex gap-2">
                         @foreach($product->sizes as $size)
                             <div>
-                                <label onClick="add(event)" for="{{$size->id}}" class="w-8 items-center justify-center h-8 bg-color-gray-background-light 
+                                <label wire:click.model="size({{$size->id}})" onClick="add(event)" for="{{$size->id}}" class="w-8 items-center justify-center h-8 bg-color-gray-background-light 
                                     font-bold inline-block p-3 rounded-sm cursor-pointer flex sizes">
                                     {{$size->name}}
                                 </label>
-                                <input wire:model="size_id" hidden type="radio" id="{{$size->id}}" name="size" value="{{$size->id}}" />
+                                <input hidden type="radio" id="{{$size->id}}" name="size" value="{{$size->id}}" />
                             </div>
                         @endforeach
                     </div>
@@ -156,12 +156,12 @@
                         @foreach($colors as $key=>$color)
                         @if($i < count($pro))
                             @if($color->id==$pro[$i]['id'])
-                                <label style="background:{{$color->code}}" onClick="addc(event)" for="{{$color->id}}" class="cursor-pointer relative rounded-full w-11 h-11 flex colors">
+                                <label wire:click.model="color({{$color->id}})" style="background:{{$color->code}}" onClick="addc(event)" for="{{$color->id}}" class="cursor-pointer relative rounded-full w-11 h-11 flex colors">
                                     <span style="font-size:10px;color:#000;background:#fff;padding:0.5px" class="absolute  font-bold rounded-full bottom-0 right-0 z-40 flex">
                                         {{$pro[$i]['qty']}}
                                     </span>
                                 </label>
-                                <input wire:model="color_id" hidden type="radio" id="{{$color->id}}" name="color" value="{{$color->id}}" />
+                                <input  hidden type="radio" id="{{$color->id}}" name="color" value="{{$color->id}}" />
                                 @php $i++ @endphp
                             @endif
                         @endif 
@@ -744,15 +744,20 @@
         function add(e){
             document.querySelectorAll('.sizes').forEach((item)=>{
                 item.classList.remove('click')
+                //sibling item 
+                item.nextElementSibling.checked = false
             })
             e.target.classList.add('click')
+            e.target.nextElementSibling.checked = true
             console.log(e.target)
         }
         function addc(e){
             document.querySelectorAll('.colors').forEach((item)=>{
                 item.classList.remove('click')
+                item.nextElementSibling.checked = false
             })
             e.target.classList.add('click')
+            e.target.nextElementSibling.checked = true
             console.log(e.target)
         }
     </script>

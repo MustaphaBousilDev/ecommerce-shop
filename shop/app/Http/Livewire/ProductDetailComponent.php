@@ -29,6 +29,13 @@ class ProductDetailComponent extends Component
         $this->qty = 1;
         
     }
+
+    public function size($size){
+        $this->size_id=$size;
+    }
+    public function color($color){
+        $this->color_id=$color;
+    }
     //store in cart shopping
     public function store($product_id,$product_name,$product_price){
         Cart::instance('cart')->add($product_id,$product_name,$this->qty,$product_price)->associate('App\Models\Product');
