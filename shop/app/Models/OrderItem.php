@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 //order 
 use App\Models\Order;
 //product
+use App\Models\Review;
 use App\Models\Product;
 class OrderItem extends Model
 {
@@ -28,5 +29,9 @@ class OrderItem extends Model
 
     public function product(){
         return $this->belongsTo(Product::class);
+    }
+
+    public function review(){
+        return $this->hasOne(Review::class,'order_item_id');
     }
 }

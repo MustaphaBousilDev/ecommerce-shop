@@ -13,6 +13,7 @@ use App\Models\Country;
 //brand
 use App\Models\Brands;
 //sub_category
+use App\Models\OrderItem;
 use App\Models\SubCategory;
 //image
 use App\Models\Image;
@@ -81,5 +82,10 @@ class Product extends Model
     //order
     public function orders(){
         return $this->belongsToMany(Order::class,'order_items');
+    }
+
+    //order item
+    public function orderItems(){
+        return $this->hasMany(OrderItem::class,'product_id');
     }
 }
