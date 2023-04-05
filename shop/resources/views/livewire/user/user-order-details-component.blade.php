@@ -144,91 +144,124 @@
                 </table>
                 <div class="w-[95%] mx-auto">
                     <h3 class="font-bold">Order Summary</h3>
-                    <ul>
-                        <li class="flex gap-2">
-                            <span>Subtotal:</span> 
-                            <span class="font-bold">{{$orders->subtotal}}$</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <span>Shipping:</span> 
-                            <span class="font-bold">Free</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <span>Tax:</span> 
-                            <span class="font-bold">{{$orders->tax}}$</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <span>Total:</span> 
-                            <span class="font-bold">{{$orders->total}}$</span>
-                        </li>
-                    </ul>
+                    <div class="relative overflow-x-auto">
+                        <table class="w-[30%] border text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs border text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 rounded-l-lg">
+                                        Subtotal
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Shipping
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Tax
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Total
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white dark:bg-gray-800">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{$orders->subtotal}}$
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        Free
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{$orders->tax}}$
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{$orders->total}}$
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 @if($orders->is_shipping_different)
                 <hr class="border-0 inline-block my-2 bg-color-gray-background-light w-full h-[1px] ">
                 <div class="w-[95%] mx-auto">
                     <h3 class="font-bold">Shipping Details</h3>
-                    <ul>
-                        <li class="flex gap-2">
-                            <span>Shipping:</span> 
-                            <ul>
-                                <li class="flex gap-3">
-                                    <span>FirstName:</span>
-                                    <span class="font-bold">{{$orders->shipping->firstname}}</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span>LastName:</span>
-                                    <span class="font-bold">{{$orders->shipping->lastname}}</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span>Email:</span>
-                                    <span class="font-bold">{{$orders->shipping->email}}</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span>Phone:</span>
-                                    <span class="font-bold">{{$orders->shipping->phone}}</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span>Address:</span>
-                                    <span class="font-bold">{{$orders->shipping->line1}}</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span>Address2:</span>
-                                    <span class="font-bold">{{$orders->shipping->line2}}</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span>zipcode:</span>
-                                    <span class="font-bold">{{$orders->shipping->zipcode}}</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span>Country:</span>
-                                    <span class="font-bold">{{$orders->shipping->country->name}}</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span>Date create order:</span>
-                                    <span class="font-bold">{{$orders->shipping->created_at}}</span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <div class="relative overflow-x-auto">
+                        <table class="w-[80%] border text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs border text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 rounded-l-lg">First Name</th>
+                                    <th scope="col" class="px-6 py-3 rounded-l-lg">Last Name</th>
+                                    <th scope="col" class="px-6 py-3 rounded-l-lg">Email</th>
+                                    <th scope="col" class="px-6 py-3 rounded-l-lg">Phone</th>
+                                    <th scope="col" class="px-6 py-3 rounded-l-lg">Adress</th>
+                                    <th scope="col" class="px-6 py-3 rounded-l-lg">Adress 2</th>
+                                    <th scope="col" class="px-6 py-3 rounded-l-lg">Zip Code</th>
+                                    <th scope="col" class="px-6 py-3 rounded-l-lg">Country</th>
+                                    <th scope="col" class="px-6 py-3 rounded-l-lg">Date Created Order</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white dark:bg-gray-800">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{$orders->shipping->firstname}}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{$orders->shipping->lastname}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{$orders->shipping->email}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{$orders->shipping->phone}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{$orders->shipping->line1}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{$orders->shipping->line2}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{$orders->shipping->zipcode}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{$orders->shipping->country->name}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $orders->shipping->created_at)->format('D, M d, Y')}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 @endif 
                 <hr class="border-0 inline-block my-2 bg-color-gray-background-light w-full h-[1px] ">
                 <div class="w-[95%] mx-auto">
                     <h3 class="font-bold">Transactions</h3>
-                    <ul>
-                        <li class="flex gap-2">
-                            <span>Transaction Mode:</span> 
-                            <span class="font-bold">{{$orders->transaction->mode}}</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <span>Status:</span> 
-                            <span class="font-bold">{{$orders->transaction->status}}</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <span>Created at:</span> 
-                            <span class="font-bold">{{$orders->transaction->created_at}}</span>
-                        </li>
-                    </ul>
+                    <div class="relative overflow-x-auto">
+                        <table class="w-[30%] border text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs border text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 rounded-l-lg">Transaction Mode</th>
+                                    <th scope="col" class="px-6 py-3">Status</th>
+                                    <th scope="col" class="px-6 py-3">Created at</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white dark:bg-gray-800">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{$orders->transaction->mode}}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{$orders->transaction->status}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $orders->transaction->created_at)->format('D, M d, Y')}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

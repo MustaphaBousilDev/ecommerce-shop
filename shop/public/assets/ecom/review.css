@@ -4699,24 +4699,26 @@ article.single-post blockquote p:last-child::after{
     float: left;
     margin: 0;
     overflow: hidden;
-    background-color: red;
+    
     padding: 0 2px;
 }
 .comment-form-rating .stars label i{
     
-    font-size: 15px;
+    font-size: 20px;
     /*color: #e6e6e6;*/
     overflow: hidden;
-    background-color: #fff;
+    color:#e6e5e5;
+    
 }
 .comment-form-rating .stars input[type=radio]:checked ~ label::before{
     color: #e6e6e6 ;
 }
 .comment-form-rating .stars:hover label i{
-    background-color: #efce4a !important;
+    color: #efce4a !important;
+    
 }
 .comment-form-rating .stars label:hover ~ label i{
-    background-color: #e6e6e6 !important;
+    color: #e6e6e6 !important;
 }
 .comment-form-rating{
     margin-bottom: 15px;
