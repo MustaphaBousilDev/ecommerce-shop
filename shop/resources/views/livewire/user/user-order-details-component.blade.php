@@ -50,7 +50,7 @@
                 </div>
     
                 <h3 class="w-[95%] mx-auto">Order Details</h3>
-                <table class="w-[95%] mx-auto text-sm text-left text-gray-500 dark:text-gray-400">
+                <table class="w-[95%]  mx-auto mb-5 text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">OrderID</th>
@@ -73,7 +73,7 @@
     
     
     
-                <table class="w-[95%] mx-auto mt-5 text-sm text-left text-gray-500 dark:text-gray-400">
+                <table class="w-[95%] mx-auto mt-5  mb-5 text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
@@ -94,6 +94,7 @@
                             <th scope="col" class="px-6 py-3 text-center">
                                 Size  
                             </th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -125,6 +126,11 @@
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{$item->size_id}}
                                 </th>
+                                @if($orders->status == 'delivered' && $item->rstatus==false)
+                                    <th scope="row" class="px-6 py-4 font-medium  text-gray-900 whitespace-nowrap dark:text-white">
+                                        <a href="{{route('user.review',$item->id)}}" class=' bg-color-rating text-white px-2 py-1 rounded-md'>Review</a>
+                                    </th>
+                                @endif
                                 <td class="flex items-center px-6 py-4 space-x-3">
                                     <i class='bx bxs-edit-alt transition cursor-pointer hover:text-[#0ea5e9] hover:bg-[#e0f2fe] text-xl flex items-center justify-center p-1 w-9 h-9 rounded-full bg-[#f8fafc]'></i>
                                     <i class='bx bx-trash transition cursor-pointer hover:text-[#0ea5e9] hover:bg-[#e0f2fe] text-xl p-1 flex items-center justify-center rounded-full w-9 h-9 bg-[#f8fafc]' ></i>
