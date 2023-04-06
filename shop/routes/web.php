@@ -35,6 +35,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ImagesController;
 use App\Http\Controllers\admin\SliderComponent;
 use App\Http\Livewire\SliderProductComponent;
+use App\Http\Livewire\User\UserChangePasswordComponent;
 //review
 use App\Http\Livewire\User\UserReviewComponent;
 /*
@@ -75,6 +76,7 @@ Route::post('/login-user',[LoginController::class,'loginUser'])->name('login.use
 Route::get('/register',RegisterComponent::class)->name('register');
 Route::post('/register-user',[RegisterController::class,'register_user'])->name('register.user');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+
 
 //slider products 
 Route::get('/slider-products/{slug}',SliderProductComponent::class)->name('slider.products');
@@ -180,9 +182,10 @@ Route::get('admin/order-details/{order_id}',AdminOrderDetailsComponent::class)->
 //order user 
 Route::get('/user/orders',UserOrdersComponent::class)->name('user.orders');
 Route::get('/user/orders/{order_id}',UserOrderDetailsComponent::class)->name('user.order.details');
-
 //review
 Route::get('user/review/{order_item_id}',UserReviewComponent::class)->name('user.review');
+//change password
+Route::get('/user/change-password',UserChangePasswordComponent::class)->name('user.change.password');
 
 
 
