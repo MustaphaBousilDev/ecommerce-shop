@@ -38,6 +38,8 @@ use App\Http\Livewire\SliderProductComponent;
 use App\Http\Livewire\User\UserChangePasswordComponent;
 //review
 use App\Http\Livewire\User\UserReviewComponent;
+//contact admin 
+use App\Http\Livewire\Admin\AdminContactComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -188,6 +190,5 @@ Route::get('user/review/{order_item_id}',UserReviewComponent::class)->name('user
 Route::get('/user/change-password',UserChangePasswordComponent::class)->name('user.change.password');
 
 
-
-
-
+//admin contact 
+Route::get('admin/contact-us',AdminContactComponent::class)->name('admin.contact-us');

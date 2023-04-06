@@ -38,23 +38,50 @@
             </div>
         </div>
         <div class="form--info">
-            
-            <formn class="p-7">
+            @if(Session::has('message'))
+            <div>
+                {{Session::get('message')}}
+            </div>
+            @endif
+            <form wire:submit.prevent="sendMessage" class="p-7">
                 <div class="flex flex-col w-[90%] mx-auto ">
                     <label>Your Name</label>
-                    <input class="px-3 border border-color-gray-background-light py-2 rounded-lg outline-none" type="text" name="text" />
+                    <input wire:model="name" class="px-3 border border-color-gray-background-light py-2 rounded-lg outline-none" type="text" name="text" />
                 </div>
+                @error('name')
+                <p style='color:red'>{{$message}}</p>
+                @enderror
                 <div class="flex flex-col w-[90%] mx-auto">
                     <label>Your Email</label>
-                    <input class="px-3 border border-color-gray-background-light py-2 rounded-lg outline-none" type="email" name="email"/>
+                    <input wire:model="email" class="px-3 border border-color-gray-background-light py-2 rounded-lg outline-none" type="email" name="email"/>
                 </div>
+                @error('email')
+                <p style='color:red'>{{$message}}</p>
+                @enderror
+                <div class="flex flex-col w-[90%] mx-auto">
+                    <label>Your Phone </label>
+                    <input wire:model="phone" class="px-3 border border-color-gray-background-light py-2 rounded-lg outline-none" type="number" name="email"/>
+                </div>
+                @error('phone')
+                <p style='color:red'>{{$message}}</p>
+                @enderror
+                <div class="flex flex-col w-[90%] mx-auto">
+                    <label>Subject </label>
+                    <input wire:model="subject" class="px-3 border border-color-gray-background-light py-2 rounded-lg outline-none" type="text" name="email"/>
+                </div>
+                @error('subject')
+                <p style='color:red'>{{$message}}</p>
+                @enderror
                 <div class="flex flex-col w-[90%] mx-auto">
                     <label>Message</label>
-                    <textarea class="px-3 border border-color-gray-background-light py-2 rounded-lg outline-none  h-32">
+                    <textarea wire:model="message" class="px-3 border border-color-gray-background-light py-2 rounded-lg outline-none  h-32">
 
                     </textarea>
                 </div>
-                <button class="mt-3 inline-block mx-11 text-sm bg-color-red-button text-[#fff] px-3 rounded-md py-2">
+                @error('message')
+                <p style='color:red'>{{$message}}</p>
+                @enderror
+                <button type='submit' class="mt-3 inline-block mx-11 text-sm bg-color-red-button text-[#fff] px-3 rounded-md py-2">
                     Send Message
                 </button>
             </form>
