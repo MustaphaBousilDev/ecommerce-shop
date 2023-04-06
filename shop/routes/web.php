@@ -40,6 +40,8 @@ use App\Http\Livewire\User\UserChangePasswordComponent;
 use App\Http\Livewire\User\UserReviewComponent;
 //contact admin 
 use App\Http\Livewire\Admin\AdminContactComponent;
+//setting 
+use App\Http\Livewire\Admin\AdminSettingComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -193,3 +195,6 @@ Route::get('/user/change-password',UserChangePasswordComponent::class)->name('us
 
 //admin contact 
 Route::get('admin/contact-us',AdminContactComponent::class)->name('admin.contact-us');
+
+//admin setting 
+Route::get('admin/setting',AdminSettingComponent::class)->name('admin.setting');
