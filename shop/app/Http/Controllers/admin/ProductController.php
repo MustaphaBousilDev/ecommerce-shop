@@ -13,6 +13,8 @@ use App\Models\SizeColor;
 use App\Models\Country;
 use App\Models\Brands;
 use App\Models\City;
+//get model producttag and productsize
+
 use App\Models\Color;
 use App\Models\Size;
 use App\Models\Tag;
@@ -20,10 +22,7 @@ use App\Models\Image;
 //order
 
 
-class ProductController extends Controller
-{
-    //
-    //function index get all products in table products and get all sizes in table sizes and get all tags in table tags and get all colors in table colors and get all categories in table categories and get all subcategories in table subcategories and get all brands in table brands and get all countries in table countries
+class ProductController extends Controller{
     public function index(){
         $products=Product::with('sizes','tags','sub_category','brand','country')->get();
         
@@ -37,7 +36,6 @@ class ProductController extends Controller
         $tags=Tag::where('status',1)->whereNull('deleted_at')->get();
         return view('admin.products',compact('products','subcategories','countries','brands','cities','colors','sizes','tags','images'));
     }
-    //function store product in table products and get id of product and store in table product_sizes and get id size and store in table product_sizes and get id tag and store in table product_tags and store tags in table tags and store id colors in table sizes_colors and store image in table images and store id images in table products 
     public function store(Request $request){ 
         //return response()->json($request->image[0]);
         
@@ -135,8 +133,6 @@ class ProductController extends Controller
         }
         return response()->json(['status'=>"success inserted products",'data'=>$request->all()]);
     }
-
-    //update products 
     public function update(Request $request){
         $request->validate([
             'name'=>'required|string',
@@ -233,7 +229,6 @@ class ProductController extends Controller
         return response()->json(['status'=>"success insert product",'data'=>$result]);
 
     }
-    //delete product using soft delete 
     public function delete(Request $request){
         $product=Product::find(request()->id);
         $product->sizes()->detach();
@@ -243,5 +238,26 @@ class ProductController extends Controller
     
         $product->delete();
         return response()->json(['status'=>"success delete product"]);
+    }
+    public function show(Request $request){
+        $id=$request->id;
+        $product=Product::find($id);
+        $size=$product->sizes;
+        $color=SizeColor::where('product_id',$id)->get();
+        $tag=ProductTag::where('product_id',$id)->get();
+        $image=Image::find($product->img_id);
+        $brand=Brands::find($product->brand_id);
+        $subcategory=SubCategory::find($product->sub_category_id);
+        $country=Country::find($product->made_in);
+        return response()->json(['status'=>"success show product",
+            'product'=>$product,
+            'size'=>$size,
+            'color'=>$color,
+            'tag'=>$tag,
+            'image'=>$image,
+            'brand'=>$brand,
+            'subcategory'=>$subcategory,
+            'country'=>$country
+        ]);
     }
 }

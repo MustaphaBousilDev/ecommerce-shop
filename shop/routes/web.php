@@ -145,9 +145,10 @@ Route::post('/color-delete',[ColorController::class,'delete'])->name('color-dele
 Route::POST('/color',[ColorController::class,'search'])->name('color-search');
 
 
-//product
+//product 
 Route::get('admin/product',[ProductController::class,'index'])->name('product');
 Route::post('admin/add-product',[ProductController::class,'store'])->name('product-add');
+Route::post('admin/product/show',[ProductController::class,'show'])->name('product-show');
 Route::post('admin/product',[ProductController::class,'show'])->name('product-show');
 Route::post('/product-update',[ProductController::class,'update'])->name('product-update');
 Route::post('/product-delete',[ProductController::class,'delete'])->name('product-delete');

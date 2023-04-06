@@ -146,70 +146,70 @@
         <input type='file' hidden class='file__img-input2-edit imagepro' name='image2-edit'  id='image2-edit' onchange="display_edit_image(this.files[0],event);add(this.files[0])" />
         <input type='file' hidden class='file__img-input3-edit imagepro' name='image3-edit'  id='image3-edit' onchange="display_edit_image(this.files[0],event);add(this.files[0])" />
         <input type='file' hidden class='file__img-input4-edit imagepro' name='image4-edit'  id='image4-edit' onchange="display_edit_image(this.files[0],event);add(this.files[0])" />
-       </form>
-       <form action='' class='w-full form-edit' id='form-edit' enctype="multipart/form-data">
-           @csrf
-               <div class="w-[90%] mx-auto flex gap-2">
-                   <input type="text" name="name-edit" placeholder='name-edit' id="name-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
-                   <input type="text" name="sku-edit" placeholder='sku-edit' id="sku-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
-               </div>
-               <div class="w-[90%] mx-auto flex gap-2">
-                  <input type="number" name="r_price-edit" placeholder='r_price-edit' id="r_price-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
-                  <input type="number" name="s_price-edit" placeholder='s_price-edit' id="s_price-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
-              </div>
-              <div class="w-[90%] mx-auto flex gap-2">
-                  <input type="text" name="barcode-edit" placeholder='barcode-edit' id="barcode-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
-                   <select name='made_in-edit' id='made_in-edit' class='w-full h-40px rounded-md mt-2 outline-none'>
-                       <option>made_in</option>
-                       @foreach ($countries as $country)
-                           <option value="{{$country->id}}">{{$country->name}}</option>
-                       @endforeach
-                   </select>
-              </div>
-              <div class="w-[90%] mx-auto flex gap-2">
-               <select name='brands-edit' id='brands-edit' class='w-full h-40px py-3 rounded-md mt-2 outline-none'>
-                   <option>brands</option>
-                   @foreach ($brands as $brand)
-                       <option value="{{$brand->id}}">{{$brand->name}}</option>
-                   @endforeach
-               </select>
-               <select name='subcategory-edit' id='subcategory-edit' class='w-full h-40px rounded-md mt-2 outline-none'>
-                   <option>subcategory</option>
-                   @foreach ($subcategories as $subcategory)
-                       <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
-                   @endforeach
-               </select>
-              </div>
-               <div class="w-[90%] mx-auto mt-4 flex gap-2">
-                   <textarea style='height:60px' name="short_description-edit"  id="short_description-edit" cols="30" rows="10" class="w-full border border-color-gray-background-light h-[60px] rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
-                   <textarea style='height:60px' name="description-edit" id="description-edit" cols="30" rows="10" class="w-full border border-color-gray-background-light h-[60px]  rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
-               </div>
-               <div class="w-[90%] mx-auto mt-4 flex flex-wrap">
-                   @foreach ($sizes as $size)
-                       <div class='our__size w-[33%]'>
-                           <label for='size'>{{$size->name}}</label>
-                           <input type='checkbox' name='size-edit[]' id='size-edit' class='size' value="{{$size->id}}" /><br>
-                           @foreach ($colors as $color)
-                                   <div class='ml-3 my-2'>
-                                       <label for='color'>{{$color->name}}</label>
-                                       <input type='checkbox' name='color-edit[]' id='color-edit' class='color-edit' value="{{$color->id}}" />
-                                       <input type='number' name='qty-edit[]' id='qty-edit' class='qty-edit mx-2 border rounded-md outline-none' value='10' />
-                                   </div>
-                           @endforeach
-                       </div>
-                   @endforeach
-               </div>
-               <div class='w-[90%] mx-auto mt-4 flex'>
-                   <input type="text" name="tags-edit" placeholder='tags-edit' id="tags-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
-                   <input type="number" name="quantity_total-edit" placeholder='qty' id="quantity_total-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
-               </div>
-               <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer my-2 inline-block mx-1 save_button' type='submit'>Save</button>
-               <button class='bg-primary-200 px-5 py-2 my-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
-       </form>
+    </form>
+    <form action='' class='w-full form-edit' id='form-edit' enctype="multipart/form-data">
+        @csrf
+            <div class="w-[90%] mx-auto flex gap-2">
+                <input type="text" name="name-edit" placeholder='name-edit' id="name-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                <input type="text" name="sku-edit" placeholder='sku-edit' id="sku-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+            </div>
+            <div class="w-[90%] mx-auto flex gap-2">
+                <input type="number" name="r_price-edit" placeholder='r_price-edit' id="r_price-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                <input type="number" name="s_price-edit" placeholder='s_price-edit' id="s_price-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+            </div>
+            <div class="w-[90%] mx-auto flex gap-2">
+                <input type="text" name="barcode-edit" placeholder='barcode-edit' id="barcode-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                <select name='made_in-edit' id='made_in-edit' class='w-full h-40px rounded-md mt-2 outline-none'>
+                    <option>made_in</option>
+                    @foreach ($countries as $country)
+                        <option value="{{$country->id}}">{{$country->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="w-[90%] mx-auto flex gap-2">
+            <select name='brands-edit' id='brands-edit' class='w-full h-40px py-3 rounded-md mt-2 outline-none'>
+                <option>brands</option>
+                @foreach ($brands as $brand)
+                    <option value="{{$brand->id}}">{{$brand->name}}</option>
+                @endforeach
+            </select>
+            <select name='subcategory-edit' id='subcategory-edit' class='w-full h-40px rounded-md mt-2 outline-none'>
+                <option>subcategory</option>
+                @foreach ($subcategories as $subcategory)
+                    <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+                @endforeach
+            </select>
+            </div>
+            <div class="w-[90%] mx-auto mt-4 flex gap-2">
+                <textarea style='height:60px' name="short_description-edit"  id="short_description-edit" cols="30" rows="10" class="w-full border border-color-gray-background-light h-[60px] rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
+                <textarea style='height:60px' name="description-edit" id="description-edit" cols="30" rows="10" class="w-full border border-color-gray-background-light h-[60px]  rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
+            </div>
+            <div class="w-[90%] mx-auto mt-4 flex flex-wrap">
+                @foreach ($sizes as $size)
+                    <div class='our__size w-[33%]'>
+                        <label for='size'>{{$size->name}}</label>
+                        <input type='checkbox' name='size-edit[]' id='size-edit' class='size' value="{{$size->id}}" /><br>
+                        @foreach ($colors as $color)
+                                <div class='ml-3 my-2'>
+                                    <label for='color'>{{$color->name}}</label>
+                                    <input type='checkbox' name='color-edit[]' id='color-edit' class='color-edit' value="{{$color->id}}" />
+                                    <input type='number' name='qty-edit[]' id='qty-edit' class='qty-edit mx-2 border rounded-md outline-none' value='10' />
+                                </div>
+                        @endforeach
+                    </div>
+                @endforeach
+            </div>
+            <div class='w-[90%] mx-auto mt-4 flex'>
+                <input type="text" name="tags-edit" placeholder='tags-edit' id="tags-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                <input type="number" name="quantity_total-edit" placeholder='qty' id="quantity_total-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+            </div>
+            <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer my-2 inline-block mx-1 save_button' type='submit'>Save</button>
+            <button class='bg-primary-200 px-5 py-2 my-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
+    </form>
 </div> 
 <!--end edit -->
-<div class="flex flex-col gap-2 md:flex-row mt-7">
-    <div class='relative overflow-x-auto w-[99%]  md:w-[60%]  shadow-lg sm:rounded-lg mt-6'>
+<div  class="flex flex-col gap-2 md:flex-row mt-7">
+    <div style="width:90%" class='relative overflow-x-auto w-[99%] b md:w-[60%]  shadow-lg sm:rounded-lg mt-6'>
         <!--model insert categories to database-->
          
          <table id="table__data" class="w-full text-sm text-left text-blue-100 dark:text-blue-100">
@@ -244,7 +244,7 @@
                             <span class='w-[30%] hover:bg-color-gray-background-light transition text-lg border-l p-2 border-l-color-gray-background-light'>+</span>
                         </button>
                     </td>
-                    <td class="px-6 py-4">
+                    
                         {{-- <div class='flex gap-1'>
                             @php $colorss=array() @endphp
                             @foreach($product->sizes as $size)
@@ -324,7 +324,7 @@
                         @endif 
                        @endforeach 
                     </td>
-                    </td>
+                    
                     <td class="px-6 py-4">
                         <div class='flex gap-1'>
                             @foreach($product->sizes as $size)
@@ -350,7 +350,7 @@
                     </td>
                     <td class="px-6 py-4">
                         <div class='flex gap-1 items-center'>
-                            <span onclick="edit()"><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
+                            <span class="button-edit-product" data-id={{$product->id}} onclick="edit()"><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
                             <span><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
                             <span><i class='bx bxs-detail text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#cffafe] text-[#22d3ee]' ></i></span>
                         </div>
@@ -502,13 +502,32 @@ function add(file){
             })
         })
         //show 
-        $(document).on('click','.button_edit',function (e){
+        $(document).on('click','.button-edit-product',function (e){
             e.preventDefault()
+            //get id from button edit
             var id = $(this).data('id')
-            //get all value from form add input 
-
-
-            //set file img data to form
+            console.log(id)
+            //get data from database
+            $.ajax({
+                url: "{{route('product-show')}}",
+                type: 'POST',
+                data:{
+                    id:id,
+                    _token:$('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response){
+                    //console.log('success yow')
+                    if(response.status=="success show product"){
+                        console.log(response)
+                    } 
+                },
+                error: function (error){
+                    //console.log("error")
+                    $.each(error.responseJSON.errors,function(key,value) {
+                        //console.log(value)
+                    })
+                }
+            })
         })
         //update categories 
         $(document).on('click','.save_button_edit',function(e){
