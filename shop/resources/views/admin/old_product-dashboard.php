@@ -4,7 +4,7 @@
                <div class='header__product-lists'>
                     <div class='left__product-header flex justify-between'>
                          <h1 class='text-xl md:text-3xl font-bold'>Products</h1>
-                         <button onClick="console.log('fuck that shet ')" class='bg-color-red-button opacity-80 transition hover:opacity-100
+                         <button onClick="add()" class='bg-color-red-button opacity-80 transition hover:opacity-100
                          cursor-pointer outline-none border-none rounded-md text-while py-1 px-3 add-button'>
                               <span class='font-bold'>+</span> Add
                          </button>
@@ -50,7 +50,7 @@
         <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
     </div>
     </div>
-    <form class='w-full' id='form__images'>
+    <form class='w-full' id='form__images' >
      @csrf
      <input type='file' hidden class='file__img-input1 imagepro' name='image1' id='image1' onchange="display_add_image(this.files[0],event);add(this.files[0])" />
      <input type='file' hidden class='file__img-input2 imagepro' name='image2' id='image2' onchange="display_add_image(this.files[0],event);add(this.files[0])" />
@@ -121,38 +121,82 @@
 </div> 
 <!--end-->
 <!--start edit --> 
-<div class='w-[500px] h-[60vh]  bg-primary-50 rounded-lg z-[10000] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] active-showing model_form_edit '>
-    <div class="w-[140px] m-4 mx-auto  h-[140px] rounded-full bg-color-gray-background-light border border-color-gray-background-light cursor-pointer 
-    flex items-center justify-center image-div-edit">
-        <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
+<!--
+<div style='width:60%' class='w-[500px]  bg-primary-50 rounded-lg z-[10000] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] active-showing model_form_edit '>
+    <div class='flex'>
+        <div onclick="img_div_edit()"  class="w-[140px] m-4 mx-auto  h-[140px] rounded-full bg-color-gray-background-light border border-color-gray-background-light cursor-pointer 
+       flex items-center justify-center image-div1-edit">
+           <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
+       </div>
+       <div onclick="img_div2_edit()" class="w-[140px] m-4 mx-auto  h-[140px] rounded-full bg-color-gray-background-light border border-color-gray-background-light cursor-pointer 
+       flex items-center justify-center image-div2-edit">
+           <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
+       </div>
+       <div onclick="img_div3_edit()" class="w-[140px] m-4 mx-auto  h-[140px] rounded-full bg-color-gray-background-light border border-color-gray-background-light cursor-pointer 
+       flex items-center justify-center image-div3-edit">
+           <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
+       </div>
+       <div onclick="img_div4_edit()" class="w-[140px] m-4 mx-auto  h-[140px] rounded-full bg-color-gray-background-light border border-color-gray-background-light cursor-pointer 
+       flex items-center justify-center image-div4-edit">
+           <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
+       </div>
     </div>
-    
-    <form action='' class='w-full form-edit' id='form-edit' enctype="multipart/form-data">
-        @csrf
-        <h3 class='text-center heading-form'>Edit Categories</h3>
+    <form class='w-full' id='form__images-edit'>
         
-            <div class="w-[80%] mx-auto">
-                <input type='hidden'  name='id' id='id_category'>
-                <input type="text" name="name_edit" placeholder='name_edit' id="name_edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+        <input type='file' hidden class='file__img-input1-edit imagepro' name='image1-edit'  id='image1-edit' onchange="display_edit_image(this.files[0],event);add(this.files[0])" />
+        <input type='file' hidden class='file__img-input2-edit imagepro' name='image2-edit'  id='image2-edit' onchange="display_edit_image(this.files[0],event);add(this.files[0])" />
+        <input type='file' hidden class='file__img-input3-edit imagepro' name='image3-edit'  id='image3-edit' onchange="display_edit_image(this.files[0],event);add(this.files[0])" />
+        <input type='file' hidden class='file__img-input4-edit imagepro' name='image4-edit'  id='image4-edit' onchange="display_edit_image(this.files[0],event);add(this.files[0])" />
+    </form>
+    <form action='' class='w-full form-edit' id='form-edit' enctype="multipart/form-data">
+        
+            <div class="w-[90%] mx-auto flex gap-2">
+                <input type="text" name="name-edit" placeholder='name-edit' id="name-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                <input type="text" name="sku-edit" placeholder='sku-edit' id="sku-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
-            <div class="w-[80%] mx-auto mt-4">
-                <textarea name="description_edit" id="description_edit" cols="30" rows="10" class="w-full border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
+            <div class="w-[90%] mx-auto flex gap-2">
+                <input type="number" name="r_price-edit" placeholder='r_price-edit' id="r_price-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                <input type="number" name="s_price-edit" placeholder='s_price-edit' id="s_price-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
-            <div class="w-[80%] mx-auto mt-4">
-                <input type='hidden' name='old_image' id='old_image'>
-                <input name='image_edit' type="file" class="file__img-input-edit" onchange="display_edit_image(this.files[0])" 
-                hidden  id="image_edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+            <div class="w-[90%] mx-auto flex gap-2">
+                <input type="text" name="barcode-edit" placeholder='barcode-edit' id="barcode-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                <select name='made_in-edit' id='made_in-edit' class='w-full h-40px rounded-md mt-2 outline-none'>
+                    <option>made_in</option>
+                    
+                </select>
             </div>
-            <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button_edit' type='submit'>Save</button>
-            <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button_edit'>Cancel</button>
+            <div class="w-[90%] mx-auto flex gap-2">
+            <select name='brands-edit' id='brands-edit' class='w-full h-40px py-3 rounded-md mt-2 outline-none'>
+                <option>brands</option>
+                
+            </select>
+            <select name='subcategory-edit' id='subcategory-edit' class='w-full h-40px rounded-md mt-2 outline-none'>
+                <option>subcategory</option>
+                
+            </select>
+            </div>
+            <div class="w-[90%] mx-auto mt-4 flex gap-2">
+                <textarea style='height:60px' name="short_description-edit"  id="short_description-edit" cols="30" rows="10" class="w-full border border-color-gray-background-light h-[60px] rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
+                <textarea style='height:60px' name="description-edit" id="description-edit" cols="30" rows="10" class="w-full border border-color-gray-background-light h-[60px]  rounded-md px-3 mt-2 outline-none focus:border-color-red-button"></textarea>
+            </div>
+            <div class="w-[90%] mx-auto mt-4 flex flex-wrap">
+                
+            </div>
+            <div class='w-[90%] mx-auto mt-4 flex'>
+                <input type="text" name="tags-edit" placeholder='tags-edit' id="tags-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                <input type="number" name="quantity_total-edit" placeholder='qty' id="quantity_total-edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+            </div>
+            <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer my-2 inline-block mx-1 save_button_edit' type='submit'>Save</button>
+            <button class='bg-primary-200 px-5 py-2 my-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
     </form>
 </div> 
+-->
 <!--end edit -->
-<div class="flex flex-col gap-2 md:flex-row mt-7">
-    <div class='relative overflow-x-auto w-[99%]  md:w-[80%]  shadow-lg sm:rounded-lg mt-6'>
+<div  class="flex flex-col gap-2 md:flex-row mt-7">
+    <div style="width:90%" class='relative overflow-x-auto w-[99%] b md:w-[60%]  shadow-lg sm:rounded-lg mt-6'>
         <!--model insert categories to database-->
          
-         <table class="w-full text-sm text-left text-blue-100 dark:text-blue-100">
+         <table id="table__data" class="w-full text-sm text-left text-blue-100 dark:text-blue-100">
               <thead class="text-xs text-white uppercase bg-blue-600 dark:text-white">
                <tr>
                     <th scope="col" class="px-6 py-3">Product name</th>
@@ -164,7 +208,7 @@
                     <th scope="col" class="px-6 py-3">Actions</th>
                </tr>
               </thead>
-              <tbody class='body__table ' id='table__data'>
+              <tbody class='body__table'>
                
                @foreach($products as $product)
                 
@@ -184,7 +228,31 @@
                             <span class='w-[30%] hover:bg-color-gray-background-light transition text-lg border-l p-2 border-l-color-gray-background-light'>+</span>
                         </button>
                     </td>
-                    @php 
+                    
+                        {{-- <div class='flex gap-1'>
+                            @php $colorss=array() @endphp
+                            @foreach($product->sizes as $size)
+                                @foreach($size->colors as $color)
+                                  @if($color->pivot->product_id == $product->id)
+                                    @php $colorss[]=$color->id  @endphp
+                                  @endif 
+                                @endforeach 
+                            @endforeach 
+                            @php 
+                                $colorss=array_unique($colorss);
+                                sort($colorss);
+                                $i=0; 
+                            @endphp
+                            @foreach($colors as $key=>$color)
+                                @if($i < count($colorss) )
+                                    @if($color->id==$colorss[$i])
+                                        <span style="background: {{$color->code}}"  class='rounded-full w-6 h-6'></span>
+                                        @php $i++ @endphp
+                                    @endif
+                                @endif 
+                            @endforeach 
+                        </div> --}}
+                        @php 
                         $colorss=array() ;
                         $quantity=array();
                         $pro=array();
@@ -240,6 +308,7 @@
                         @endif 
                        @endforeach 
                     </td>
+                    
                     <td class="px-6 py-4">
                         <div class='flex gap-1'>
                             @foreach($product->sizes as $size)
@@ -265,7 +334,7 @@
                     </td>
                     <td class="px-6 py-4">
                         <div class='flex gap-1 items-center'>
-                            <span><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
+                            <span class="button-edit-product" data-id={{$product->id}} onclick="edit()"><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
                             <span><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
                             <span><i class='bx bxs-detail text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#cffafe] text-[#22d3ee]' ></i></span>
                         </div>
@@ -292,10 +361,12 @@ crossorigin="anonymous"></script>
 var counter=0
 var images=[]
 function add(file){
+    console.log('add')
     let formData=new FormData()
+    
     formData.append(`image${counter}`,file)
     if(counter==4){
-    console.log('fuck ready')
+        console.log('fuck ready')
     $.ajax({
             url:"{{route('images-add')}}",
             type:'post',
@@ -305,16 +376,18 @@ function add(file){
             success:function(response){
             console.log(response)
             //insert id images inserted to array images
+                
                 console.log(response.images)
                 images=response.images
                 console.log('my array')
                 console.log(images)
             },
             error:function(error){
+            console.log('fuck mother fucker')
             console.log(error)
             }
     })
-    }
+    }else{console.log('not')}
 }
 
     $(document).ready(function(){
@@ -336,7 +409,7 @@ function add(file){
             data['name']=$('#name').val()
             data['short_description']=$('#short_description').val()
             data['sku']=$('#sku').val()
-            data['barcode']=$('#barcode').val()
+            data['barcode-edit']=$('#barcode').val()
             data['brands']=$('#brands').val()
             data['subcategory']=$('#subcategory').val()
             data['description']=$('#description').val()
@@ -404,51 +477,46 @@ function add(file){
                     if(response.status=="success inserted products"){
                         $('#form-add')[0].reset()
                         //console.log(response)
-                        //console.log(response)
                         //load data to table
                         $('#table__data').load(location.href + ' #table__data')
-                        console.log('you re realy son of the bitch')
                     }
                     console.log(response)
                 },
                 error: function (error){
-                    console.log("error")
+                    //console.log("error")
                     $.each(error.responseJSON.errors,function(key,value) {
-                        console.log(value)
+                        //console.log(value)
                     })
                 }
             })
         })
         //show 
-        $(document).on('click','.button_edit',function (e){
+        $(document).on('click','.button-edit-product',function (e){
             e.preventDefault()
+            //get id from button edit
             var id = $(this).data('id')
+            console.log(id)
+            //get data from database
             $.ajax({
-                url: "{{route('category-show')}}",
+                url: "{{route('product-show')}}",
                 type: 'POST',
-                data: {
+                data:{
                     id:id,
-                    _token: "{{ csrf_token() }}"
+                    _token:$('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (response){
-                    console.log(response)
-                    $('#name_edit').val(response.categories.name)
-                    $('#description_edit').val(response.categories.description)
-                    $('#old_img').val(response.categories.image)
-                    $('#id_category').val(response.categories.id)
-                    //get element has class image-div-edit and set attribute src to image
-                    //$('.image-div-edit').style.backgroundImage=`url({{ asset('categories/${response.categories.image}') }})`
+                    //console.log('success yow')
+                    if(response.status=="success show product"){
+                        console.log(response)
+                    } 
                 },
                 error: function (error){
-                    console.log("error")
+                    //console.log("error")
                     $.each(error.responseJSON.errors,function(key,value) {
-                        console.log(value)
+                        //console.log(value)
                     })
                 }
             })
-
-
-            //set file img data to form
         })
         //update categories 
         $(document).on('click','.save_button_edit',function(e){
@@ -460,12 +528,12 @@ function add(file){
                 processData: false,
                 contentType: false,
                 success: function (response){
-                    console.log('success')
+                    //console.log('success')
                     if(response.status=="success updated categories"){
                         $('#form-edit')[0].reset()
                         $('.body__table').empty()
                         $.each(response.categories,function(key,value){
-                            console.log(value)
+                            //console.log(value)
                             //empty table 
                             $('.body__table').append(`
                            
@@ -475,9 +543,9 @@ function add(file){
                     }
                 },
                 error: function (error){
-                    console.log("error")
+                    //console.log("error")
                     $.each(error.responseJSON.errors,function(key,value) {
-                        console.log(value)
+                        //console.log(value)
                     })
                 }
 
@@ -497,10 +565,10 @@ function add(file){
                     },
                     success: function (response){
                         if(response.status=="success delete categories"){
-                            console.log('success')
+                            //console.log('success')
                             $('.body__table').empty()
                             $.each(response.categories,function(key,value){
-                                console.log(value)
+                                //console.log(value)
                                 //empty table 
                                 $('.body__table').append(`
                                 
@@ -509,9 +577,9 @@ function add(file){
                         }
                     }, 
                     error: function (error){
-                        console.log("error")
+                        //console.log("error")
                         $.each(error.responseJSON.errors,function(key,value) {
-                            console.log(value)
+                            //console.log(value)
                         })
                     },
                 })
@@ -523,7 +591,7 @@ function add(file){
         $(document).on('keyup','#search-categories',function(e){
             e.preventDefault()
             let search = $(this).val()
-            console.log(search)
+            //console.log(search)
             $.ajax({
                 url:"{{route('category-search')}}",
                 type: 'POST',
@@ -533,14 +601,14 @@ function add(file){
                 },
                 success: function (response){
                     if(response.status=="success"){
-                        console.log('success')
+                        //console.log('success')
                         //code do while if response data is empty load true if not load false
                         var load = true
                         
                             //filter table of categories by search 
                             $('.body__table').empty()
                             $.each(response.categories,function(key,value){
-                                console.log(value)
+                                //console.log(value)
                                 //empty table 
                                 $('.body__table').append(`
                                 
@@ -550,7 +618,7 @@ function add(file){
                     }
                 },
                 error:function (error){
-                    console.log('error')
+                    //console.log('error')
                 }
             })
         })
@@ -580,36 +648,72 @@ function add(file){
     function img_div4(){
           document.querySelector('.file__img-input4').click()
     }
+    //edit 
+    /*function img_div_edit(){
+          document.querySelector('.file__img-input1-edit').click()
+    }
+    function img_div2_edit(){
+          document.querySelector('.file__img-input2-edit').click()
+    }
+    function img_div3_edit(){
+          document.querySelector('.file__img-input3-edit').click()
+    }
+    function img_div4_edit(){
+          document.querySelector('.file__img-input4-edit').click()
+    }*/
     
 
-    document.querySelector('.image-div-edit').addEventListener('click',(e)=>{
-    document.querySelector('.file__img-input-edit').click()})
+    /*document.querySelector('.image-div-edit').addEventListener('click',(e)=>{
+    document.querySelector('.file__img-input-edit').click()})*/
 
     function display_add_image(file,e){
-    //console.log(e.target)
-    let allowed = ['jpg','jpeg','png'];
-    let ext = file.name.split(".").pop();
-    if(allowed.includes(ext.toLowerCase())){
-    image_added=true
-    //set image in background-img of div
-    if(e.target.classList.contains('file__img-input1')){
-            document.querySelector('.image-div1').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+    ////console.log(e.target)
+        let allowed = ['jpg','jpeg','png'];
+        let ext = file.name.split(".").pop();
+        if(allowed.includes(ext.toLowerCase())){
+        image_added=true
+        //set image in background-img of div
+        if(e.target.classList.contains('file__img-input1')){
+                document.querySelector('.image-div1').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        if(e.target.classList.contains('file__img-input2')){
+                document.querySelector('.image-div2').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        if(e.target.classList.contains('file__img-input3')){
+                document.querySelector('.image-div3').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        if(e.target.classList.contains('file__img-input4')){
+                document.querySelector('.image-div4').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        }else {
+        alert("Only the following image types are allowed:"+ allowed.toString(", "));
+        }
     }
-     if(e.target.classList.contains('file__img-input2')){
-               document.querySelector('.image-div2').style.backgroundImage=`url(${URL.createObjectURL(file)})`
-     }
-     if(e.target.classList.contains('file__img-input3')){
-               document.querySelector('.image-div3').style.backgroundImage=`url(${URL.createObjectURL(file)})`
-     }
-     if(e.target.classList.contains('file__img-input4')){
-               document.querySelector('.image-div4').style.backgroundImage=`url(${URL.createObjectURL(file)})`
-     }
-    }else {
-    alert("Only the following image types are allowed:"+ allowed.toString(", "));
-    }
-    }
+    /*function display_edit_image(file,e){
+    ////console.log(e.target)
+        let allowed = ['jpg','jpeg','png'];
+        let ext = file.name.split(".").pop();
+        if(allowed.includes(ext.toLowerCase())){
+        image_added=true
+        //set image in background-img of div
+        if(e.target.classList.contains('file__img-input1-edit')){
+                document.querySelector('.image-div1-edit').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        if(e.target.classList.contains('file__img-input2-edit')){
+                document.querySelector('.image-div2-edit').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        if(e.target.classList.contains('file__img-input3-edit')){
+                document.querySelector('.image-div3-edit').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        if(e.target.classList.contains('file__img-input4-edit')){
+                document.querySelector('.image-div4-edit').style.backgroundImage=`url(${URL.createObjectURL(file)})`
+        }
+        }else {
+        alert("Only the following image types are allowed:"+ allowed.toString(", "));
+        }
+    }*/
     //edit 
-    function display_edit_image(file){
+    /*function display_edit_image(file){
     let allowed = ['jpg','jpeg','png'];
     let ext = file.name.split(".").pop();
     if(allowed.includes(ext.toLowerCase())){
@@ -619,27 +723,33 @@ function add(file){
     }else {
     alert("Only the following image types are allowed:"+ allowed.toString(", "));
     }
-    }
+    }*/
     ////////////////////////////////////////////////////////////////////////
 
 
 
     //hidden and ashow button 
     ///////////////////////////////////////////////////////////////////////////////
-    document.querySelector('.add-button').addEventListener('click',()=>{
-    console.log('ffuckk')
+    
+    //edit 
+    /*function edit(){
+        document.querySelector('.overlay').classList.remove('active-showing')
+        document.querySelector('.model_form_edit').classList.remove('active-showing')
+    }*/
+
+    function add(){
+        document.querySelector('.model_form').classList.remove('active-showing')
     document.querySelector('.overlay').classList.remove('active-showing')
-    document.querySelector('.model_form').classList.remove('active-showing')
-    })
+    }
     document.querySelector('.overlay').addEventListener('click',()=>{
     document.querySelector('.overlay').classList.add('active-showing')
     document.querySelector('.model_form').classList.add('active-showing')
     })
     //edit 
-    function edit_category(){
+    /*function edit_category(){
         document.querySelector('.overlay').classList.remove('active-showing')
         document.querySelector('.model_form_edit').classList.remove('active-showing')
-    }
+    }*/
 
     
 
@@ -652,14 +762,14 @@ function add(file){
     
     })
 
-    document.querySelector('.cancel_button_edit').addEventListener('click',(e)=>{
+    /*document.querySelector('.cancel_button_edit').addEventListener('click',(e)=>{
     e.preventDefault()
     //reset form from data 
     //document.querySelector('.form-add').reset()
     document.querySelector('.overlay').classList.add('active-showing')
     document.querySelector('.model_form_edit').classList.add('active-showing')
     
-    })
+    })*/
     document.querySelector('.save_button').addEventListener('click',(e)=>{
     e.preventDefault()
     //reset form from data 
@@ -669,14 +779,14 @@ function add(file){
     
     })
 
-    document.querySelector('.save_button_edit').addEventListener('click',(e)=>{
+    /*document.querySelector('.save_button_edit').addEventListener('click',(e)=>{
     e.preventDefault()
     //reset form from data 
     //document.querySelector('.form-add').reset()
     document.querySelector('.overlay').classList.add('active-showing')
     document.querySelector('.model_form_edit').classList.add('active-showing')
     
-    })
+    })*/
     //////////////////////////////////////////////////////////////////////////////
 
 
