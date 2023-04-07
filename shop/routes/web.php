@@ -42,6 +42,8 @@ use App\Http\Livewire\User\UserReviewComponent;
 use App\Http\Livewire\Admin\AdminContactComponent;
 //setting 
 use App\Http\Livewire\Admin\AdminSettingComponent;
+//offre 
+use App\Http\Controllers\admin\OffreController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -198,3 +200,11 @@ Route::get('admin/contact-us',AdminContactComponent::class)->name('admin.contact
 
 //admin setting 
 Route::get('admin/setting',AdminSettingComponent::class)->name('admin.setting');
+
+//offre product 
+Route::get('admin/offre',[OffreController::class,"index"])->name('admin.offre');
+Route::post('admin/add-offre',[OffreController::class,'store'])->name('offre-add');
+Route::post('admin/offre-show',[OffreController::class,'show'])->name('offre-show');
+Route::post('/offre-update',[OffreController::class,'update'])->name('offre-update');
+Route::post('/offre-delete',[OffreController::class,'delete'])->name('offre-delete');
+Route::POST('/offre-search',[OffreController::class,'search'])->name('offre-search');
