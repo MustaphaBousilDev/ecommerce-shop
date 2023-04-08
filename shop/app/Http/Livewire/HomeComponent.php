@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Livewire;
-
 use Livewire\Component;
 use App\Models\User;
 use App\Models\Product;
@@ -10,6 +8,8 @@ use App\Models\Slider;
 use App\Models\SubCategory;
 use App\Models\Sale;
 use App\Models\Image;
+//offre 
+use App\Models\Offre;
 class HomeComponent extends Component{
     //store in cart shopping 
     public function store($product_id,$product_name,$product_price){
@@ -41,26 +41,73 @@ class HomeComponent extends Component{
     public function render(){
         //$this->user=User::find(session('loginId'));
         $sliders=Slider::where('status',1)->get();
-        //latest product
-        $lproducts=Product::where('status',1)
-        ->whereNull('deleted_at')
-        ->orderBy('created_at','DESC')
-        ->get()
-        ->take(8);
-        //image 
+        $lproducts=Product::where('status',1)->whereNull('deleted_at')
+        ->orderBy('created_at','DESC')->get()->take(8); 
         $images=Image::all();
-        //get all subcategory where status 1 and deleted_at null
         $subcategories=SubCategory::where('status',1)->whereNull('deleted_at')->get();
-
-        //carousel product offres
         $carousel_product_offre=Product::where('status',1)
         ->whereNull('deleted_at')
         ->where('sale_price','>',0)->inRandomOrder()->get()->take(10);
         //sale
-        $sale=Sale::find(1); 
+        $sale=Sale::find(1);//
+        //gel all offres where subcategory_id= 4 and subcategory_id=7 bolth 
+        $offres_shoes=Offre::with('subcategory')->where('sub_category_id',8)->where('percent',40)->get();
+        $offfes_chockolat=Offre::where('sub_category_id',11)->get();
+        $offres_TV_washing=Offre::where('sub_category_id',13)->where('percent',60)->get();
+        $offre_shoes_boat_livrison=Offre::where('sub_category_id',8)->where('percent',70)->get();
+        $offre_cousin=Offre::where('sub_category_id',15)->where('percent',60)->get();
+        $visage_soin=Offre::where('sub_category_id',12)->where('percent',80)->get();
+        $lc_wikiki=Offre::where('sub_category_id',16)->where('percent',70)->get();
+        $free_livrison=Offre::where('sub_category_id',13)->where('percent',100)->get();
+        $food_offre=Offre::find(32);
+        $offre_tv_32=Offre::where('sub_category_id',13)->where('percent',60)->get();
+        $offre_tv_40=Offre::where('sub_category_id',13)->where('percent',50)->get();
+        $offre_tv_50=Offre::where('sub_category_id',13)->where('percent',45)->get();
+        $maquikage=Offre::where('sub_category_id',12)->where('percent',50)->get();
+        $soin_visage_70=Offre::where('sub_category_id',12)->where('percent',80)->get();
+        $cheaveau=Offre::where('sub_category_id',12)->where('percent',45)->get();
+        $cousine_machine=Offre::where('sub_category_id',15)->where('percent',25)->get();
+        $aspirateur=Offre::where('sub_category_id',15)->where('percent',45)->get();
+        $room_bad=Offre::where('sub_category_id',17)->where('percent',40)->get();
+        $smart_phone=Offre::where('sub_category_id',9)->where('percent',20)->get();
+        $accesoir=Offre::where('sub_category_id',9)->where('percent',60)->get();
+        $casque=Offre::where('sub_category_id',5)->where('percent',15)->get();
+        $laptop=Offre::where('sub_category_id',2)->where('percent',35)->get();
+        $accesoir_laptop=Offre::where('sub_category_id',2)->where('percent',60)->get();
+        $ordinateur_offre=Offre::where('sub_category_id',2)->where('percent',50)->get();
+        
+        return view('livewire.home-component',
+        ['sliders'=>$sliders,
+        'lproducts'=>$lproducts,
+        'images'=>$images,
+        'subcategories'=>$subcategories,
+        'carousel_product_offre'=>$carousel_product_offre,
+        'sale'=>$sale,
+        'offres_shoes'=>$offres_shoes,
+        'offfes_chockolate'=>$offfes_chockolat,
+        'offres_TV_washing'=>$offres_TV_washing,
+        'offre_shoes_boat_livrison'=>$offre_shoes_boat_livrison,
+        'offre_cousin'=>$offre_cousin,
+        'visage_soin'=>$visage_soin,
+        'lc_wikiki'=>$lc_wikiki,
+        'free_livrison'=>$free_livrison,
+        'food_offre'=>$food_offre,
+        'offre_tv_32'=>$offre_tv_32,
+        'offre_tv_40'=>$offre_tv_40,
+        'offre_tv_50'=>$offre_tv_50,
+        'maquikage'=>$maquikage,
+        'soin_visage_70'=>$soin_visage_70,
+        'cheaveau'=>$cheaveau,
+        'cousine_machine'=>$cousine_machine,
+        'aspirateur'=>$aspirateur,
+        'room_bad'=>$room_bad,
+        'smart_phone'=>$smart_phone,
+        'accesoir'=>$accesoir,
+        'casque'=>$casque,
+        'laptop'=>$laptop,
+        'accesoir_laptop'=>$accesoir_laptop,
+        'ordinateur_offre'=>$ordinateur_offre,
 
-        
-        
-        return view('livewire.home-component',['sliders'=>$sliders,'lproducts'=>$lproducts,'images'=>$images,'subcategories'=>$subcategories,'carousel_product_offre'=>$carousel_product_offre,'sale'=>$sale]);      
+     ]);      
     }
 }

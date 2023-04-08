@@ -183,36 +183,36 @@
     <!--start adds home-->
     <div class="offre-ads-home-one mt-2 mx-1 md:mx-10 lg:mx-28  gap-1">
         <div class="content-ads-home-offre h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo ads-photo-hide  absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$offres_shoes[0]->name])}}" class="ads-photo ads-photo-hide  absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Destockage/NewArrivageADI/378X252_copie_3_copy_3_copie_5.png')]
                 bg-center bg-cover
                 ">
             </a>
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$offres_shoes[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Destockage/Mode/378X252_copie_3_copy_3_copie_7.png')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo ads-photo-hide absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$offfes_chockolate[0]->name])}}" class="ads-photo ads-photo-hide absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Destockage/Beaute/378X252_copie_3_copy_3_copie_9.png')]
                 bg-center bg-cover
                 ">
             </a>
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$offfes_chockolate[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Destockage/Supermarche/v2/378X252_copie_3_copy_3_copie_3.jpg')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo ads-photo-hide absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$offres_TV_washing[0]->name])}}" class="ads-photo ads-photo-hide absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/7-Tvs/378X252_copie_3_copy_3_copie_5.png')]
                 bg-center bg-cover
                 ">
             </a>
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$offres_TV_washing[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Ads/ElectroBousfiha/Promos/378X252_copie_3_copy_3_Electro_Bou.png')]
                 bg-center bg-cover
                 ">
@@ -288,14 +288,14 @@
     <!--offre-two-->
     <div class="offre-ads-home-two mt-2 mx-1 md:mx-10 lg:mx-28  gap-1">
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$offre_shoes_boat_livrison[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Ads/FLO/3/572x250.jpg')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$offre_cousin[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Ads/GroupeSEB/572x250_.png')]
                 bg-center bg-cover
                 ">
@@ -304,14 +304,14 @@
     </div>
     <div class="offre-ads-home-two mt-2 mx-1 md:mx-10 lg:mx-28  gap-1">
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$visage_soin[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Ads/Nivea/572x250.png')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$lc_wikiki[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Ads/Waikiki/DDB.png')]
                 bg-center bg-cover
                 ">
@@ -1173,14 +1173,14 @@
      <!--offre-two-->
      <div class="offre-ads-home-two mt-2 mx-1 md:mx-10 lg:mx-28  gap-1">
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$free_livrison[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/Z-Jex/DB.jpg')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$food_offre->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2022/Z-HP-Elements/572x250_copy.png')]
                 bg-center bg-cover
                 ">
@@ -1190,21 +1190,21 @@
     <!--offre-for-->
     <div class="offre-ads-home-three mt-2 mx-1 md:mx-10 lg:mx-28  gap-1">
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$offre_tv_32[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/7-Tvs/378X252_copie_3_copy_3_copie_6-2.png')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$offre_tv_40[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/7-Tvs/378X252_copie_3_copy_3_copie_6v2.png')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$offre_tv_50[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/7-Tvs/378X252_copie_3_copy_3_copie_6-1v2.png')]
                 bg-center bg-cover
                 ">
@@ -1498,21 +1498,21 @@
     <!--offre-five-->
     <div class="offre-ads-home-three mt-2 mx-1 md:mx-10 lg:mx-28  gap-1">
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$maquikage[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/4-Beaute/378X252_copie_3_copy_3_copie_4.png')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$soin_visage_70[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/4-Beaute/378X252_copie_3_copy_3_copie_5.png')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$cheaveau[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/4-Beaute/378X252_copie_3_copy_3_copie_3.png')]
                 bg-center bg-cover
                 ">
@@ -1806,21 +1806,21 @@
     <!--offre-six-->
     <div class="offre-ads-home-three mt-2 mx-1 md:mx-10 lg:mx-28  gap-1">
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$cousine_machine[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/5-Maison/378X252_copie_3_copy_3_copie_4.png')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$aspirateur[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/5-Maison/378X252_copie_3_copy_3_copie_5.png')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$room_bad[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/5-Maison/378X252_copie_3_copy_3_copie_3_copy.jpg')]
                 bg-center bg-cover
                 ">
@@ -2114,21 +2114,21 @@
     <!--offre-six-->
     <div class="offre-ads-home-three mt-2 mx-1 md:mx-10 lg:mx-28  gap-1">
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$smart_phone[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/6-Telephonie/1v3.png')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$accesoir[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/6-Telephonie/3v3.png')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$casque[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/6-Telephonie/378X252_copie_3_copy_3_copie_5.png')]
                 bg-center bg-cover
                 ">
@@ -2874,21 +2874,21 @@
     <!--offre-six-->
     <div class="offre-ads-home-three mt-2 mx-1 md:mx-10 lg:mx-28  gap-1">
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$laptop[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/8-Informatique/378X252_copie_3_copy_3_copie_3_copy_3.jpg')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$accesoir_laptop[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/8-Informatique/378X252_copie_3_copy_3_copie_3_copy_2.jpg')]
                 bg-center bg-cover
                 ">
             </a>
         </div>
         <div class="content-ads-home-offre-2 h-96 bg-color-red-button  rounded-lg relative overflow-hidden">
-            <a href="#" class="ads-photo absolute top-0 left-0 w-full h-full 
+            <a href="{{route('offre.products',['offre'=>$ordinateur_offre[0]->name])}}" class="ads-photo absolute top-0 left-0 w-full h-full 
                 bg-[url('https://ma.jumia.is/cms/000_2023/000001_Janvier/Camps/2-Promotions/8-Informatique/378X252_copie_3_copy_3_copie_3_copy.jpg')]
                 bg-center bg-cover
                 ">

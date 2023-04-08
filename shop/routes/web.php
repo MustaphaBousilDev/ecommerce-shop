@@ -35,6 +35,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ImagesController;
 use App\Http\Controllers\admin\SliderComponent;
 use App\Http\Livewire\SliderProductComponent;
+use App\Http\Livewire\OffresProductsComponent;
 use App\Http\Livewire\User\UserChangePasswordComponent;
 //review
 use App\Http\Livewire\User\UserReviewComponent;
@@ -208,3 +209,7 @@ Route::post('admin/offre-show',[OffreController::class,'show'])->name('offre-sho
 Route::post('/offre-update',[OffreController::class,'update'])->name('offre-update');
 Route::post('/offre-delete',[OffreController::class,'delete'])->name('offre-delete');
 Route::POST('/offre-search',[OffreController::class,'search'])->name('offre-search');
+
+
+//offre product
+Route::get('offre/product/{offre}',OffresProductsComponent::class)->name('offre.products');
