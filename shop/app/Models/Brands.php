@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 //user 
 use App\Models\User;
 use App\Models\Slider;
+use App\Models\Product;
 //soft delete
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -23,6 +24,10 @@ class Brands extends Model
 
     public function slider(){
         return $this->hasMany(Slider::class,'brand_id','id');
+    }
+    
+    public function product(){
+        return $this->hasMany(Product::class,'brand_id','id');
     }
 
 

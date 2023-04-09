@@ -140,63 +140,17 @@
                                 </div>
                             </form>
                             <div class="px-4 py-2 flex flex-col h-[170px] overflow-hidden overflow-y-scroll mt-2 other__categories">
-                                <a href="#" class="flex justify-between items-center w-full mb-2">
-                                   <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                    <input type="checkbox"/>
-                                    <label>Adidas</label>
-                                   </span>
-                                   <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                </a>
-                                <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>Adidas</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>Adidas</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>Adidas</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>Adidas</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>Adidas</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>Adidas</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>Adidas</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                
+                                @foreach($brands as $brand)
+                                    <a href="#" class="flex justify-between items-center w-full mb-2">
+                                        <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
+                                        <input id='brand{{$brand->id}}' type="checkbox"/>
+                                        <label for='brand{{$brand->d}}'>{{$brand->name}}</label>
+                                        </span>
+                                        <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">
+                                            {{$brand->product->count()}}
+                                        </span>
+                                    </a>
+                                @endforeach 
                             </div>
                         </div>
                     </div>
@@ -219,146 +173,32 @@
                                 </div>
                             </form>
                             <div class="px-4 py-2 flex flex-col h-[170px] overflow-hidden overflow-y-scroll mt-2 other__categories">
+                                @foreach($sizes as $size) 
                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                   <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                    <input type="checkbox"/>
-                                    <label>S</label>
-                                   </span>
-                                   <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
+                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
+                                     <input id='size{{$size->id}}' type="checkbox"/>
+                                     <label for='size{{$size->id}}'>{{$size->name}}</label>
+                                    </span>
+                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">
+                                        {{$size->products->count()}}
+                                    </span>
                                 </a>
-                                <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>XS</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>M</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>L</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>XL</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>39</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>40</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>41</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>42</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>43</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                 <a href="#" class="flex justify-between items-center w-full mb-2">
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input type="checkbox"/>
-                                     <label>44</label>
-                                    </span>
-                                    <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">1,956</span>
-                                 </a>
-                                
+                                @endforeach 
                             </div>
                         </div>
                     </div>
                 </div>
                 <h3 class="text-xl mt-4" >Colors</h3>
                 <div class="w-[95%] mx-auto my-2 h-[150px] p-4 flex flex-wrap colors-filter-shop-page-parent">
+                    @foreach($colors as $color)
                     <div class="w-[24%] mx-[0.5%]  flex justify-center items-center cursor-pointer colors-filter-shop-page">
-                        <input type="checkbox" value="red" hidden id="red">
-                        <label for='red' class="w-[45px] h-[45px] rounded-full  p-1 
+                        <input type="checkbox" value="{{$color->id}}" hidden id="{{$color->name}}">
+                        <label for='{{$color->name}}' class="w-[45px] h-[45px] rounded-full  p-1 
                             flex justify-center items-center border labels-colors">
-                            <span class="w-[37px] h-[37px] bg-color-red-button rounded-full"></span>
+                            <span style="background: {{$color->code}}" class="w-[37px] h-[37px]  rounded-full"></span>
                         </label>
                     </div>
-                    <div class="w-[24%] mx-[0.5%]  flex justify-center items-center cursor-pointer colors-filter-shop-page">
-                        <input type="checkbox" value="red" hidden id="red">
-                        <label for='red' class="w-[45px] h-[45px] rounded-full  p-1 
-                            flex justify-center items-center border labels-colors">
-                            <span class="w-[37px] h-[37px] bg-color-red-button rounded-full"></span>
-                        </label>
-                    </div>
-                    <div class="w-[24%] mx-[0.5%]  flex justify-center items-center cursor-pointer colors-filter-shop-page">
-                        <input type="checkbox" value="red" hidden id="red">
-                        <label for='red' class="w-[45px] h-[45px] rounded-full  p-1 
-                            flex justify-center items-center border labels-colors">
-                            <span class="w-[37px] h-[37px] bg-color-red-button rounded-full"></span>
-                        </label>
-                    </div>
-                    <div class="w-[24%] mx-[0.5%]  flex justify-center items-center cursor-pointer colors-filter-shop-page">
-                        <input type="checkbox" value="red" hidden id="red">
-                        <label for='red' class="w-[45px] h-[45px] rounded-full  p-1 
-                            flex justify-center items-center border labels-colors">
-                            <span class="w-[37px] h-[37px] bg-color-red-button rounded-full"></span>
-                        </label>
-                    </div>
-                    <div class="w-[24%] mx-[0.5%]  flex justify-center items-center cursor-pointer colors-filter-shop-page">
-                        <input type="checkbox" value="red" hidden id="red">
-                        <label for='red' class="w-[45px] h-[45px] rounded-full  p-1 
-                            flex justify-center items-center border labels-colors">
-                            <span class="w-[37px] h-[37px] bg-color-red-button rounded-full"></span>
-                        </label>
-                    </div>
-                    <div class="w-[24%] mx-[0.5%]  flex justify-center items-center cursor-pointer colors-filter-shop-page">
-                        <input type="checkbox" value="red" hidden id="red">
-                        <label for='red' class="w-[45px] h-[45px] rounded-full  p-1 
-                            flex justify-center items-center border labels-colors">
-                            <span class="w-[37px] h-[37px] bg-color-red-button rounded-full"></span>
-                        </label>
-                    </div>
-                    <div class="w-[24%] mx-[0.5%]  flex justify-center items-center cursor-pointer colors-filter-shop-page">
-                        <input type="checkbox" value="red" hidden id="red">
-                        <label for='red' class="w-[45px] h-[45px] rounded-full  p-1 
-                            flex justify-center items-center border labels-colors">
-                            <span class="w-[37px] h-[37px] bg-color-red-button rounded-full"></span>
-                        </label>
-                    </div>
-                    <div class="w-[24%] mx-[0.5%]  flex justify-center items-center cursor-pointer colors-filter-shop-page">
-                        <input type="checkbox" value="red" hidden id="red">
-                        <label for='red' class="w-[45px] h-[45px] rounded-full  p-1 
-                            flex justify-center items-center border labels-colors">
-                            <span class="w-[37px] h-[37px] bg-color-red-button rounded-full"></span>
-                        </label>
-                    </div>
+                    @endforeach 
                 </div>
             </div>
             <div class="products-shop-page p-2 py-5">

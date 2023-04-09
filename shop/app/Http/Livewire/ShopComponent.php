@@ -7,7 +7,10 @@ use Livewire\WithPagination;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\Category;
+use App\Models\Brands;
+use App\Models\Size;
 use App\Models\Image;
+use App\Models\Color;
 use Cart;
 class ShopComponent extends Component
 {
@@ -104,7 +107,22 @@ class ShopComponent extends Component
         }
         //get all categories status = 1 and deleted_at = null with subcategories order by name ASC
         $categories=Category::with('subcategories')->where('status',1)->whereNull('deleted_at')->orderBy('name','ASC')->get();
+        //get all brands 
+        $brands=Brands::where('status',1)->whereNull('deleted_at')->orderBy('name','ASC')->get();
+        //get all size 
+        $sizes=Size::where('status',1)->whereNull('deleted_at')->orderBy('name','ASC')->get();
+        //get all colors 
+        $colors=Color::where('status',1)->whereNull('deleted_at')->orderBy('name','ASC')->get();
 
-        return view('livewire.shop-component',['products'=>$products,'images'=>$images,'categories'=>$categories,'min_price'=>$this->min_price,'max_price'=>$this->max_price]);
+        return view('livewire.shop-component',[
+            'products'=>$products,
+            'images'=>$images,
+            'categories'=>$categories,
+            'min_price'=>$this->min_price, 
+            'max_price'=>$this->max_price,
+            'brands'=>$brands,
+            'sizes'=>$sizes,
+            'colors'=>$colors
+        ]);
     }
 }
