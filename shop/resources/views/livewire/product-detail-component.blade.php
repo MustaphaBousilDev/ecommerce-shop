@@ -74,24 +74,31 @@
             $avgrating=0;
             @endphp
             <div class="ratings-product-details flex items-center gap-1">
-                @foreach($product->orderItems->where('rstatus',1) as $orderItem)
+                @if($product->orderItems->where('rstatus',1)->count()>0)
+                    @foreach($product->orderItems->where('rstatus',1) as $orderItem)
+                        @php 
+                            $avgrating+=$orderItem->review->rating;
+                        @endphp
+                    @endforeach 
                     @php 
-                        $avgrating+=$orderItem->review->rating;
+                        $avgrating=round($avgrating/$product->orderItems->where('rstatus',1)->count());
                     @endphp
-                @endforeach 
-                @php 
-                    $avgrating=round($avgrating/$product->orderItems->where('rstatus',1)->count());
-                @endphp
-                @for($i=1;$i<=5;$i++)
-                    @if($i<=$avgrating)
-                        <i style='color:gold' class='bx bxs-star'></i>
-                    @else 
-                        <i style='color:gray' class='bx bxs-star'></i>
-                    @endif
-                @endfor 
-                <span class="text-lg text-gray-500">
-                    review({{$product->orderItems->where('rstatus',1)->count()}})
-                </span>
+                    @for($i=1;$i<=5;$i++)
+                        @if($i<=$avgrating)
+                            <i style='color:gold' class='bx bxs-star'></i>
+                        @else 
+                            <i style='color:gray' class='bx bxs-star'></i>
+                        @endif
+                    @endfor 
+                    <span class="text-lg text-gray-500">
+                        review({{$product->orderItems->where('rstatus',1)->count()}})
+                    </span>
+                @else
+                    <span class="text-lg text-gray-500">
+                        No reviews yet
+                    </span>
+                @endif
+                
             </div>
             <p class="description-details-products">
                 {{$product->short_description}}

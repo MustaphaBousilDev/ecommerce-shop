@@ -41,8 +41,37 @@ class HomeComponent extends Component{
     public function render(){
         //$this->user=User::find(session('loginId'));
         $sliders=Slider::where('status',1)->get();
+        //slider 2
         $lproducts=Product::where('status',1)->whereNull('deleted_at')
         ->orderBy('created_at','DESC')->get()->take(8); 
+        //slider 3 shoes
+        $products_shoes=Product::where('sub_category_id',8)
+        ->whereNull('deleted_at')->orderBy('created_at','DESC')->get()->take(10);
+        //slider 4 cousine machine
+        $products_cousine_machine=Product::where('sub_category_id',15)
+        ->whereNull('deleted_at')->orderBy('created_at','DESC')->get()->take(10);
+        //slider 5 propre products 
+        $products_propre=Product::where('sub_category_id',12)
+        ->whereNull('deleted_at')->orderBy('created_at','DESC')->get()->take(10);
+        //SLIDER 6 TV 
+        $products_TV=Product::where('sub_category_id',13)
+        ->whereNull('deleted_at')->orderBy('created_at','DESC')->get()->take(10);
+        //slider 7 propse 
+        //get all products where subcategory_id=12 random limit 10
+        $products_propse_2=Product::where('sub_category_id',12)
+        ->whereNull('deleted_at')->inRandomOrder()->get()->take(10);
+        //slider 8
+        $tools_home=Product::where('sub_category_id',19)
+        ->whereNull('deleted_at')->orderBy('created_at','DESC')->get()->take(10);
+        //slider 9
+        $phones=Product::where('sub_category_id',9)
+        ->whereNull('deleted_at')->orderBy('created_at','DESC')->get()->take(10);
+        //slider 10
+        $laptop_slider=Product::where('sub_category_id',2)
+        ->whereNull('deleted_at')->orderBy('created_at','DESC')->get()->take(10);
+
+
+
         $images=Image::all();
         $subcategories=SubCategory::where('status',1)->whereNull('deleted_at')->get();
         $carousel_product_offre=Product::where('status',1)
@@ -76,6 +105,7 @@ class HomeComponent extends Component{
         $accesoir_laptop=Offre::where('sub_category_id',2)->where('percent',60)->get();
         $ordinateur_offre=Offre::where('sub_category_id',2)->where('percent',50)->get();
         
+        
         return view('livewire.home-component',
         ['sliders'=>$sliders,
         'lproducts'=>$lproducts,
@@ -107,7 +137,14 @@ class HomeComponent extends Component{
         'laptop'=>$laptop,
         'accesoir_laptop'=>$accesoir_laptop,
         'ordinateur_offre'=>$ordinateur_offre,
-
+        'products_shoes'=>$products_shoes,
+        'products_cousine_machine'=>$products_cousine_machine,
+        'products_propre'=>$products_propre,
+        'products_TV'=>$products_TV,
+        'products_propse_2'=>$products_propse_2,
+        'tools_home'=>$tools_home,
+        'phones'=>$phones,
+        'laptop_slider'=>$laptop_slider,
      ]);      
     }
 }
