@@ -188,7 +188,7 @@
                     <li class="mx-7 lg:mx-4"><a href="/">Home</a></li>
                     <li class="mx-7 lg:mx-4"><a href="{{route('shop')}}">Shop</a></li>
                     <li class="mx-7 lg:mx-4 relative account-link">
-                        <a  href="#" class="relative">Account</a>
+                        <a  href="{{route('user.profile')}}" class="relative">Account</a>
                         <ul class="fixed list-account-nav  left-[-10px]  p-5 shadow-sm rounded-md w-44 lg:w-56 top-10 bg-while">
                             <li class="mb-2 transition relative links-one-secondary">
                                 <a class="flex items-center justify-between" href="#">Shop User Account <i class='bx bxs-right-arrow'></i></a>
@@ -296,7 +296,7 @@
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Shop</a></li>
                     <li class="account-link-mobile-li z-[200000]" onclick="console.log('hhhh')">
-                        <a href="#">
+                        <a href="{{route('user.profile')}}">
                             <span>Account</span>
                             <i class='bx bx-chevron-down icon-arrow'></i>
                         </a>

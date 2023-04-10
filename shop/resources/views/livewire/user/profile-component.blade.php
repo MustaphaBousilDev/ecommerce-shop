@@ -4,11 +4,11 @@
         <div class="content__profile w-[100%] md:w-[90%] mx-auto">
             <div class="profile__user w-[100%]">
                 <div class="profile__user-avatar w-[80px]  md:w-[100px] mx-auto flex-col">
-                    <img class="w-[80px] md:w-[100px] h-[80px] md:h-[100px] rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU" alt="">
-                    <h3 class="text-xs md:text-sm mt-2">Jim Amstrong</h3>
+                    <img class="w-[80px] md:w-[100px] h-[80px] md:h-[100px] rounded-full" src="{{$user->img}}" alt="">
+                    <h3 class="text-xs md:text-sm mt-2">{{$user->username}}</h3>
                     
                 </div>
-                <p class=" text-xs md:text-lg font-bold text-color-red-button text-center">test@gmail.com</p>
+                <p class=" text-xs md:text-lg font-bold text-color-red-button text-center">{{$user->email}}</p>
                 <p class="flex gap-1 md:gap-3  justify-center mt-2">
                     <i class='bx  p-1 md:p-2 w-[20px] h-[20px] md:w-[30px] md:h-[30px] items-center justify-center rounded-full md:text-xl bxl-facebook flex text-while bg-[#1778f2] cursor-pointer opacity-95 hover:opacity-100 transition'></i>
                     <i class='bx  p-1 md:p-2 w-[20px] h-[20px] md:w-[30px] md:h-[30px] items-center justify-center rounded-full md:text-xl bxl-instagram flex  text-while instagram__icons cursor-pointer opacity-95 hover:opacity-100 transition' ></i>
@@ -17,19 +17,25 @@
                 </p>
                 <p class="flex justify-between items-center mt-7">
                     <span class="text-xs font-normal md:font-bold md:text-sm">Phone :</span>
-                    <span class="text-color-red-button text-xs font-normal md:font-bold md:text-sm">+212 473 383</span>
+                    <span class="text-color-red-button text-xs font-normal md:font-bold md:text-sm">
+                        {{$user->profile->phone}}
+                    </span>
                 </p>
                 <p class="flex justify-between  items-center mt-7">
                     <span class="text-xs font-normal md:font-bold md:text-sm">Adress :</span>
-                    <span class="text-color-red-button text-xs font-normal md:font-bold md:text-sm">Morroco</span>
+                    <span class="text-color-red-button text-xs font-normal md:font-bold md:text-sm">
+                        {{$user->profile->adress}}
+                    </span>
                 </p>
                 <p class="flex justify-between  items-center mt-7">
                     <span class="text-xs font-normal md:font-bold md:text-sm">Email :</span>
-                    <span class="text-color-red-button text-xs font-normal md:font-bold md:text-sm">test@gmail.com</span>
+                    <span class="text-color-red-button text-xs font-normal md:font-bold md:text-sm">
+                        {{$user->email}}
+                    </span>
                 </p>
                 <p class="flex justify-between  items-center mt-7">
                     <span class="text-xs font-normal md:font-bold md:text-sm">Site :</span>
-                    <span class="text-color-red-button text-xs font-normal md:font-bold md:text-sm">www.Mugiwara.com</span>
+                    <span class="text-color-red-button text-xs font-normal md:font-bold md:text-sm">nothing</span>
                 </p>
             </div>
         </div> 

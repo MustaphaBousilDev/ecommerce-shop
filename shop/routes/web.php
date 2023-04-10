@@ -45,6 +45,8 @@ use App\Http\Livewire\Admin\AdminContactComponent;
 use App\Http\Livewire\Admin\AdminSettingComponent;
 //offre 
 use App\Http\Controllers\admin\OffreController;
+//profile 
+use App\Http\Livewire\User\ProfileComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -213,3 +215,5 @@ Route::POST('/offre-search',[OffreController::class,'search'])->name('offre-sear
 
 //offre product
 Route::get('offre/product/{offre}',OffresProductsComponent::class)->name('offre.products');
+//profile 
+Route::get('user/profile',ProfileComponent::class)->name('user.profile');
