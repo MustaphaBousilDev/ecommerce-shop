@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 //brands
 use App\Models\Brands;
+use App\Models\Profiles;
 
 
 class User extends Model
@@ -37,6 +38,8 @@ class User extends Model
 
     //user belongs to hopital only admin  but user 
 
-    
+    public function profile(){
+        return $this->hasOne(Profiles::class,'user_id','id');
+    }
 
 }
