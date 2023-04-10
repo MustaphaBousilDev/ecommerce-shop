@@ -13,6 +13,7 @@ use App\Models\Country;
 //brand
 use App\Models\Brands;
 //sub_category
+use App\Models\Color;
 use App\Models\OrderItem;
 use App\Models\SubCategory;
 //image
@@ -87,5 +88,10 @@ class Product extends Model
     //order item
     public function orderItems(){
         return $this->hasMany(OrderItem::class,'product_id');
+    }
+
+    //color
+    public function colors(){
+        return $this->hasMany(Color::class);
     }
 }

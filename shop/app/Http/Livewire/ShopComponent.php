@@ -6,8 +6,10 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Product;
 use App\Models\SubCategory;
+use App\Models\SizeColor;
 use App\Models\Category;
 use App\Models\Brands;
+use App\Models\ProductSize;
 use App\Models\Size;
 use App\Models\Image;
 use App\Models\Color;
@@ -19,6 +21,10 @@ class ShopComponent extends Component
     //sorting
     public $pageSize=15;
     public $orderBy='Default Sorting'; 
+    //filtring 
+    public  $brands_filter;
+    public $sizes_filter;
+    public $colors_filter;
 
     //min max value price
     public $min_price=0;
@@ -105,6 +111,36 @@ class ShopComponent extends Component
             ->where('status',1)->orderBy('name','DESC')
             ->paginate($this->pageSize);
         }
+
+        if($this->brands_filter){
+            $products =Product::with('tags')
+            ->whereBetween('sale_price',[$this->min_price,$this->max_price])
+            ->where('status',1)->where('brand_id',$this->brands_filter)->paginate($this->pageSize);
+        }
+        if($this->sizes_filter){
+            $product_size=ProductSize::all();
+            $products =Product::with('tags')
+            ->whereBetween('sale_price',[$this->min_price,$this->max_price])
+            ->where('status',1)
+            ->whereHas('sizes',function($query){
+                $query->where('size_id',$this->sizes_filter);
+            })->paginate($this->pageSize);
+        }
+
+        if($this->colors_filter){
+            //get all product_id from table size_colors where color_id = $this->colors_filter
+            $product_size_color=SizeColor::where('color_id',$this->colors_filter)->get();
+            $products_id=array();
+            foreach($product_size_color as $item){
+                array_push($products_id,$item->product_id);
+            }
+            $products =Product::with('tags')
+            ->whereBetween('sale_price',[$this->min_price,$this->max_price])
+            ->where('status',1)
+            ->whereIn('id',$products_id)->paginate($this->pageSize);
+
+           
+        }
         //get all categories status = 1 and deleted_at = null with subcategories order by name ASC
         $categories=Category::with('subcategories')->where('status',1)->whereNull('deleted_at')->orderBy('name','ASC')->get();
         //get all brands 
@@ -121,7 +157,7 @@ class ShopComponent extends Component
             'min_price'=>$this->min_price, 
             'max_price'=>$this->max_price,
             'brands'=>$brands,
-            'sizes'=>$sizes,
+            'sizes'=>$sizes, 
             'colors'=>$colors
         ]);
     }

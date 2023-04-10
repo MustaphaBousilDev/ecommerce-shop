@@ -143,7 +143,7 @@
                                 @foreach($brands as $brand)
                                     <a href="#" class="flex justify-between items-center w-full mb-2">
                                         <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                        <input id='brand{{$brand->id}}' type="checkbox"/>
+                                        <input wire:model="brands_filter" value="{{$brand->id}}" id='brand{{$brand->id}}' type="radio"/>
                                         <label for='brand{{$brand->d}}'>{{$brand->name}}</label>
                                         </span>
                                         <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">
@@ -176,7 +176,7 @@
                                 @foreach($sizes as $size) 
                                 <a href="#" class="flex justify-between items-center w-full mb-2">
                                     <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button opacity-[0.7] transition">
-                                     <input id='size{{$size->id}}' type="checkbox"/>
+                                     <input wire:model="sizes_filter" id='size{{$size->id}}' type="radio" value="{{$size->id}}"/>
                                      <label for='size{{$size->id}}'>{{$size->name}}</label>
                                     </span>
                                     <span class="text-xs font-medium text-color-gray-dark hover:text-color-red-button  opacity-[0.7] transition">
@@ -192,7 +192,7 @@
                 <div class="w-[95%] mx-auto my-2 h-[150px] p-4 flex flex-wrap colors-filter-shop-page-parent">
                     @foreach($colors as $color)
                     <div class="w-[24%] mx-[0.5%]  flex justify-center items-center cursor-pointer colors-filter-shop-page">
-                        <input type="checkbox" value="{{$color->id}}" hidden id="{{$color->name}}">
+                        <input wire:model="colors_filter" type="radio" value="{{$color->id}}" hidden id="{{$color->name}}">
                         <label for='{{$color->name}}' class="w-[45px] h-[45px] rounded-full  p-1 
                             flex justify-center items-center border labels-colors">
                             <span style="background: {{$color->code}}" class="w-[37px] h-[37px]  rounded-full"></span>
