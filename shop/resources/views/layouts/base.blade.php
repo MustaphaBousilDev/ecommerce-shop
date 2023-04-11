@@ -16,16 +16,19 @@
 <body class='body__dashboard'>
     <nav class="sidebar h-[100vh] close side-bar__dashboard shadow-md">
         <header>
+            @php 
+            use Illuminate\Support\Facades\Session;
+            @endphp 
             <div class="image-text">
                 <span class="image">
-                    <img src='https://seeklogo.com/images/M/mugiwara-logo-303FD55C54-seeklogo.com.png' 
+                    <img 
+                    src='{{Session()->get('user')->img}}' 
                         alt='' width='50px' height='50px' />
                 </span>
  
                 <div class="text logo-text">
                     <span class="name flex items-center">
-                        
-                        Mugiwara Shop
+                        {{Session()->get('user')->username}}
                     </span>
                 </div>
             </div>

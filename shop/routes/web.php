@@ -47,6 +47,8 @@ use App\Http\Livewire\Admin\AdminSettingComponent;
 use App\Http\Controllers\admin\OffreController;
 //profile 
 use App\Http\Livewire\User\ProfileComponent;
+//users admin 
+use App\Http\Livewire\admin\UsersComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -152,7 +154,7 @@ Route::post('/color-delete',[ColorController::class,'delete'])->name('color-dele
 Route::POST('/color',[ColorController::class,'search'])->name('color-search');
 
 
-//product 
+//product   
 Route::get('admin/product',[ProductController::class,'index'])->name('product');
 Route::post('admin/add-product',[ProductController::class,'store'])->name('product-add');
 Route::post('admin/product/show',[ProductController::class,'show'])->name('product-show');
@@ -217,3 +219,7 @@ Route::POST('/offre-search',[OffreController::class,'search'])->name('offre-sear
 Route::get('offre/product/{offre}',OffresProductsComponent::class)->name('offre.products');
 //profile 
 Route::get('user/profile',ProfileComponent::class)->name('user.profile');
+
+
+//users dashboard management 
+Route::get('admin/users',UsersComponent::class)->name('admin.users');

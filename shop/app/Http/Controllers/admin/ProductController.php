@@ -231,11 +231,8 @@ class ProductController extends Controller{
     }
     public function delete(Request $request){
         $product=Product::find(request()->id);
-        $product->sizes()->detach();
-        $product->tags()->detach();
-        //delete from table size_color
-        
-    
+        //$product->sizes()->detach();
+        //$product->tags()->detach();
         $product->delete();
         return response()->json(['status'=>"success delete product"]);
     }

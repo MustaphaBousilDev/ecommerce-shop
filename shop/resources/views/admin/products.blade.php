@@ -266,7 +266,7 @@
                     <td class="px-6 py-4">
                         <div class='flex gap-1 items-center'>
                             <span><i class='bx bxs-edit text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#dcfce7] text-[#4ade80]' ></i></span>
-                            <span><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
+                            <span class="button__delete" data-id="{{$product->id}}"><i class='bx bxs-trash text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#fee2e2] text-[#f87171]' ></i></span>
                             <span><i class='bx bxs-detail text-2xl rounded-full flex items-center justify-center cursor-pointer w-11 h-11 bg-[#cffafe] text-[#22d3ee]' ></i></span>
                         </div>
                     </td>
@@ -484,28 +484,22 @@ function add(file){
             })
         })
         //delete categories
-        $(document).on('click','.button_delete',function(e){
+        $(document).on('click','.button__delete',function(e){
             e.preventDefault()
             let id = $(this).data('id')
             if(confirm('are you sure to delete this category?')){
                 $.ajax({
-                    url:"{{route('category-delete')}}",
+                    url:"{{route('product-delete')}}",
                     type: 'POST',
                     data: {
                         id:id,
                         _token:$('meta[name="csrf-token"]').attr('content')
                     },
                     success: function (response){
-                        if(response.status=="success delete categories"){
+                        if(response.status=="success delete product"){
                             console.log('success')
-                            $('.body__table').empty()
-                            $.each(response.categories,function(key,value){
-                                console.log(value)
-                                //empty table 
-                                $('.body__table').append(`
-                                
-                                `)
-                            }) 
+                            $('#table__data').load(location.href + ' #table__data')
+                            console.log('you re realy son of the bitch')
                         }
                     }, 
                     error: function (error){

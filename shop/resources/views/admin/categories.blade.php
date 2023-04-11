@@ -31,7 +31,7 @@
                               <!--table products-->
                          </div>
 <!--start-->
-<div class='w-[500px] h-[60vh]  bg-primary-50 rounded-lg z-[10000] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] active-showing model_form '>
+<div class='w-[500px]  bg-primary-50 p-3 rounded-lg z-[10000] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] active-showing model_form '>
     <div class="w-[140px] m-4 mx-auto  h-[140px] rounded-full bg-color-gray-background-light border border-color-gray-background-light cursor-pointer 
     flex items-center justify-center image-div">
         <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
@@ -52,13 +52,15 @@
                 <input name='image' type="file" class="file__img-input" onchange="display_add_image(this.files[0])" 
                 hidden name="image" id="image" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
-            <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button' type='submit'>Save</button>
-            <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
+            <div class="w-[80%] mx-auto mt-4">
+                <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button' type='submit'>Save</button>
+                <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
+            </div>
     </form>
 </div> 
 <!--end-->
 <!--start edit --> 
-<div class='w-[500px] h-[60vh]  bg-primary-50 rounded-lg z-[10000] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] active-showing model_form_edit '>
+<div class='w-[500px] p-3  bg-primary-50 rounded-lg z-[10000] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] active-showing model_form_edit '>
     <div class="w-[140px] m-4 mx-auto  h-[140px] rounded-full bg-color-gray-background-light border border-color-gray-background-light cursor-pointer 
     flex items-center justify-center image-div-edit">
         <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
@@ -80,8 +82,10 @@
                 <input name='image_edit' type="file" class="file__img-input-edit" onchange="display_edit_image(this.files[0])" 
                 hidden  id="image_edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
-            <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button_edit' type='submit'>Save</button>
-            <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button_edit'>Cancel</button>
+            <div class="w-[80%] mx-auto mt-4">
+                <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button_edit' type='submit'>Save</button>
+                <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button_edit'>Cancel</button>
+            </div>
     </form>
 </div> 
 <!--end edit -->
@@ -242,7 +246,7 @@ crossorigin="anonymous"></script>
 
 
             //set file img data to form
-        })
+        }) 
         //update categories 
         $(document).on('click','.save_button_edit',function(e){
             e.preventDefault()

@@ -9,9 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Category;
 //subcategory 
 use App\Models\SubCategory;
+
 //brands
 use App\Models\Brands;
 use App\Models\Profiles;
+use App\Models\Order;
+use App\Models\OrderItem;
 
 
 class User extends Model
@@ -40,6 +43,15 @@ class User extends Model
 
     public function profile(){
         return $this->hasOne(Profiles::class,'user_id','id');
+    }
+
+    //user has many orders
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
+
+    public function orderItems(){
+        return $this->hasManyThrough(OrderItem::class,Order::class);
     }
 
 }

@@ -4,7 +4,9 @@
         <div class="content__profile w-[100%] md:w-[90%] mx-auto">
             <div class="profile__user w-[100%]">
                 <div class="profile__user-avatar w-[80px]  md:w-[100px] mx-auto flex-col">
-                    <img class="w-[80px] md:w-[100px] h-[80px] md:h-[100px] rounded-full" src="{{$user->img}}" alt="">
+                    
+                    <img class="w-[80px] md:w-[100px] h-[80px] md:h-[100px] rounded-full" src="{{asset('storage/app/public/users/7sMYaSL4cdSGHsidnUXtzHbRXFBJCnLTX1OYKAsO.jpg')}}" alt="">
+                    
                     <h3 class="text-xs md:text-sm mt-2">{{$user->username}}</h3>
                     
                 </div>
@@ -42,23 +44,24 @@
     </div>
     <div class='information__details shadow-md p-3'>
         <div class="flex justify-center items-center">
-            <img 
-            class="w-24 h-24 rounded-full"
-            src="https://i.pinimg.com/222x/76/54/dd/7654dd5d578818e705c21e9aa05dd3cb.jpg" alt="profile img"/>
+            <img  onclick='imgs(event)' 
+            class="w-24 h-24 rounded-full img___profile"
+            src="{{$user->img}}" alt="profile img"/>
         </div>
-        <form class="mt-10">
+        <form wire:submit.prevent="formss" class="mt-10" method='POST'>
+            <input id='input___img-profile' type="file" hidden wire:model="photo" />
             <div class="fields-profile flex flex-col md:flex-row items-center gap-3">
                 <div class=" w-[100%]  md:w-[49%] relative">
                     <i class='bx bxs-user absolute left-1 top-[50%] translate-y-[-50%] text-color-gray-background-light'></i>
                     <input class="w-[100%] placeholder:text-xs transition outline-none border border-color-gray-background-light 
                     focus:border-color-red-button rounded-md h-[100%] py-3 px-5 text-sm placeholder:text-color-gray-background-light" 
-                    type="text" placeholder="First Name" />
+                    type="text" wire:model="first_name" placeholder="First Name" />
                 </div>
                 <div class=" w-[100%]  md:w-[49%] relative">
                     <i class='bx bxs-user absolute left-1 top-[50%] translate-y-[-50%] text-color-gray-background-light'></i>
                     <input class="w-[100%] placeholder:text-xs transition  outline-none border border-color-gray-background-light 
                     focus:border-color-red-button rounded-md h-[100%] py-3 px-5 text-sm placeholder:text-color-gray-background-light" 
-                    type="email" placeholder="Last Name" />
+                    type="text" wire:model="last_name" placeholder="Last Name" />
                 </div>
             </div>
             <div class="fields-profile flex flex-col md:flex-row mt-3 items-center gap-3">
@@ -66,27 +69,67 @@
                     <i class='bx bxs-envelope absolute left-1 top-[50%] translate-y-[-50%] text-color-gray-background-light'></i>
                     <input class="w-[100%] placeholder:text-xs transition outline-none border border-color-gray-background-light 
                     focus:border-color-red-button rounded-md h-[100%] py-3 px-5 text-sm placeholder:text-color-gray-background-light" 
-                    type="email" placeholder="Email" />
+                    type="email"   wire:model="email" placeholder="Email" />
                 </div>
                 <div class="w-[100%]  md:w-[49%] relative">
                     <i class='bx bxs-phone-call absolute left-1 top-[50%] translate-y-[-50%] text-color-gray-background-light'></i>
                     <input class="w-[100%] placeholder:text-xs transition  outline-none border border-color-gray-background-light 
                     focus:border-color-red-button rounded-md h-[100%] py-3 px-5 text-sm placeholder:text-color-gray-background-light" 
-                    type="number" placeholder="Phone" />
+                    type="number" wire:model="phone" value="{{$user->phone}}" placeholder="Phone" />
                 </div>
             </div>
             <div class="fields-profile flex flex-col md:flex-row mt-3 items-center gap-3">
                 <div class="w-[100%]  md:w-[49%] relative">
-                    <i class='bx bxs-lock absolute left-1 top-[50%] translate-y-[-50%] text-color-gray-background-light'></i>
+                    <i class='bx bxs-envelope absolute left-1 top-[50%] translate-y-[-50%] text-color-gray-background-light'></i>
                     <input class="w-[100%] placeholder:text-xs transition outline-none border border-color-gray-background-light 
                     focus:border-color-red-button rounded-md h-[100%] py-3 px-5 text-sm placeholder:text-color-gray-background-light" 
-                    type="password" placeholder="old password" />
+                    type="text" wire:model="address" placeholder="address" />
                 </div>
-                <div class="w-[100%]  md:w-[49%]  relative">
-                    <i class='bx bxs-lock absolute left-1 top-[50%] translate-y-[-50%] text-color-gray-background-light'></i>
+                <div class="w-[100%]  md:w-[49%] relative">
+                    <i class='bx bxs-phone-call absolute left-1 top-[50%] translate-y-[-50%] text-color-gray-background-light'></i>
                     <input class="w-[100%] placeholder:text-xs transition  outline-none border border-color-gray-background-light 
                     focus:border-color-red-button rounded-md h-[100%] py-3 px-5 text-sm placeholder:text-color-gray-background-light" 
-                    type="password" placeholder="new password" />
+                    type="text" wire:model="address2" placeholder="adress2" />
+                </div>
+            </div>
+            <div class="fields-profile flex flex-col md:flex-row mt-3 items-center gap-3">
+                <div class="w-[100%]  md:w-[49%] relative">
+                    <i class='bx bxs-envelope absolute left-1 top-[50%] translate-y-[-50%] text-color-gray-background-light'></i>
+                    <input class="w-[100%] placeholder:text-xs transition outline-none border border-color-gray-background-light 
+                    focus:border-color-red-button rounded-md h-[100%] py-3 px-5 text-sm placeholder:text-color-gray-background-light" 
+                    type="text" wire:model="province" placeholder="province" />
+                </div>
+                <div class="w-[100%]  md:w-[49%] relative">
+                    <i class='bx bxs-phone-call absolute left-1 top-[50%] translate-y-[-50%] text-color-gray-background-light'></i>
+                    <input class="w-[100%] placeholder:text-xs transition  outline-none border border-color-gray-background-light 
+                    focus:border-color-red-button rounded-md h-[100%] py-3 px-5 text-sm placeholder:text-color-gray-background-light" 
+                    type="number" wire:model="zip" placeholder="zip" />
+                </div>
+            </div>
+            <div class="fields-profile flex flex-col md:flex-row mt-3 items-center gap-3">
+                <div class="w-[100%]  md:w-[49%] relative">
+                    <select wire:model="country" class='border w-[100%] mt-2 p-3 rounded-md border-color-gray-background-light outline-none'>
+                        <option value="1">Country</option>
+                        @foreach($countries as $country)
+                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="w-[100%]  md:w-[49%]  relative">
+                    <select wire:model="city" class='border w-[100%] mt-2 p-3 rounded-md border-color-gray-background-light outline-none'>
+                        <option value="1">City</option>
+                        @foreach($cities as $city)
+                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        @endforeach 
+                    </select>
+                </div>
+            </div>
+            <div class="fields-profile flex mt-3 flex-col md:flex-row items-center gap-3">
+                <div class=" w-[100%]  md:w-[49%] relative">
+                    <i class='bx bxs-user absolute left-1 top-[50%] translate-y-[-50%] text-color-gray-background-light'></i>
+                    <input class="w-[100%] placeholder:text-xs transition outline-none border border-color-gray-background-light 
+                    focus:border-color-red-button rounded-md h-[100%] py-3 px-5 text-sm placeholder:text-color-gray-background-light" 
+                    type="text" wire:model="street" placeholder="street" />
                 </div>
             </div>
             <button class="mt-3 bg-color-red-button text-while py-[8px] text-sm px-4 rounded-md flex items-center justify-center">update</button>
@@ -101,69 +144,19 @@
                 z-40 m-auto h-9 cursor-pointer opacity-0 transition 
                 hover:scale-125 group-hover:opacity-100'></i>
                 <div class="flex scrollbar-hide box-thumbnail shadow-md items-center space-x-0.5 overflow-hidden overflow-x-scroll md:space-x-2.5 md:p-2">
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class=" object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/76/323716/1.jpg?6646" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/31/966375/1.jpg?3604" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/03/299663/1.jpg?8192" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/63/697685/1.jpg?0288" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/79/565985/1.jpg?5424" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden"> 
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/02/178885/1.jpg?1269" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/17/948475/1.jpg?9985" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/17/278416/1.jpg?9883" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/76/323716/1.jpg?6646" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
+                    @foreach($products as $product)
+                    @foreach($images as $img)
+                    @if($product->img_id == $img->id)
+                        <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
+                            <a href="#" class="rounded-sm md:rounded   overflow-hidden">
+                                <img class=" object-cover w-24 h-24" 
+                                src="{{asset('products/'.$img->img)}}" 
+                                alt="product-user"/>
+                            </a>
+                        </div>
+                    @endif 
+                    @endforeach 
+                    @endforeach 
                 </div>
                 <i class='bx bx-chevron-right absolute top-0 bottom-0 right-2 m-auto h-9 cursor-pointer opacity-0 transition hover:scale-125 group-opacity-100'></i>
             </div>
@@ -176,69 +169,27 @@
                 z-40 m-auto h-9 cursor-pointer opacity-0 transition 
                 hover:scale-125 group-hover:opacity-100'></i>
                 <div class="flex scrollbar-hide box-thumbnail shadow-md items-center space-x-0.5 overflow-hidden overflow-x-scroll md:space-x-2.5 md:p-2">
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class=" object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/76/323716/1.jpg?6646" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/31/966375/1.jpg?3604" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/03/299663/1.jpg?8192" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/63/697685/1.jpg?0288" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/79/565985/1.jpg?5424" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden"> 
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/02/178885/1.jpg?1269" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/17/948475/1.jpg?9985" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/17/278416/1.jpg?9883" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/76/323716/1.jpg?6646" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
+                    @if(Cart::instance('cart')->count() > 0)
+                        @foreach(Cart::instance('cart')->content() as $item)
+                            @foreach($producs_all as $product)
+                                @if($product->id==$item->model->id)
+                                @foreach($images as $image)
+                                    @if($image->id===$product->img_id)
+                                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
+                                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
+                                            <img class=" object-cover w-24 h-24" 
+                                            src="{{asset('products/'.$image->img)}}" 
+                                            alt="product-user"/>
+                                        </a>
+                                    </div>
+                                    @endif 
+                                @endforeach 
+                                @endif 
+                            @endforeach 
+                        @endforeach 
+                    @else 
+                    <p>No Item in cart</p>
+                    @endif 
                 </div>
                 <i class='bx bx-chevron-right absolute top-0 bottom-0 right-2 m-auto h-9 cursor-pointer opacity-0 transition hover:scale-125 group-opacity-100'></i>
             </div>
@@ -251,73 +202,37 @@
                 z-40 m-auto h-9 cursor-pointer opacity-0 transition 
                 hover:scale-125 group-hover:opacity-100'></i>
                 <div class="flex scrollbar-hide box-thumbnail shadow-md items-center space-x-0.5 overflow-hidden overflow-x-scroll md:space-x-2.5 md:p-2">
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class=" object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/76/323716/1.jpg?6646" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/31/966375/1.jpg?3604" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/03/299663/1.jpg?8192" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/63/697685/1.jpg?0288" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/79/565985/1.jpg?5424" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden"> 
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/02/178885/1.jpg?1269" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/17/948475/1.jpg?9985" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/17/278416/1.jpg?9883" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
-                    <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
-                        <a href="#" class="rounded-sm md:rounded overflow-hidden">
-                            <img class="object-cover" 
-                            src="https://ma.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/76/323716/1.jpg?6646" 
-                            alt="product-user"/>
-                        </a>
-                    </div>
+                    @if(Cart::instance('wishlist')->count() > 0)
+                        @foreach(Cart::instance('wishlist')->content() as $item)
+                            @foreach($producs_all as $product)
+                                @if($product->id==$item->model->id)
+                                    @foreach($images as $image)
+                                        @if($image->id===$product->img_id)
+                                        <div class="relative h-[100px] min-w-[100px] cursor-pointer transition duration-200 ease-out md:h-[100px] md:min-w-[100px] md:hover:scale-105">
+                                            <a href="#" class="rounded-sm md:rounded overflow-hidden">
+                                                <img class=" object-cover w-24 h-24" 
+                                                src="{{asset('products/'.$image->img)}}" 
+                                                alt="product-user"/>
+                                            </a>
+                                        </div>
+                                        @endif 
+                                    @endforeach 
+                                @endif 
+                            @endforeach 
+                        @endforeach 
+                    @else 
+                    <p>No Item in cart</p>
+                    @endif 
                 </div>
                 <i class='bx bx-chevron-right absolute top-0 bottom-0 right-2 m-auto h-9 cursor-pointer opacity-0 transition hover:scale-125 group-opacity-100'></i>
             </div>
         </div>
     </div>
+    <script>
+        function imgs(e){
+            document.querySelector('#input___img-profile').click()
+        }
+        
+    </script>
 </div>
 <!--footer page--> 

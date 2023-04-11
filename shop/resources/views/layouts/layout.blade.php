@@ -24,16 +24,19 @@
 <body class='body__dashboard'>
     <nav class="sidebar h-[100vh] close side-bar__dashboard shadow-md">
         <header>
+            @php 
+            use Illuminate\Support\Facades\Session;
+            @endphp 
             <div class="image-text">
                 <span class="image">
-                    <img src='https://seeklogo.com/images/M/mugiwara-logo-303FD55C54-seeklogo.com.png' 
+                    <img 
+                    src='{{Session()->get('user')->img}}' 
                         alt='' width='50px' height='50px' />
                 </span>
  
                 <div class="text logo-text">
                     <span class="name flex items-center">
-                        
-                        Mugiwara Shop
+                        {{Session()->get('user')->username}}
                     </span>
                 </div>
             </div>
@@ -125,7 +128,10 @@
             <div class='profiles__dashboard flex justify-between items-center p-5'>
                 <h3 class="text-md md:text-3xl font-semibold ">Dashboard</h3>
                 <div class='w-14 h-14 p-1 cursor-pointer  border border-color-red-button rounded-full overflow-hidden'>
-                    <img class='w-full h-full rounded-full' src='https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg' alt='image profile '/>
+                    <img 
+                    class='w-full h-full rounded-full' 
+                    src='{{Session()->get('user')->img}}' 
+                    alt='image profile '/>
                 </div>
             </div>
             @yield('content')
