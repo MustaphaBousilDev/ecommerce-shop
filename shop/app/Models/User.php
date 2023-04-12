@@ -21,7 +21,8 @@ class User extends Model
 {
     use HasFactory;
     //fullable 
-    protected $fillable=['username','email','password','phone'];
+    protected $fillable=[
+        'username','email','password','img','email_verified'];
     //hidden
     protected $hidden=['password'];
     

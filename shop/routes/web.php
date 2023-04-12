@@ -223,3 +223,7 @@ Route::get('user/profile',ProfileComponent::class)->name('user.profile');
 
 //users dashboard management 
 Route::get('admin/users',UsersComponent::class)->name('admin.users');
+
+
+//route verify email 
+Route::get('/verify-email',[LoginController::class,'verifyEmail'])->name('verify');

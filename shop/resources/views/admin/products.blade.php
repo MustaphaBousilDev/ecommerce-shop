@@ -112,7 +112,8 @@
                 @endforeach
             </div>
             <div class='w-[90%] mx-auto mt-4 flex'>
-                <input type="text" name="tags" placeholder='tags' id="tags" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
+                
+                <input type="text"  class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
                 <input type="number" name="quantity_total" placeholder='qty' id="quantity_total" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
             <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer my-2 inline-block mx-1 save_button' type='submit'>Save</button>
@@ -288,7 +289,12 @@
 src="https://code.jquery.com/jquery-3.6.3.min.js"
 integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
 crossorigin="anonymous"></script>
+
+
+
+
 <script>
+
 var counter=0
 var images=[]
 function add(file){

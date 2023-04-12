@@ -16,11 +16,13 @@ use Illuminate\Support\Facades\Session;
 class ProfileComponent extends Component{
     
     use WithFileUploads;
+    public $verify__email;
     public function mount(){
         if(Session::has('user')){
             $user_id=Session()->get('user')->id;
             $user=User::find($user_id);
             $this->email=$user->email;
+            $this->email_verifyuser=$user->email;
             $this->old_image=$user->img;
             $profile=Profiles::where('user_id',$user_id)->first();
             //check if profile is not empty
@@ -57,6 +59,7 @@ class ProfileComponent extends Component{
     public $zip;
     public $phone;
     public $province;
+    public $email_verifyuser;
 
     public function formss(){
         //save table profiles method create 

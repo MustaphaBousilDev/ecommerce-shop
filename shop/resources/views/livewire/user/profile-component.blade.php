@@ -1,5 +1,10 @@
 <!--profile page-->
 <div class="profile___user-page  flex w-[100%] md:w-[95%] mx-auto">
+    <style>
+        .hidden-form{
+            display: none;
+        }
+    </style>
     <div class='profile__information p-2 shadow-md'>
         <div class="content__profile w-[100%] md:w-[90%] mx-auto">
             <div class="profile__user w-[100%]">
@@ -39,6 +44,32 @@
                     <span class="text-xs font-normal md:font-bold md:text-sm">Site :</span>
                     <span class="text-color-red-button text-xs font-normal md:font-bold md:text-sm">nothing</span>
                 </p>
+                <input  value=1 type="checkbox" hidden  id='checkbox__verify-email' />
+                <div class="mt-4">
+                    <label 
+                    for="checkbox__verify-email"
+                    class='flex justify-center opacity-80 transition 
+                    hover:opacity-100 items-center 
+                    cursor-pointer
+                    p-2 px-4 rounded bg-color-red-button
+                    text-while'>Verify Email</label>
+                </div>
+                <div class="mt-4 content__form hidden-form">
+                    <form class="">
+                        <div class=" w-[100%]  md:w-[100%] relative">
+                            <i class='bx bxs-user absolute left-1 top-[50%] translate-y-[-50%] text-color-gray-background-light'></i>
+                            <input class="w-[100%] placeholder:text-xs transition outline-none border border-color-gray-background-light 
+                            focus:border-color-red-button rounded-md h-[100%] py-3 px-5 text-sm placeholder:text-color-gray-background-light" 
+                            type="text" wire:model="email_verifyuser" placeholder="First Name" />
+                        </div>
+                        <div>
+                            <button class="flex p-2 px-4 bg-color-red-button     
+                            rounded text-while mt-1" type="submit">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div> 
     </div>
@@ -232,6 +263,10 @@
         function imgs(e){
             document.querySelector('#input___img-profile').click()
         }
+
+        document.querySelector('#checkbox__verify-email').addEventListener('change',function(){
+            document.querySelector('.content__form').classList.remove('hidden-form')
+        }) 
         
     </script>
 </div>

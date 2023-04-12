@@ -5,6 +5,7 @@ namespace App\Http\Controllers\auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\VerifyUser;
 
 use Hash;
 use Session ;
@@ -51,5 +52,24 @@ class LoginController extends Controller
             Session::forget('user');
             return redirect('login');
         }
+    }
+
+    //verify email 
+    public function verifyEmail(Request $request){
+        $token=$request->token;
+        $verifyUser=VerifyUser::where('token',$token)->first();
+        if(isset($verifyUser)){
+            $user=$verifyUser->user;
+            if(!$user->email_verified){
+                $verifyUser->user->email_verified=1;
+                $verifyUser->user->save();
+                $status="Your email is verified";
+            }else{
+                $status="Your email is already verified.";
+            }
+        }else{
+            return redirect()->route('login')->with('fail','Sorry your email cannot be identified.');
+        }
+        return view('email-verify',compact('status'));
     }
 }

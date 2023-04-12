@@ -67,5 +67,7 @@ class Kernel extends HttpKernel
         'admin.auth' => \App\Http\Middleware\authAdmin::class,
         //user middleware
         'user.auth' => \App\Http\Middleware\userAuth::class,
+        //user middleware
+        'user_verify_email' => \App\Http\Middleware\IsUserVerifyEmail::class,
     ];
 }
