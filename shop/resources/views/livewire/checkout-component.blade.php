@@ -151,7 +151,7 @@
                             <div class="type__payment p-5">
                                 <div class="flex gap-1 items-center">
                                     <input value="cod" wire:model="paymentmode_cod" type="checkbox"  />
-                                    <span>Cash On Delivery</span>
+                                    <span>Cash On Delivery</span> 
                                 </div>
                                 <span class="text-color-gray-background-light text-sm">
                                     Order Now Pay on Delivery

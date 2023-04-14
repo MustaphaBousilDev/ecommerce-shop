@@ -22,7 +22,7 @@
                               <!--table products-->
                          </div>
 <!--start-->
-<div class='w-[500px] h-[60vh]  bg-primary-50 rounded-lg z-[10000] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] active-showing model_form '>
+<div class='w-[500px] p-4  bg-primary-50 rounded-lg z-[10000] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] active-showing model_form '>
     <div style="height:200px" class="w-[90%] m-4 mx-auto  bg-color-gray-background-light border border-color-gray-background-light cursor-pointer 
     flex items-center justify-center image-div">
         <i class='bx bx-plus-medical scale-125 text-color-gray-dark opacity-25'></i>
@@ -41,7 +41,7 @@
                <input type="text" name="colors" placeholder='colors' id="colors" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
             <div class="w-[80%] mx-auto">
-               <select style="width:100%;padding:5px;border-radius:5px;" name='brand_id' class=' mt-4'>
+               <select style="width:100%;padding:8px;border-radius:5px;" name='brand_id' class=' mt-4'>
                     <option value="">Select Brand</option>
                     @foreach ($brands as $brand)
                         <option value="{{$brand->id}}">{{$brand->name}}</option>
@@ -49,7 +49,7 @@
                 </select>
             </div>
            <div class="w-[80%] mx-auto">
-               <select style="width:100%;padding:5px;border-radius:5px;"
+               <select style="width:100%;padding:8px;border-radius:5px;"
                 name='subcategory_id' class='w-[80%] mx-auto mt-4'>
                     <option value="">Select SubCategory</option>
                     @foreach ($subcategories as $subcategory)
@@ -61,8 +61,10 @@
                 <input name='image' type="file" class="file__img-input" onchange="display_add_image(this.files[0])" 
                 hidden name="image" id="image" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
-            <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button' type='submit'>Save</button>
-            <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
+            <div class="w-[80%] mx-auto mt-4">
+                <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button' type='submit'>Save</button>
+                <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
+            </div>
     </form>
 </div> 
 <!--end-->
@@ -87,7 +89,7 @@
          <input type="text" name="colors_edit" placeholder='colors_edit' id="colors_edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
       </div>
       <div class="w-[80%] mx-auto">
-         <select style="width:100%;padding:5px;border-radius:5px;" id='name='brand_id_edit'' name='brand_id_edit' class=' mt-4'>
+         <select style="width:100%;padding:8px;border-radius:5px;" id='name='brand_id_edit'' name='brand_id_edit' class=' mt-4'>
               <option value="">Select Brand</option>
               @foreach ($brands as $brand)
                   <option value="{{$brand->id}}">{{$brand->name}}</option>
@@ -95,7 +97,7 @@
           </select>
       </div>
      <div class="w-[80%] mx-auto">
-         <select style="width:100%;padding:5px;border-radius:5px;"
+         <select style="width:100%;padding:8px;border-radius:5px;"
           name='subcategory_id_edit' id='subcategory_id_edit' class='w-[80%] mx-auto mt-4'>
               <option value="">Select SubCategory</option>
               @foreach ($subcategories as $subcategory)
@@ -108,8 +110,10 @@
                 <input name='image_edit' type="file" class="file__img-input-edit" onchange="display_edit_image(this.files[0])" 
                 hidden  id="image_edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
-            <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button_edit' type='submit'>Save</button>
-            <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button_edit'>Cancel</button>
+            <div class="w-[80%] mx-auto mt-4">
+                <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button_edit' type='submit'>Save</button>
+                <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button_edit'>Cancel</button>
+            </div>
     </form>
 </div> 
 <!--end edit -->

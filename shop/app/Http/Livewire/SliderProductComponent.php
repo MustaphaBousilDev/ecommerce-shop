@@ -24,8 +24,21 @@ class SliderProductComponent extends Component
     //min max value price
     public $min_price=0;
     public $max_price=1000;
+    //store in cart shopping 
     public function store($product_id,$product_name,$product_price){
         Cart::instance('cart')->add($product_id,$product_name,1,$product_price)->associate('App\Models\Product');
+        $product=Cart::instance('cart')->content();
+        //go to items in variable product
+        foreach($product as $item){
+            if($item->id==$product_id){
+                $rowId=$item->rowId;
+                $product=Cart::instance('cart')->get($rowId);
+                $product->size=5;
+                $product->color=7;
+                break;
+            }
+        }
+        //00dd($product);
         session()->flash('success_message','Item added in cart');
         $this->emitTo('cart-icon-component','refreshComponent');
         return redirect()->route('cart');

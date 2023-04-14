@@ -35,7 +35,16 @@
                                 Email
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                user type
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Approve
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 No of Orders
+                            </th>
+                            <th scope='col' class="px-6 py-3">
+                                Status 
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Actions
@@ -72,7 +81,34 @@
                                 {{$user->email}}
                             </td>
                             <td class="px-6 py-4">
-                                10
+                                {{$user->utype}}
+                            </td>
+                            <td class="px-6 py-4">
+                                <input id="approve{{$user->id}}" type="checkbox" hidden value=0 
+                                wire:click.prevent="approve({{$user->id}})" />
+                                <label class="flex p-2 px-0 bg-color-red-button text-while  
+                                rounded cursor-pointer justify-center" for="approve{{$user->id}}">
+                                    Approve
+                                </label>
+                            </td>
+                            <td class="px-6 py-4">10</td>
+                            <td class="px-6 py-4">
+                                <form> 
+                                    <label
+                                        wire:click.prevent="status_user({{$user->id}})" 
+                                        type="submit" id="status_user{{$user->id}}" 
+                                        class="relative inline-flex items-center cursor-pointer">
+                                        <input {{$user->status== 1 ? 'checked' : ''}} 
+                                        
+                                        id="status_user{{$user->id}}" 
+                                        type="checkbox" value="{{$user->id}}" class="sr-only peer">
+                                        <div class="w-11 h-6 bg-color-red-button rounded-full peer peer-focus:ring-4 peer-focus:bg-color-gray-background-light
+                                        dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full 
+                                        peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] 
+                                        after:bg-color-red-button after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 
+                                        after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                    </label>
+                                </form>
                             </td>
                             <td class="flex items-center px-6 py-4 space-x-3">
                                 <i class='bx bxs-edit-alt transition cursor-pointer hover:text-[#0ea5e9] hover:bg-[#e0f2fe] text-xl flex items-center justify-center p-1 w-9 h-9 rounded-full bg-[#f8fafc]'></i>

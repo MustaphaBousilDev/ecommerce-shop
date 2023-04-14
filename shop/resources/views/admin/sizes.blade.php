@@ -31,7 +31,7 @@
                               <!--table products-->
                          </div>
 <!--start-->
-<div class='w-[500px] h-[60vh]  bg-primary-50 rounded-lg z-[10000] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] active-showing model_form '>
+<div class='w-[500px] p-4  bg-primary-50 rounded-lg z-[10000] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] active-showing model_form '>
    
     
     <form action='' class='w-full form-add' id='form-add' enctype="multipart/form-data">
@@ -42,13 +42,15 @@
                 <input type="text" name="name" placeholder='name' id="name" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
             
-            <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button' type='submit'>Save</button>
-            <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
+            <div class="w-[80%] mx-auto mt-4">
+                <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button' type='submit'>Save</button>
+                <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
+            </div>
     </form>
 </div> 
 <!--end-->
 <!--start edit --> 
-<div class='w-[500px] h-[60vh]  bg-primary-50 rounded-lg z-[10000] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] active-showing model_form_edit '>
+<div class='w-[500px] p-4  bg-primary-50 rounded-lg z-[10000] fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] active-showing model_form_edit '>
     <form action='' class='w-full form-edit' id='form-edit' enctype="multipart/form-data">
         @csrf
         <h3 class='text-center heading-form'>Edit Size</h3>
@@ -56,8 +58,10 @@
                 <input type='hidden'  name='id' id='id_size'>
                 <input type="text" name="name_edit" placeholder='name_edit' id="name_edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
-            <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button_edit' type='submit'>Save</button>
-            <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button_edit'>Cancel</button>
+            <div class="w-[80%] mx-auto  mt-4">
+                <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button_edit' type='submit'>Save</button>
+                <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button_edit'>Cancel</button>
+            </div>
     </form>
 </div> 
 <!--end edit -->

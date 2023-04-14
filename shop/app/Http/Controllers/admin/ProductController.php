@@ -24,7 +24,8 @@ use App\Models\Image;
 
 class ProductController extends Controller{
     public function index(){
-        $products=Product::with('sizes','tags','sub_category','brand','country')->get();
+        //
+        $products=Product::with('sizes','tags','sub_category','brand','country')->orderBy('id','desc')->get();
         
         $images=Image::all();
         $subcategories=Subcategory::where('status',1)->whereNull('deleted_at')->get();

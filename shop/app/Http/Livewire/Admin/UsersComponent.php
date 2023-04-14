@@ -8,10 +8,24 @@ use App\Models\User;
 
 class UsersComponent extends Component
 {
-    public function render()
-    {
+    public function approve($id){
+        $user=User::find($id);
+        $user->utype='ADM';
+        $user->save();
+    }
+
+    public function status_user($id){
+        $user=User::find($id);
+        if($user->status==0){
+            $user->status=1;
+            $user->save();
+        }else{
+            $user->status=0;
+            $user->save();
+        }
+    }
+    public function render(){
         $users=User::all();
-        
         return view('livewire.admin.users-component',['users'=>$users])->layout('layouts.base');
     }
 }

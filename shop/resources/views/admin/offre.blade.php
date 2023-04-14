@@ -43,21 +43,26 @@
             <div class="w-[80%] mx-auto">
                 <input type="text" name="name" placeholder='name' id="name" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
-            <div class="w-[80%] mx-auto">
+            <div class="w-[80%] mx-auto mt-4">
                 <input type="number" name="percent" placeholder='name' id="percent" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
-            <select style="margin: 5px auto;width:80%" name='subcategory_id' class='w-[80%] block mt-2 p-3 mx-auto mt-4'>
+            <div class="w-[80%] mx-auto mt-4">
+                <select style="margin: 5px auto;width:80%" name='subcategory_id'
+                class='w-full h-[40px] rounded-md px-3 mt-2'>
                 <option value="">Select SubCategory</option>
                 @foreach ($subcategories as $subcategory)
                     <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
                 @endforeach
-            </select>
+                </select>
+            </div>
             <div class="w-[80%] mx-auto mt-4">
                 <input name='image' type="file" class="file__img-input" onchange="display_add_image(this.files[0])" 
                 hidden name="image" id="image" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
-            <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button' type='submit'>Save</button>
-            <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
+            <div class="w-[80%] mx-auto mt-4">
+                <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button' type='submit'>Save</button>
+                <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button'>Cancel</button>
+            </div>
     </form>
 </div> 
 <!--end-->
@@ -79,19 +84,24 @@
             <div class="w-[80%] mx-auto">
                 <input type="number" name="percent_edit" placeholder='name' id="percent_edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
-            <select name='subcategory_id_edit' id='subcategory_id_edit' class='w-[80%] mx-auto mt-4'>
-                <option value="">Select SubCategory</option>
-                @foreach ($subcategories as $subcategory)
-                    <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
-                @endforeach
-            </select>
+            <div class='w-[80%] mx-auto mt-4'>
+                <select name='subcategory_id_edit' id='subcategory_id_edit' 
+                class='w-full h-[40px] rounded-md px-3 mt-2'>
+                    <option value="">Select SubCategory</option>
+                    @foreach ($subcategories as $subcategory)
+                        <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="w-[80%] mx-auto mt-4">
                 <input type='hidden' name='old_image' id='old_image'>
                 <input name='image_edit' type="file" class="file__img-input-edit" onchange="display_edit_image(this.files[0])" 
                 hidden  id="image_edit" class="w-full h-[40px] border border-color-gray-background-light rounded-md px-3 mt-2 outline-none focus:border-color-red-button"/>
             </div>
-            <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button_edit' type='submit'>Save</button>
-            <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button_edit'>Cancel</button>
+            <div class="w-[80%] mx-auto mt-4">
+                <button class='bg-primary-500 px-5 py-2 text-while rounded-md cursor-pointer inline-block mx-1 save_button_edit' type='submit'>Save</button>
+                <button class='bg-primary-200 px-5 py-2  rounded-md cursor-pointer inline-block mx-1  cancel_button_edit'>Cancel</button>
+            </div>
     </form>
 </div> 
 <!--end edit -->

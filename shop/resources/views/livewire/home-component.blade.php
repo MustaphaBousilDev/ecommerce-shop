@@ -29,8 +29,8 @@
                     <h2 class="heading__slide hidden-motion">{{$slider->title}}</h2>
                     <span class="span__slide hidden-motion">{{$slider->description}}</span>
                 </div>
-                @php  $slug = Str::slug($slider->title, '-'); @endphp
-                <a style="z-index: 10000" class="btn__slide-shop hidden-motion opacity-100" href="{{route('slider.products',['slug'=>$slug])}}">
+                @php  $slug = Str::slug($slider->title, '-');@endphp
+                <a style="z-index: 10000" class="opacity-100" href="{{route('slider.products',['slug'=>$slug])}}">
                     Show Now <i class='bx bx-chevron-right'></i>
                 </a>
                 </div>

@@ -5,8 +5,8 @@
                 <i class='bx bx-money-withdraw text-md md:text-2xl'></i>
             </div>
             <div class="box__one__content">
-                <h3 class="text-xs md:text-sm font-semibold text-color-gray-dark">Total Price</h3>
-                <h1 class="text-md md:text-3xl font-bold mt-1 md:mt-2">$41K</h1>
+                <h3 class="text-xs md:text-sm font-semibold text-color-gray-dark">Total Sales</h3>
+                <h1 class="text-md md:text-3xl font-bold mt-1 md:mt-2">${{$totalSale}}k</h1>
             </div>
         </div>
 
@@ -15,8 +15,8 @@
                 <i class='bx bx-stats text-md md:text-2xl'></i>
             </div>
             <div class="box__one__content">
-                <h3 class="text-xs md:text-sm font-semibold text-color-gray-dark">Total Price</h3>
-                <h1 class="text-md md:text-3xl font-bold mt-1 md:mt-2">$221K</h1>
+                <h3 class="text-xs md:text-sm font-semibold text-color-gray-dark">Total Canceled</h3>
+                <h1 class="text-md md:text-3xl font-bold mt-1 md:mt-2">${{$totalCancel}}K</h1>
             </div>
         </div>
         <div class="box box__three flex gap-1 md:gap-5 justify-center items-center my-1 py-4 md:py-7 p-2 md:p-5 rounded-xl mx-[0.5%] w-[100%] sm:w-[49%]   md:w-[32.33%] lg:w-[24%] bg-color-red-button">
@@ -24,8 +24,8 @@
                 <i class='bx bx-money-withdraw text-md md:text-2xl'></i>
             </div>
             <div class="box__one__content">
-                <h3 class="text-xs md:text-sm font-semibold text-color-gray-dark">Total Price</h3>
-                <h1 class="text-md md:text-3xl font-bold mt-1 md:mt-2">$120K</h1>
+                <h3 class="text-xs md:text-sm font-semibold text-color-gray-dark">Total Quantity</h3>
+                <h1 class="text-md md:text-3xl font-bold mt-1 md:mt-2">{{$quantitySale}}K</h1>
             </div>
         </div>
         <div class="box box__four flex gap-1 md:gap-5 justify-center items-center my-1 py-4 md:py-7 p-2 md:p-5 rounded-xl mx-[0.5%] w-[100%] sm:w-[49%]   md:w-[32.33%] lg:w-[24%] bg-color-red-button">
@@ -33,8 +33,8 @@
                 <i class='bx bx-money-withdraw text-md md:text-2xl'></i>
             </div>
             <div class="box__one__content">
-                <h3 class="text-xs md:text-sm font-semibold text-color-gray-dark">Total Price</h3>
-                <h1 class="text-md md:text-3xl font-bold mt-1 md:mt-2">$41K</h1>
+                <h3 class="text-xs md:text-sm font-semibold text-color-gray-dark">Total Customer</h3>
+                <h1 class="text-md md:text-3xl font-bold mt-1 md:mt-2">{{$countUser}}</h1>
             </div>
         </div>
     </div>

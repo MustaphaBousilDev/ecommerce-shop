@@ -408,11 +408,13 @@ function add(file){
                 success: function (response){
                     console.log('success yow')
                     if(response.status=="success inserted products"){
-                        $('#form-add')[0].reset()
+                        //$('#form-add')[0].reset()
                         //console.log(response)
                         //console.log(response)
                         //load data to table
                         $('#table__data').load(location.href + ' #table__data')
+                        //load data form add 
+                        $('#form__images').load(location.href + ' #form__images')
                         console.log('you re realy son of the bitch')
                     }
                     console.log(response)
