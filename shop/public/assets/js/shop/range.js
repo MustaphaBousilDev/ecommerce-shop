@@ -35,16 +35,3 @@ range_input.forEach(range=>{
         
     })
 })
-range_input.forEach(range=>{
-        let min_value=parseInt(range_input[0].value)
-        let max_value=parseInt(range_input[1].value)
-        if(max_value - min_value <price_gap){
-            range_input[0].value=max_value  - price_gap;
-            range_input[1].value=min_value  + price_gap;
-        }else{
-            price_input[0].value=min_value;
-            price_input[1].value=max_value;
-            progress.style.left=(min_value / range_input[0].max)*100 + "%";
-            progress.style.right=100 - (max_value / range_input[1].max)*100 + "%";
-        }
-    })

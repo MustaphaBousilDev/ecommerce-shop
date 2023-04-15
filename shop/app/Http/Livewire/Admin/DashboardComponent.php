@@ -50,7 +50,15 @@ class DashboardComponent extends Component
         #---------------------------------------------------------------------------------------
         //get from orderItem quntity product sale where status delivered
         $products=OrderItem::whereHas('order',function($query){$query->where('status','delivered');})->get();
+        
         $product_id=[];
+        //get country from $products 
+        //$orders=Order::where('status','delivered')->get();
+        //get all orders with order items 
+        
+        
+        #---------------------------------------------------------------------------------------
+
         //foreach $products get product_id no repeat with all quantity 
         foreach($products as $key=>$product){
             $product_id[$key]['product_id']=$product->product_id;
@@ -95,6 +103,34 @@ class DashboardComponent extends Component
         }
         //dd($products_sale);
         #---------------------------------------------------------------------------------------
+        $orders=Order::where('status','delivered')->with('orderItems')->get();
+        $country_product_livered=[];
+        foreach($orders as $key=>$order){
+            $country_product_livered[$key]['country_id']=$order->country_id;
+            $country_product_livered[$key]['product_id']=$order->orderItems->pluck('product_id');
+        }
+        
+        //foreach $products_sale 
+        //dd($products_sale[0]['id'],$country_product_livered[0]['product_id'][0]);
+        /*foreach($products_sale as $key=>$product){
+            foreach($country_product_livered as $keys=>$country_ids){
+                
+                
+                    if($products_sale[$key]['id']==$country_ids['product_id'][$keys]){
+                        dd($country_ids['country_id']);
+                        $products_sale[$key]['country_id']=$country_ids['country_id'];
+                        break;
+                    }
+
+                }
+               
+            }
+        }*/
+        //dd($products_sale);
+        
+        
+        
+        
         return view('livewire.admin.dashboard-component',[
             'user'=>$this->user,
             'quantitySale'=>$quantitySale,

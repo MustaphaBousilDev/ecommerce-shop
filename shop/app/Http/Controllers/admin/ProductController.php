@@ -12,6 +12,8 @@ use App\Models\User;
 use App\Models\SizeColor;
 use App\Models\Country;
 use App\Models\Brands;
+//use pagination
+use Illuminate\Pagination\Paginator;
 use App\Models\City;
 //get model producttag and productsize
 
@@ -25,7 +27,9 @@ use App\Models\Image;
 class ProductController extends Controller{
     public function index(){
         //
-        $products=Product::with('sizes','tags','sub_category','brand','country')->orderBy('id','desc')->get();
+        $products=Product::with('sizes','tags','sub_category','brand','country')->orderBy('id','desc')->paginate(10);
+        //get $products with paginate
+        // $products=Product::with('sizes','tags','sub_category','brand','country')->orderBy('id','desc')->paginate(5);
         
         $images=Image::all();
         $subcategories=Subcategory::where('status',1)->whereNull('deleted_at')->get();

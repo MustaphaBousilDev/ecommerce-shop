@@ -94,7 +94,7 @@
                     @endforeach
                 </div>
                 <hr class="w-[80%] mx-auto my-6 border-0  h-[1px] ">
-                <h3 class="text-xl" >Price</h3>
+                <h3 class="text-xl" >Price{{$min}}-{{$max}}</h3>
                 <div class="range-price mt-3 px-0 py-[10px]">
                     <div class="heading flex justify-between items-center">
                         <h5>Price(DHS)</h5>
@@ -106,13 +106,14 @@
                         </div>
                     </div>
                     <div class="range-input">
-                        <input type="range" class="range-min" min="{{$min_price}}" max="{{$max_price}}" value="500" step="100">
-                        <input type="range" class="range-max" min="{{$min_price}}" max="{{$max_price}}" value="700" step="100">
+                        
+                        <input wire:model="min" type="range" class="range-min" min="0" max="10000" value="{{$min}}" step="100">
+                        <input wire:model="max" type="range" class="range-max" min="0" max="10000" value="{{$max}}" step="100">
                     </div>
                     <div class="price-input">
                         <div class="field border  rounded-md">
                             <span class="font-bold py-2 text-lg">$</span>
-                            <input type="number" class="input-min py-2" value='2000'>
+                            <input type="number" class="input-min py-2" value='{{$min}}'>
                         </div>
                         <div class="separateur">-</div>
                         <div class="field border rounded-md">

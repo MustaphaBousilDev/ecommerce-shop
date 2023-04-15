@@ -67,7 +67,8 @@ class Order extends Model
     }
     //product 
     public function products(){
-        return $this->belongsToMany(Product::class,'order_items');
+        //with pivot
+        return $this->belongsToMany(Product::class)->withPivot('quantity');
     }
 
     //country

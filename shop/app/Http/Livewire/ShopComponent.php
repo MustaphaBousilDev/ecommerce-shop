@@ -18,6 +18,8 @@ class ShopComponent extends Component
 {
     //pagination
     use WithPagination;
+    public $min;
+    public $max;
     //sorting
     public $pageSize=15;
     public $orderBy='Default Sorting'; 
@@ -30,7 +32,10 @@ class ShopComponent extends Component
     public $min_price=0;
     public $max_price=1000;
 
-
+    public function mount(){
+        $this->min=0;
+        $this->max=10000;
+    }
     //store in cart shopping 
     public function store($product_id,$product_name,$product_price){
         Cart::instance('cart')->add($product_id,$product_name,1,$product_price)->associate('App\Models\Product');
@@ -78,7 +83,7 @@ class ShopComponent extends Component
     public function render(){
         //get all products with tags and status = 1 and paginate 12
         $products =Product::with('tags')
-        ->whereBetween('sale_price',[$this->min_price,$this->max_price])
+        ->whereBetween('sale_price',[$this->min,$this->max])
         ->where('status',1)->paginate($this->pageSize);
         
         //get all images
@@ -129,13 +134,15 @@ class ShopComponent extends Component
 
         if($this->colors_filter){
             //get all product_id from table size_colors where color_id = $this->colors_filter
-            $product_size_color=SizeColor::where('color_id',$this->colors_filter)->get();
+            $product_size_color=SizeColor::where('color_id',$this->colors_filter)
+            ->orderBy('product_id','DESC')
+            ->get();
             $products_id=array();
             foreach($product_size_color as $item){
                 array_push($products_id,$item->product_id);
             }
             $products =Product::with('tags')
-            ->whereBetween('sale_price',[$this->min_price,$this->max_price])
+            ->whereBetween('sale_price',[$this->min,$this->max])
             ->where('status',1)
             ->whereIn('id',$products_id)->paginate($this->pageSize);
 
@@ -149,6 +156,8 @@ class ShopComponent extends Component
         $sizes=Size::where('status',1)->whereNull('deleted_at')->orderBy('name','ASC')->get();
         //get all colors 
         $colors=Color::where('status',1)->whereNull('deleted_at')->orderBy('name','ASC')->get();
+        $val_min=$this->min;
+        $val_max=$this->max;
 
         return view('livewire.shop-component',[
             'products'=>$products,
@@ -158,7 +167,9 @@ class ShopComponent extends Component
             'max_price'=>$this->max_price,
             'brands'=>$brands,
             'sizes'=>$sizes, 
-            'colors'=>$colors
+            'colors'=>$colors,
+            'min'=>$val_min ,
+            'max'=>$val_max
         ]);
     }
 }
