@@ -32,21 +32,15 @@ class DashboardComponent extends Component
     {
         //gel all user 
         #---------------------------------------------------------------------------------------
-        $quantitySale=OrderItem::whereHas('order',function($query){
-            $query->where('status','delivered');
-        })->sum('quantity');
+        
         #---------------------------------------------------------------------------------------
-        $totalSale=Order::where('status','delivered')->sum('total');
-        $totalSale=$totalSale/1000;
-        $totalSale=substr($totalSale,0,-3);
+        /*
         #---------------------------------------------------------------------------------------
-        $countUser=User::count();
+        
         #---------------------------------------------------------------------------------------
-        $totalCancel=Order::where('status','canceled')->sum('total');
-        $totalCancel=$totalCancel/1000;
-        $totalCancel=substr($totalCancel,0,-3);
+        
         #---------------------------------------------------------------------------------------
-        $this->user=User::all();
+        
         #---------------------------------------------------------------------------------------
         //get from orderItem quntity product sale where status delivered
         $products=OrderItem::whereHas('order',function($query){$query->where('status','delivered');})->get();
@@ -101,34 +95,79 @@ class DashboardComponent extends Component
                 }
             }
         }
-        //dd($products_sale);
+        
+        
+        
+        
+        */
+        #-----------------------------------------------------------
+        $totalSale=Order::where('status','delivered')->sum('total');
+        $totalSale=$totalSale/1000;
+        $totalSale=substr($totalSale,0,-3);
+        #-----------------------------------------------------------
+        $countUser=User::count();
+        #-----------------------------------------------------------
+        $totalCancel=Order::where('status','canceled')->sum('total');
+        $totalCancel=$totalCancel/1000;
+        $totalCancel=substr($totalCancel,0,-3);
+        #-----------------------------------------------------------
+        $quantitySale=OrderItem::whereHas('order',function($query){
+            $query->where('status','delivered');
+        })->sum('quantity');
+        #-----------------------------------------------------------
+        $this->user=User::all();
+        #-----------------------------------------------------------
+        $products=OrderItem::whereHas('order',function($query){$query->where('status','delivered');})->get();
+        
+        $product_id=[];
+        //get country from $products 
+        //$orders=Order::where('status','delivered')->get();
+        //get all orders with order items 
+        
+        
         #---------------------------------------------------------------------------------------
-        $orders=Order::where('status','delivered')->with('orderItems')->get();
-        $country_product_livered=[];
-        foreach($orders as $key=>$order){
-            $country_product_livered[$key]['country_id']=$order->country_id;
-            $country_product_livered[$key]['product_id']=$order->orderItems->pluck('product_id');
-        }
-        
-        //foreach $products_sale 
-        //dd($products_sale[0]['id'],$country_product_livered[0]['product_id'][0]);
-        /*foreach($products_sale as $key=>$product){
-            foreach($country_product_livered as $keys=>$country_ids){
-                
-                
-                    if($products_sale[$key]['id']==$country_ids['product_id'][$keys]){
-                        dd($country_ids['country_id']);
-                        $products_sale[$key]['country_id']=$country_ids['country_id'];
-                        break;
-                    }
 
+        //foreach $products get product_id no repeat with all quantity 
+        foreach($products as $key=>$product){
+            $product_id[$key]['product_id']=$product->product_id;
+            $product_id[$key]['quantity']=$product->quantity;
+        }
+        $product_id2=[];
+        for($i=0;$i<count($product_id);$i++){
+            for($j=0;$j<count($product_id);$j++){
+                if($product_id[$i]['product_id']==$product_id[$j]['product_id']){
+                    $product_id2[$i]['product_id']=$product_id[$i]['product_id'];
+                    $product_id2[$i]['quantity']=$product_id[$i]['quantity']+$product_id[$j]['quantity'];
                 }
-               
             }
-        }*/
-        //dd($products_sale);
-        
-        
+        }
+        $product_id3=[];
+        //i have quantity min and max i will transofm to quantity max 
+        for($i=0;$i<count($product_id2);$i++){
+            for($j=0;$j<count($product_id2);$j++){
+                if($product_id2[$i]['product_id']==$product_id2[$j]['product_id']){
+                    if($product_id2[$i]['quantity']>=$product_id2[$j]['quantity']){
+                        $product_id3[$i]['product_id']=$product_id2[$i]['product_id'];
+                        $product_id3[$i]['quantity']=$product_id2[$i]['quantity'];
+                    }
+                    else{
+                        $product_id3[$i]['product_id']=$product_id2[$j]['product_id'];
+                        $product_id3[$i]['quantity']=$product_id2[$j]['quantity'];
+                    }
+                }
+            }
+        }
+        $product_id3=array_unique($product_id3,SORT_REGULAR);
+        $products=collect($product_id3);    
+        $dd=[];
+        $products=$products->sortByDesc('quantity');
+        $products_sale=[];
+        $p=0;
+        foreach($products as $key=>$product){
+            $products_sale[$p]=Product::find($product['product_id']);
+            $products_sale[$p]->quantity=$product['quantity'];
+            $p++;
+        } 
         
         
         return view('livewire.admin.dashboard-component',[

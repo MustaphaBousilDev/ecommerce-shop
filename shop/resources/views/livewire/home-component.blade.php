@@ -158,7 +158,7 @@
             <i class='bx bxs-chevron-left  icon-offre-home left-icon-offre-product-home' ></i>
         </div> 
     @endif 
-    <script>
+    <script> 
         console.log('yow yow')
         console.log();
         //date 

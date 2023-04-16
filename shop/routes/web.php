@@ -96,100 +96,100 @@ Route::get('/slider-products/{slug}',SliderProductComponent::class)->name('slide
 //dashboard 
 Route::get('/admin/dashboard',DashboardComponent::class)->name('admin.dashboard')->middleware('admin.auth');
 //category
-Route::get('admin/category',[CategoryController::class,'index'])->name('category');
-Route::post('admin/add-category',[CategoryController::class,'store'])->name('category-add');
-Route::post('admin/category',[CategoryController::class,'show'])->name('category-show');
-Route::post('/category-update',[CategoryController::class,'update'])->name('category-update');
-Route::post('/category-delete',[CategoryController::class,'delete'])->name('category-delete');
-Route::POST('/category',[CategoryController::class,'search'])->name('category-search');
+Route::get('admin/category',[CategoryController::class,'index'])->name('category')->middleware('admin.auth');
+Route::post('admin/add-category',[CategoryController::class,'store'])->name('category-add')->middleware('admin.auth');
+Route::post('admin/category',[CategoryController::class,'show'])->name('category-show')->middleware('admin.auth');
+Route::post('/category-update',[CategoryController::class,'update'])->name('category-update')->middleware('admin.auth');
+Route::post('/category-delete',[CategoryController::class,'delete'])->name('category-delete')->middleware('admin.auth');
+Route::POST('/category',[CategoryController::class,'search'])->name('category-search')->middleware('admin.auth');
 
 //subcategory
-Route::get('admin/subcategory',[SubCategoryController::class,'index'])->name('subcategory');
-Route::post('admin/add-subcategory',[SubCategoryController::class,'store'])->name('subcategory-add');
-Route::post('admin/subcategory',[SubCategoryController::class,'show'])->name('subcategory-show');
-Route::post('/subcategory-update',[SubCategoryController::class,'update'])->name('subcategory-update');
-Route::post('/subcategory-delete',[SubCategoryController::class,'delete'])->name('subcategory-delete');
-Route::POST('/subcategory',[SubCategoryController::class,'search'])->name('subcategory-search');
+Route::get('admin/subcategory',[SubCategoryController::class,'index'])->name('subcategory')->middleware('admin.auth');
+Route::post('admin/add-subcategory',[SubCategoryController::class,'store'])->name('subcategory-add')->middleware('admin.auth');
+Route::post('admin/subcategory',[SubCategoryController::class,'show'])->name('subcategory-show')->middleware('admin.auth');
+Route::post('/subcategory-update',[SubCategoryController::class,'update'])->name('subcategory-update')->middleware('admin.auth');
+Route::post('/subcategory-delete',[SubCategoryController::class,'delete'])->name('subcategory-delete')->middleware('admin.auth');
+Route::POST('/subcategory',[SubCategoryController::class,'search'])->name('subcategory-search')->middleware('admin.auth');
 
 //brands
-Route::get('admin/brands',[BrandsController::class,'index'])->name('brands');
-Route::post('admin/add-brands',[BrandsController::class,'store'])->name('brands-add');
-Route::post('/brands',[BrandsController::class,'show'])->name('brands-show');
-Route::post('/brands-update',[BrandsController::class,'update'])->name('brands-update');
-Route::post('/brands-delete',[BrandsController::class,'delete'])->name('brands-delete');
-Route::POST('admin/brands',[BrandsController::class,'search'])->name('brandss-search');
+Route::get('admin/brands',[BrandsController::class,'index'])->name('brands')->middleware('admin.auth');
+Route::post('admin/add-brands',[BrandsController::class,'store'])->name('brands-add')->middleware('admin.auth');
+Route::post('/brands',[BrandsController::class,'show'])->name('brands-show')->middleware('admin.auth');
+Route::post('/brands-update',[BrandsController::class,'update'])->name('brands-update')->middleware('admin.auth');
+Route::post('/brands-delete',[BrandsController::class,'delete'])->name('brands-delete')->middleware('admin.auth');
+Route::POST('admin/brands',[BrandsController::class,'search'])->name('brandss-search')->middleware('admin.auth');
  
 
 
 //country 
-Route::get('admin/country',[CountryController::class,'index'])->name('country');
-Route::post('admin/add-country',[CountryController::class,'store'])->name('country-add');
-Route::post('admin/country',[CountryController::class,'show'])->name('country-show');
-Route::post('/country-update',[CountryController::class,'update'])->name('country-update');
-Route::post('/country-delete',[CountryController::class,'delete'])->name('country-delete');
-Route::POST('/country',[CountryController::class,'search'])->name('country-search');
+Route::get('admin/country',[CountryController::class,'index'])->name('country')->middleware('admin.auth');
+Route::post('admin/add-country',[CountryController::class,'store'])->name('country-add')->middleware('admin.auth');
+Route::post('admin/country',[CountryController::class,'show'])->name('country-show')->middleware('admin.auth');
+Route::post('/country-update',[CountryController::class,'update'])->name('country-update')->middleware('admin.auth');
+Route::post('/country-delete',[CountryController::class,'delete'])->name('country-delete')->middleware('admin.auth');
+Route::POST('/country',[CountryController::class,'search'])->name('country-search')->middleware('admin.auth');
 
 //city 
-Route::get('admin/city',[CityController::class,'index'])->name('city');
-Route::post('admin/add-city',[CityController::class,'store'])->name('city-add');
-Route::post('admin/city',[CityController::class,'show'])->name('city-show');
-Route::post('/city-update',[CityController::class,'update'])->name('city-update');
-Route::post('/city-delete',[CityController::class,'delete'])->name('city-delete');
-Route::POST('/city',[CityController::class,'search'])->name('city-search');
+Route::get('admin/city',[CityController::class,'index'])->name('city')->middleware('admin.auth');
+Route::post('admin/add-city',[CityController::class,'store'])->name('city-add')->middleware('admin.auth');
+Route::post('admin/city',[CityController::class,'show'])->name('city-show')->middleware('admin.auth');
+Route::post('/city-update',[CityController::class,'update'])->name('city-update')->middleware('admin.auth');
+Route::post('/city-delete',[CityController::class,'delete'])->name('city-delete')->middleware('admin.auth');
+Route::POST('/city',[CityController::class,'search'])->name('city-search')->middleware('admin.auth');
 
 //size 
-Route::get('admin/size',[SizeController::class,'index'])->name('size');
-Route::post('admin/add-size',[SizeController::class,'store'])->name('size-add');
-Route::post('admin/size',[SizeController::class,'show'])->name('size-show');
-Route::post('/size-update',[SizeController::class,'update'])->name('size-update');
-Route::post('/size-delete',[SizeController::class,'delete'])->name('size-delete');
-Route::POST('/size',[SizeController::class,'search'])->name('size-search');
+Route::get('admin/size',[SizeController::class,'index'])->name('size')->middleware('admin.auth');
+Route::post('admin/add-size',[SizeController::class,'store'])->name('size-add')->middleware('admin.auth');
+Route::post('admin/size',[SizeController::class,'show'])->name('size-show')->middleware('admin.auth');
+Route::post('/size-update',[SizeController::class,'update'])->name('size-update')->middleware('admin.auth');
+Route::post('/size-delete',[SizeController::class,'delete'])->name('size-delete')->middleware('admin.auth');
+Route::POST('/size',[SizeController::class,'search'])->name('size-search')->middleware('admin.auth');
 
 //color
-Route::get('admin/color',[ColorController::class,'index'])->name('color');
-Route::post('admin/add-color',[ColorController::class,'store'])->name('color-add');
-Route::post('admin/color',[ColorController::class,'show'])->name('color-show');
-Route::post('/color-update',[ColorController::class,'update'])->name('color-update');
-Route::post('/color-delete',[ColorController::class,'delete'])->name('color-delete');
-Route::POST('/color',[ColorController::class,'search'])->name('color-search');
+Route::get('admin/color',[ColorController::class,'index'])->name('color')->middleware('admin.auth');
+Route::post('admin/add-color',[ColorController::class,'store'])->name('color-add')->middleware('admin.auth');
+Route::post('admin/color',[ColorController::class,'show'])->name('color-show')->middleware('admin.auth');
+Route::post('/color-update',[ColorController::class,'update'])->name('color-update')->middleware('admin.auth');
+Route::post('/color-delete',[ColorController::class,'delete'])->name('color-delete')->middleware('admin.auth');
+Route::POST('/color',[ColorController::class,'search'])->name('color-search')->middleware('admin.auth');
 
 
 //product   
-Route::get('admin/product',[ProductController::class,'index'])->name('product');
-Route::post('admin/add-product',[ProductController::class,'store'])->name('product-add');
-Route::post('admin/product/show',[ProductController::class,'show'])->name('product-show');
-Route::post('admin/product',[ProductController::class,'show'])->name('product-show');
-Route::post('/product-update',[ProductController::class,'update'])->name('product-update');
-Route::post('/product-delete',[ProductController::class,'delete'])->name('product-delete');
-Route::POST('/product',[ProductController::class,'search'])->name('product-search');
+Route::get('admin/product',[ProductController::class,'index'])->name('product')->middleware('admin.auth');
+Route::post('admin/add-product',[ProductController::class,'store'])->name('product-add')->middleware('admin.auth');
+Route::post('admin/product/show',[ProductController::class,'show'])->name('product-show')->middleware('admin.auth');
+Route::post('admin/product',[ProductController::class,'show'])->name('product-show')->middleware('admin.auth');
+Route::post('/product-update',[ProductController::class,'update'])->name('product-update')->middleware('admin.auth');
+Route::post('/product-delete',[ProductController::class,'delete'])->name('product-delete')->middleware('admin.auth');
+Route::POST('/product',[ProductController::class,'search'])->name('product-search')->middleware('admin.auth');
 
 //images
-Route::get('admin/images',[ImagesController::class,'index'])->name('images');
-Route::post('admin/add-images',[ImagesController::class,'store'])->name('images-add');
+Route::get('admin/images',[ImagesController::class,'index'])->name('images')->middleware('admin.auth');
+Route::post('admin/add-images',[ImagesController::class,'store'])->name('images-add')->middleware('admin.auth');
 
 
 //sliders
-Route::get('admin/sliders',[SliderComponent::class,'index'])->name('sliders');
-Route::post('admin/add-sliders',[SliderComponent::class,'store'])->name('sliders-add');
-Route::post('admin/sliders',[SliderComponent::class,'show'])->name('sliders-show');
-Route::post('/sliders-update',[SliderComponent::class,'update'])->name('sliders-update');
-Route::post('/sliders-delete',[SliderComponent::class,'delete'])->name('sliders-delete');
+Route::get('admin/sliders',[SliderComponent::class,'index'])->name('sliders')->middleware('admin.auth');
+Route::post('admin/add-sliders',[SliderComponent::class,'store'])->name('sliders-add')->middleware('admin.auth');
+Route::post('admin/sliders',[SliderComponent::class,'show'])->name('sliders-show')->middleware('admin.auth');
+Route::post('/sliders-update',[SliderComponent::class,'update'])->name('sliders-update')->middleware('admin.auth');
+Route::post('/sliders-delete',[SliderComponent::class,'delete'])->name('sliders-delete')->middleware('admin.auth');
 
 //Sale
-Route::get('admin/sale',AdminSaleComponent::class)->name('admin.sale');
+Route::get('admin/sale',AdminSaleComponent::class)->name('admin.sale')->middleware('admin.auth');
 
 
 
 //coupons 
-Route::get('admin/coupons',AdminCouponsComponent::class)->name('admin.coupons');
-Route::get('admin/add-coupons',AdminAddCouponsComponent::class)->name('admin.add.coupons');
-Route::get('admin/edit-coupons/{coupon_id}',AdminEditCouponsComponent::class)->name('admin.edit.coupons');
+Route::get('admin/coupons',AdminCouponsComponent::class)->name('admin.coupons')->middleware('admin.auth');
+Route::get('admin/add-coupons',AdminAddCouponsComponent::class)->name('admin.add.coupons')->middleware('admin.auth');
+Route::get('admin/edit-coupons/{coupon_id}',AdminEditCouponsComponent::class)->name('admin.edit.coupons')->middleware('admin.auth');
 
 //orders
-Route::get('admin/orders',AdminOrderComponent::class)->name('admin.orders');
+Route::get('admin/orders',AdminOrderComponent::class)->name('admin.orders')->middleware('admin.auth');
 
 //order details
-Route::get('admin/order-details/{order_id}',AdminOrderDetailsComponent::class)->name('admin.order.details');
+Route::get('admin/order-details/{order_id}',AdminOrderDetailsComponent::class)->name('admin.order.details')->middleware('admin.auth');
 
 //order user 
 Route::get('/user/orders',UserOrdersComponent::class)->name('user.orders');
@@ -201,28 +201,28 @@ Route::get('/user/change-password',UserChangePasswordComponent::class)->name('us
 
 
 //admin contact 
-Route::get('admin/contact-us',AdminContactComponent::class)->name('admin.contact-us');
+Route::get('admin/contact-us',AdminContactComponent::class)->name('admin.contact-us')->middleware('admin.auth');
 
 //admin setting 
-Route::get('admin/setting',AdminSettingComponent::class)->name('admin.setting');
+Route::get('admin/setting',AdminSettingComponent::class)->name('admin.setting')->middleware('admin.auth');
 
 //offre product 
-Route::get('admin/offre',[OffreController::class,"index"])->name('admin.offre');
-Route::post('admin/add-offre',[OffreController::class,'store'])->name('offre-add');
-Route::post('admin/offre-show',[OffreController::class,'show'])->name('offre-show');
-Route::post('/offre-update',[OffreController::class,'update'])->name('offre-update');
-Route::post('/offre-delete',[OffreController::class,'delete'])->name('offre-delete');
-Route::POST('/offre-search',[OffreController::class,'search'])->name('offre-search');
+Route::get('admin/offre',[OffreController::class,"index"])->name('admin.offre')->middleware('admin.auth');
+Route::post('admin/add-offre',[OffreController::class,'store'])->name('offre-add')->middleware('admin.auth');
+Route::post('admin/offre-show',[OffreController::class,'show'])->name('offre-show')->middleware('admin.auth');
+Route::post('/offre-update',[OffreController::class,'update'])->name('offre-update')->middleware('admin.auth');
+Route::post('/offre-delete',[OffreController::class,'delete'])->name('offre-delete')->middleware('admin.auth');
+Route::POST('/offre-search',[OffreController::class,'search'])->name('offre-search')->middleware('admin.auth');
 
 
 //offre product
-Route::get('offre/product/{offre}',OffresProductsComponent::class)->name('offre.products');
+Route::get('offre/{offre}',OffresProductsComponent::class)->name('offre.products');
 //profile 
 Route::get('user/profile',ProfileComponent::class)->name('user.profile');
 
 
 //users dashboard management 
-Route::get('admin/users',UsersComponent::class)->name('admin.users');
+Route::get('admin/users',UsersComponent::class)->name('admin.users')->middleware('admin.auth');
 
 
 //route verify email 

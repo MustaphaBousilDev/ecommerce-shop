@@ -139,7 +139,14 @@
                 <div class="account">
                     @php
                     use App\Models\User;
-                    $user=User::find(session('loginId'));
+                    //check if user is logged in
+                    $user=null;
+                    if(Session()->has('user')){
+                        $user=User::find(Session()->get('user')->id);
+                    }
+                    
+
+                    
                     @endphp 
                     @if($user)
                         <div class='icon-header'>
