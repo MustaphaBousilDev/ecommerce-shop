@@ -160,13 +160,16 @@
                               <i class="bx bx-user text-color-gray-background-light" ></i>
                         </div>
                     @endif
-                    <div class="sign-in">
+                    <div class="sign-in flex  justify-center items-center">
                             @if($user)
                                 @if($user->utype=='ADM')
                                     <a href='{{route("admin.dashboard")}}'>Admin</a>
                                 @else
-                                    <a href='#'>{{$user->username}}</a>
+                                    <a href='{{route('user.profile')}}'>{{$user->username}}</a>
                                 @endif
+                                <a href='{{route('logout')}}'>
+                                    <i class='bx bx-log-out text-xl'></i>
+                                </a>
                             @else 
                                 <a href='{{route('login')}}'>Sign In</a>
                             @endif
