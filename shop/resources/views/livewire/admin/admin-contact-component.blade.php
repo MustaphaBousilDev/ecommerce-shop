@@ -52,6 +52,11 @@
             <input type="text" id="table-search" class="block p-2 px-7 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
         </div>
     </div>
+    @if(session()->has('message'))
+        <div class=''>
+            {{ session()->get('message') }}
+        </div>
+    @endif
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -108,7 +113,7 @@
                             class='bx bx-low-vision inline-block rounded-full p-2 w-6 h-6 flex items-center
                             justify-center'></i>
                         </a>
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500">
+                        <a href="#" wire:click.prevent="deleteContact({{$contact->id}})" class="font-medium text-blue-600 dark:text-blue-500">
                             <i style='background:rgb(254, 214, 214);color:rgb(255, 142, 142)' 
                              class='bx bxs-trash-alt inline-block rounded-full p-2 w-6 h-6 flex items-center
                              justify-center'></i>

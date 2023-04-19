@@ -4,7 +4,6 @@ const prev_Btn_offre_home=[...document.querySelectorAll('.products__offre-home  
 
 
 slider_product_offre_home.forEach((item,i)=>{
-    console.log('fuck btich')
     console.log(item.scrollLeft)
     container_offre=item.getBoundingClientRect()
     let container_width_offre=(container_offre.width / 4);

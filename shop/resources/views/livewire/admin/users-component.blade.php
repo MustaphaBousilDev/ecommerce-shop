@@ -13,6 +13,9 @@
                   </div>
              </form>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                @if (Session::has('message'))
+                    <div class="alert alert-success">{{Session::get('message')}}</div>
+                @endif
                 <table class="w-[95%] mx-auto text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -111,8 +114,7 @@
                                 </form>
                             </td>
                             <td class="flex items-center px-6 py-4 space-x-3">
-                                <i class='bx bxs-edit-alt transition cursor-pointer hover:text-[#0ea5e9] hover:bg-[#e0f2fe] text-xl flex items-center justify-center p-1 w-9 h-9 rounded-full bg-[#f8fafc]'></i>
-                                <i class='bx bx-trash transition cursor-pointer hover:text-[#0ea5e9] hover:bg-[#e0f2fe] text-xl p-1 flex items-center justify-center rounded-full w-9 h-9 bg-[#f8fafc]' ></i>
+                                <i wire:click.prevent="deleteUser({{$user->id}})" class='bx bx-trash transition cursor-pointer hover:text-[#0ea5e9] hover:bg-[#e0f2fe] text-xl p-1 flex items-center justify-center rounded-full w-9 h-9 bg-[#f8fafc]' ></i>
                             </td>
                     </tr>
                         @endforeach 

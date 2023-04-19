@@ -43,51 +43,109 @@
                     <i class='bx bx-search icon'></i>
                     <input type="text" placeholder="Search...">
                 </li>
+                <div class="menu">
 
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="#" class='bg-color-rating'>
-                            <i class='bx bx-home-alt icon' ></i>
-                            <span class="text nav-text">Dashboard</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class="bi bi-person-check icon"></i>
-                            <span class="text nav-text">Employes</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class="bi bi-bag icon"></i>
-                            <span class="text nav-text">Products</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-pie-chart-alt icon' ></i>
-                            <span class="text nav-text">Analytics</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-heart icon' ></i>
-                            <span class="text nav-text">Likes</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class="bi bi-basket icon"></i>
-                            <span class="text nav-text">Orders</span>
-                        </a>
-                    </li>
-
-                </ul>
+                    
+                    <ul class="menu-links  overflow-y-scroll h-[50vh] overflow-x-hidden">
+                        <li class="nav-link {{request()->routeIs('admin.dashboard') ? 'bg-color-red-button opacity-80' : ' '}}"  >
+                            <a href="{{route('admin.dashboard')}}" class='bg-color-rating '>
+                                <i class='bx bx-home-alt icon' ></i>
+                                <span class="text nav-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('admin.users') ? 'bg-color-red-button opacity-80' : ' '}}" >
+                            <a href="{{route('admin.users')}}">
+                                <i class="bi bi-person-check icon"></i>
+                                <span class="text nav-text">Users</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('product') ? 'bg-color-red-button opacity-80' : ' '}}">
+                            <a href="{{route('product')}}">
+                                <i class="bi bi-bag icon"></i>
+                                <span class="text nav-text">Products</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('category') ? 'bg-color-red-button opacity-80' : ' '}}">
+                            <a href="{{route('category')}}">
+                                <i class='bx bxs-category icon' ></i>
+                                <span class="text nav-text">Categories</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('subcategory') ? 'bg-color-red-button opacity-80' : ' '}}">
+                            <a href="{{route('subcategory')}}">
+                                <i class='bx bxs-category icon' ></i>
+                                <span class="text nav-text">Subcategories</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('admin.orders') ? 'bg-color-red-button opacity-80' : ' '}}">
+                            <a href="{{route('admin.orders')}}">
+                                <i class="bi bi-basket icon"></i>
+                                <span class="text nav-text">Orders</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('brands') ? 'bg-color-red-button opacity-80' : ' '}}">
+                            <a href="{{route('brands')}}">
+                                <i class='bx bxl-apple icon' ></i>
+                                <span class="text nav-text">Brands</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('sliders') ? 'bg-color-red-button opacity-80' : ' '}}">
+                            <a href="{{route('sliders')}}">
+                                <i class='bx bx-slideshow icon' ></i>
+                                <span class="text nav-text">Sliders</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('admin.offre') ? 'bg-color-red-button opacity-80' : ' '}}">
+                            <a href="{{route('admin.offre')}}">
+                                <i class='bx bx-money-withdraw icon' ></i>
+                                <span class="text nav-text">Offres</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('city') ? 'bg-color-red-button opacity-80' : ' '}}">
+                            <a href="{{route('city')}}">
+                                <i class='bx bx-buildings icon' ></i>
+                                <span class="text nav-text">Cities</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('admin.contact-us') ? 'bg-color-red-button opacity-80' : ' '}}">
+                            <a href="{{route('admin.contact-us')}}">
+                                <i class='bx bxs-contact icon' ></i>
+                                <span class="text nav-text">Contacts</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('admin.setting') ? 'bg-color-red-button opacity-80' : ' '}}">
+                            <a href="{{route('admin.setting')}}">
+                                <i class='bx bx-cog setting icon'></i>
+                                <span class="text nav-text">Settings</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('color') ? 'bg-color-red-button opacity-80' : ' '}}">
+                            <a href="{{route('color')}}">
+                                <i class='bx bx-palette icon' ></i>
+                                <span class="text nav-text">Colors</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('size') ? 'bg-color-red-button opacity-80' : ' '}}">
+                            <a href="{{route('size')}}">
+                                <i class='bx bx-font-size icon' ></i>
+                                <span class="text nav-text">Sizes</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('admin.coupons') ? 'bg-color-red-button opacity-80' : ' '}}">
+                            <a href="{{route('admin.coupons')}}">
+                                <i class='bx bxs-coupon icon' ></i>
+                                <span class="text nav-text">Coupons</span>
+                            </a>
+                        </li>
+                        <li class="nav-link {{request()->routeIs('admin.sale') ? 'bg-color-red-button opacity-80' : ' '}}">
+                            <a href="{{route('admin.sale')}}">
+                                <i class='bx bx-stopwatch icon' ></i>
+                                <span class="text nav-text">Crono</span>
+                            </a>
+                        </li>
+    
+                    </ul>
+                </div>
             </div>
 
             <div class="bottom-content">

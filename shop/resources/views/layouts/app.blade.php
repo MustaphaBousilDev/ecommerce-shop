@@ -195,41 +195,21 @@
             </div>
             <div class="links-page flex items-center">
                 <ul class="flex pr-3 bg-while">
-                    <li class="mx-7 lg:mx-4"><a href="/">Home</a></li>
-                    <li class="mx-7 lg:mx-4"><a href="{{route('shop')}}">Shop</a></li>
+                    <li class="mx-7 lg:mx-4"><a class="{{request()->routeIs('home') ? 'active' : ' '}}" href="/">Home</a></li>
+                    <li class="mx-7 lg:mx-4"><a class="{{request()->routeIs('shop') ? 'active' : ' '}}" href="{{route('shop')}}">Shop</a></li>
                     <li class="mx-7 lg:mx-4 relative account-link">
-                        <a  href="{{route('user.profile')}}" class="relative">Account</a>
-                        <ul class="fixed list-account-nav  left-[-10px]  p-5 shadow-sm rounded-md w-44 lg:w-56 top-10 bg-while">
-                            <li class="mb-2 transition relative links-one-secondary">
-                                <a class="flex items-center justify-between" href="#">Shop User Account <i class='bx bxs-right-arrow'></i></a>
-                                <ul class="fixed z-[3000] left-48 w-52 top-[0px] bg-while rounded-md shadow-sm p-5 list-ul-secondary">
-                                    <li class="mb-2"><a href="#">Orders History</a></li>
-                                    <li class="my-2"><a href="#">Profile Settings</a></li>
-                                    <li class="my-2"><a href="#">Account Address</a></li>
-                                    <li class="my-2"><a href="#">Payments Method</a></li>
-                                    <li class="my-2"><a href="#">Wishlist</a></li>
-                                </ul>
-                            </li>
-                            <li class="my-2 transition links-one-secondary-2">
-                                <a class="flex items-center justify-between" href="#">Vendor Dashboard  <i class='bx bxs-right-arrow'></i></a>
-                                <ul class="fixed z-[3000] left-10 w-44 lg:w-65 top-[0px] bg-while rounded-md shadow-sm p-5  list-ul-secondary-2">
-                                    <li class="mb-2"><a href="#">Settings</a></li>
-                                    <li class="my-2"><a href="#">Favourite</a></li>
-                                    <li class="my-2"><a href="#">Sales</a></li>
-                                    <li class="my-2"><a href="#">Products</a></li>
-                                </ul>
-                            </li>
-                            <li class="my-2 transition"><a href="#">Sign in / Sign up</a></li>
-                            <li class="mt-2 transition"><a href="#">Password Recovery</a></li>
-                        </ul>
+                        <a class="{{request()->routeIs('user.profile') ? 'active' : ' '}}"  
+                            href="{{route('user.profile')}}" class="relative">Account</a>
+                        
                     </li>
-                    <li class="mx-7 lg:mx-4"><a href="#">Blogs</a></li>
-                    <li class="mx-7 lg:mx-4"><a href="{{route('contact')}}">Contact</a></li>
+                    <li class="mx-7 lg:mx-4">
+                        <a class="{{request()->routeIs('contact') ? 'active' : ' '}}"   href="{{route('contact')}}">Contact</a>
+                    </li>
                     
                 </ul>
             </div>
         </div>
-        <div class="nav-links-bottom-phono shadow-sm">
+        <div class="nav-links-bottom-phono shadow-sm ">
             <div class="">
                 <form>
                     <div class="relative">
@@ -303,43 +283,18 @@
                             </a>
                         </li>
                     </ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li class="account-link-mobile-li z-[200000]" onclick="console.log('hhhh')">
-                        <a href="{{route('user.profile')}}">
+                    <li><a  href="/">Home</a></li>
+                    <li><a  href="{{route('shop')}}">Shop</a></li>
+                    <li class="account-link-mobile-li z-[200000]" onclick="">
+                        <a   
+                            href="{{route('user.profile')}}">
                             <span>Account</span>
                             <i class='bx bx-chevron-down icon-arrow'></i>
                         </a>
                     </li>
-                    <div class=" account-list-mobile rounded-md">
-                        <span class="mx-5 py-1 account-link-version-mobile" >
-                            <a href="#" class="" >
-                                Shop User Account <i class='bx bxs-right-arrow'></i>
-                            </a>
-                            <div class="child-one-account-version-mobile">
-                                <span><a href="#">Orders History</a></span>
-                                <span><a href="#">Profile Settings</a></span>
-                                <span><a href="#">Account Address</a></span>
-                                <span><a href="#">Payments Method</a></span>
-                                <span><a href="#">Wishlist</a></span>
-                            </div>
-                        </span>
-                        <span class="mx-5 py-1  vendor-dashboard-link-version-mobile">
-                            <a href="#" class="">
-                                Vendor Dashboard  <i class='bx bxs-right-arrow'></i>
-                            </a>
-                            <div class="child-two-account-version-mobile">
-                                <span><a href="#">Settings</a></span>
-                                <span><a href="#">Favourite</a></span>
-                                <span><a href="#">Sales</a></span>
-                                <span><a href="#">Products</a></span>
-                            </div>
-                        </span>
-                        <span class="mx-5 py-1"><a href="#" class="">Sign in / Sign up</a></span>
-                        <span class="mx-5 py-1"><a href="#" class="">Password Recovery</a></span>
-                    </div>
-                    <li><a href="#">Blogs</a></li>
-                    <li><a href="{{route('contact')}}">Contact</a></li>
+                    <li>
+                        <a   href="{{route('contact')}}"">Contact</a>
+                    </li>
                     
                 </ul>
             </div>
@@ -347,6 +302,11 @@
     </div>
     {{$slot}}
     @livewire('footer-component')
+    <script>
+        document.querySelector('.menu-bar').addEventListener('click',function(){
+            document.querySelector('.nav-links-bottom-phono').classList.toggle('show')
+        })
+    </script>
 <script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
 <script src="{{asset('assets/js/header-home.js')}}"></script>
 <script src="{{asset('assets/js/navab-home.js')}}"></script>

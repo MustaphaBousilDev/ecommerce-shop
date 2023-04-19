@@ -366,7 +366,6 @@ function add(file){
     
     formData.append(`image${counter}`,file)
     if(counter==4){
-        console.log('fuck ready')
     $.ajax({
             url:"{{route('images-add')}}",
             type:'post',
@@ -383,7 +382,6 @@ function add(file){
                 console.log(images)
             },
             error:function(error){
-            console.log('fuck mother fucker')
             console.log(error)
             }
     })

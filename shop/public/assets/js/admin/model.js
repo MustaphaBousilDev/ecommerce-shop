@@ -16,7 +16,6 @@ function display_edit_image(file){
 
 //hidden and ashow button 
 document.querySelector('.add-button').addEventListener('click',()=>{
-     console.log('ffuckk')
      document.querySelector('.overlay').classList.remove('active-showing')
      document.querySelector('.model_form').classList.remove('active-showing')
 })

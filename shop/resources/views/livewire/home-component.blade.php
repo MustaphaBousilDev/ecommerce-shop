@@ -159,7 +159,6 @@
         </div> 
     @endif 
     <script> 
-        console.log('yow yow')
         console.log();
         //date 
         var date_finals=document.querySelector('.timer-crono').dataset.expire

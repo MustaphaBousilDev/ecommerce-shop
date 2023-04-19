@@ -15,7 +15,6 @@ var next_Btn_offre_home = _toConsumableArray(document.querySelectorAll('.product
 var prev_Btn_offre_home = _toConsumableArray(document.querySelectorAll('.products__offre-home  .left-icon-offre-product-home'));
 
 slider_product_offre_home.forEach(function (item, i) {
-  console.log('fuck btich');
   console.log(item.scrollLeft);
   container_offre = item.getBoundingClientRect();
   var container_width_offre = container_offre.width / 4;

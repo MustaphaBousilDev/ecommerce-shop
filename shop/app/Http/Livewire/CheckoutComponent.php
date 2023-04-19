@@ -11,12 +11,16 @@ use App\Models\City;
 //class Session 
 use Session;
 use App\Models\Shipping;
+use App\Models\SizeColor;
 use App\Models\Transaction;
 use Cart;
 use Stripe;
 use Auth;
 class CheckoutComponent extends Component
 {
+    /////////////////
+    public $size_color_array=[];
+    ////////////////
     public $ship_to_different;
     public $firstname;
     public $lastname;
@@ -137,8 +141,9 @@ class CheckoutComponent extends Component
         ]);
 
         //indert into order_item table
-        foreach(Cart::instance('cart')->content() as $item){
-            $order->orderItems()->create([
+        $count=0;
+        foreach(Cart::instance('cart')->content() as $key=>$item){
+            $order->orderItems()->create([ 
                 'product_id'=>$item->model->id,
                 'order_id'=>$order->id,
                 'quantity'=>$item->qty,
@@ -146,6 +151,13 @@ class CheckoutComponent extends Component
                 'color_id'=>$item->color,
                 'size_id'=>$item->size,
             ]);
+            $this->size_color_array[$count]=[
+                'color'=>$item->color,
+                'size'=>$item->size,
+                'product_id'=>$item->model->id,
+                'quantity'=>$item->qty,
+            ];
+            $count++;
         }
 
         //if ship to different
@@ -175,96 +187,101 @@ class CheckoutComponent extends Component
                 'zipcode'=>$this->s_zipcode,
             ]);
 
-            //^payment method 
-            if($this->paymentmode_cod=='cod'){
-                //orm transaction table 
-                $transaction=Transaction::create([
-                    'order_id'=>$order->id,
-                    'user_id'=>session('loginId'),
-                    'mode'=>'cod',
-                    'status'=>'pending',
-                ]);
-                $this->resetCart();
+            
+            
+        }
+        //^payment method 
+        if($this->paymentmode_cod=='cod'){
+            //orm transaction table 
+            $transaction=Transaction::create([
+                'order_id'=>$order->id,
+                'user_id'=>session('loginId'),
+                'mode'=>'cod',
+                'status'=>'pending',
+            ]);
+            $this->resetCart();
 
-            }else if($this->paymentmode_paypal=="paypal"){
-                $transaction=Transaction::create([
-                    'order_id'=>$order->id,
-                    'user_id'=>session('loginId'),
-                    'mode'=>'paypal',
-                    'status'=>'pending',
+        }else if($this->paymentmode_paypal=="paypal"){
+            $transaction=Transaction::create([
+                'order_id'=>$order->id,
+                'user_id'=>session('loginId'),
+                'mode'=>'paypal',
+                'status'=>'pending',
+            ]);
+            $this->resetCart();
+        }
+        //if payment mode card
+        else if($this->paymentmode_card=="card"){
+            $stripe=Stripe::make(env('STRIPE_KEY'));
+            try{
+                $token=$stripe->tokens()->create([
+                    'card'=>[
+                        'number'=>$this->card_no,
+                        'exp_month'=>$this->exp_month,
+                        'exp_year'=>$this->exp_year,
+                        'cvc'=>$this->cvc,
+                    ],
                 ]);
-                $this->resetCart();
-            }
-            //if payment mode card
-            else if($this->paymentmode_card=="card"){
-                $stripe=Stripe::make(env('STRIPE_KEY'));
-                try{
-                    $token=$stripe->tokens()->create([
-                        'card'=>[
-                            'number'=>$this->card_no,
-                            'exp_month'=>$this->exp_month,
-                            'exp_year'=>$this->exp_year,
-                            'cvc'=>$this->cvc,
-                        ],
-                    ]);
-                    if(!isset($token['id'])){
-                        return redirect()->route('checkout')->with('error','The Stripe Token was not generated correctly');
-                        $this->thankyou=0;
-                    }
-                    $customer=$stripe->customers()->create([
-                        'name'=>$this->firstname.' '.$this->lastname,
-                        'email'=>$this->email,
-                        'phone'=>$this->phone,
-                        'address'=>[
-                            'line1'=>$this->address1,
-                            'city'=>$this->city,
-                            'country'=>$this->country,
-                            'postal_code'=>$this->zipcode,
-                            'state'=>$this->s_province,
-                        ],
-                        'shipping'=>[
-                            'name'=>$this->s_firstname.' '.$this->s_lastname,
-                            'address'=>[
-                                'line1'=>$this->s_address1,
-                                'country'=>$this->s_country,
-                                'postal_code'=>$this->s_zipcode,
-                                'state'=>$this->s_province,
-                            ],
-                        ],
-                        'source'=>$token['id'],
-                    ]);
-                    $charge=$stripe->charges()->create([
-                        'customer'=>$customer['id'],
-                        'currency'=>'USD',
-                        'amount'=>session()->get('checkout')['total'],
-                        'description'=>'payment for Order no' . $order->id 
-                    ]);
-                    if($charge['status']=='succeeded'){
-                        $transaction=Transaction::create([
-                            'order_id'=>$order->id,
-                            'user_id'=>session('loginId'),
-                            'mode'=>'card',
-                            'status'=>'approved',
-                        ]);
-                        $this->resetCart();
-                    }else{
-                        session()->flash('stripe_error','Error in Transaction!');
-                        $this->thankyou=0;
-                    }
-
-                }catch(Exception $e){
-                    session()->flash('stripe_error',$e->getMessage());
+                if(!isset($token['id'])){
+                    return redirect()->route('checkout')->with('error','The Stripe Token was not generated correctly');
                     $this->thankyou=0;
                 }
-                $transaction=Transaction::create([
-                    'order_id'=>$order->id,
-                    'user_id'=>session('loginId'),
-                    'mode'=>'card',
-                    'status'=>'pending',
+                $customer=$stripe->customers()->create([
+                    'name'=>$this->firstname.' '.$this->lastname,
+                    'email'=>$this->email,
+                    'phone'=>$this->phone,
+                    'address'=>[
+                        'line1'=>$this->address1,
+                        'city'=>$this->city,
+                        'country'=>$this->country,
+                        'postal_code'=>$this->zipcode,
+                        'state'=>$this->s_province,
+                    ],
+                    'shipping'=>[
+                        'name'=>$this->s_firstname.' '.$this->s_lastname,
+                        'address'=>[
+                            'line1'=>$this->s_address1,
+                            'country'=>$this->s_country,
+                            'postal_code'=>$this->s_zipcode,
+                            'state'=>$this->s_province,
+                        ],
+                    ],
+                    'source'=>$token['id'],
                 ]);
-                $this->resetCart();
+                $charge=$stripe->charges()->create([
+                    'customer'=>$customer['id'],
+                    'currency'=>'USD',
+                    'amount'=>session()->get('checkout')['total'],
+                    'description'=>'payment for Order no' . $order->id 
+                ]);
+                if($charge['status']=='succeeded'){
+                    $transaction=Transaction::create([
+                        'order_id'=>$order->id,
+                        'user_id'=>session('loginId'),
+                        'mode'=>'card',
+                        'status'=>'approved',
+                    ]);
+                    $this->resetCart();
+                    //get size_id and color_id from order_item table
+                    
+
+                }else{
+                    session()->flash('stripe_error','Error in Transaction!');
+                    $this->thankyou=0;
+                }
+
+
+            }catch(Exception $e){
+                session()->flash('stripe_error',$e->getMessage());
+                $this->thankyou=0;
             }
-            
+            $transaction=Transaction::create([
+                'order_id'=>$order->id,
+                'user_id'=>session('loginId'),
+                'mode'=>'card',
+                'status'=>'pending',
+            ]);
+            $this->resetCart();
         }
         
 
@@ -281,12 +298,25 @@ class CheckoutComponent extends Component
         if(!Session::has('loginId')){
             return redirect()->route('login');
         }else if($this->thankyou){
+            //get table size_color and update quantity
+            //dd($this->size_color_array);
+            foreach($this->size_color_array as $key=>$item){
+                
+                $size_color=SizeColor::where('product_id',$item['product_id'])->where('color_id',$item['color'])->where('size_id',$item['size'])->first();
+                
+                $size_color->quantity=$size_color->quantity - $item['quantity'];
+                
+                $size_color->save();
+            }
+            //update size and color quantity in table 
+
             return redirect()->route('thankyou');
         }else if(!session()->get('checkout')){
             return redirect()->route('cart');
         }
     }
     public function render(){
+        
         $this->verifyCheckout();
         $countries=Country::where('status',1)->whereNull('deleted_at')->get();
         $cities=City::where('status',1)->whereNull('deleted_at')->get();

@@ -38,7 +38,7 @@
                             <a href="{{route('product.details',['slug'=>$item->model->slug])}}">
                                 <img class="w-16 h-16" 
                                 src="{{asset('products/'.$image->img)}}"
-                                alt="fucking shoes"/>
+                                alt=" shoes"/>
                             </a>
                             @endif 
                         @endforeach

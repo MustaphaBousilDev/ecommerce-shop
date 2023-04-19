@@ -4,7 +4,7 @@
                <div class='header__product-lists'>
                     <div class='left__product-header flex justify-between'>
                          <h1 class='text-xl md:text-3xl font-bold'>Products</h1>
-                         <button onClick="console.log('fuck that shet ')" class='bg-color-red-button opacity-80 transition hover:opacity-100
+                         <button onClick="" class='bg-color-red-button opacity-80 transition hover:opacity-100
                          cursor-pointer outline-none border-none rounded-md text-while py-1 px-3 add-button'>
                               <span class='font-bold'>+</span> Add
                          </button>
@@ -306,7 +306,6 @@ function add(file){
     let formData=new FormData()
     formData.append(`image${counter}`,file)
     if(counter==4){
-    console.log('fuck ready')
     $.ajax({
             url:"{{route('images-add')}}",
             type:'post',
@@ -411,7 +410,7 @@ function add(file){
                     _token:$('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (response){
-                    console.log('success yow')
+                    console.log('success')
                     if(response.status=="success inserted products"){
                         //$('#form-add')[0].reset()
                         //console.log(response)
@@ -420,7 +419,6 @@ function add(file){
                         $('#table__data').load(location.href + ' #table__data')
                         //load data form add 
                         $('#form__images').load(location.href + ' #form__images')
-                        console.log('you re realy son of the bitch')
                     }
                     console.log(response)
                 },
@@ -512,7 +510,6 @@ function add(file){
                         if(response.status=="success delete product"){
                             console.log('success')
                             $('#table__data').load(location.href + ' #table__data')
-                            console.log('you re realy son of the bitch')
                         }
                     }, 
                     error: function (error){
@@ -634,7 +631,6 @@ function add(file){
     //hidden and ashow button 
     ///////////////////////////////////////////////////////////////////////////////
     document.querySelector('.add-button').addEventListener('click',()=>{
-    console.log('ffuckk')
     document.querySelector('.overlay').classList.remove('active-showing')
     document.querySelector('.model_form').classList.remove('active-showing')
     })

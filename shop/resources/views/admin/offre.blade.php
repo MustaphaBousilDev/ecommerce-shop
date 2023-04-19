@@ -4,7 +4,7 @@
                <div class='header__product-lists'>
                     <div class='left__product-header flex justify-between'>
                          <h1 class='text-xl md:text-3xl font-bold'>Offres</h1>
-                         <button onClick="console.log('fuck that shet ')" class='bg-color-red-button opacity-80 transition hover:opacity-100
+                         <button onClick="" class='bg-color-red-button opacity-80 transition hover:opacity-100
                          cursor-pointer outline-none border-none rounded-md text-while py-1 px-3 add-button'>
                               <span class='font-bold'>+</span> Add
                          </button>
@@ -463,7 +463,6 @@ crossorigin="anonymous"></script>
     //hidden and ashow button 
     ///////////////////////////////////////////////////////////////////////////////
     document.querySelector('.add-button').addEventListener('click',()=>{
-    console.log('ffuckk')
     document.querySelector('.overlay').classList.remove('active-showing')
     document.querySelector('.model_form').classList.remove('active-showing')
     })

@@ -14,6 +14,12 @@ class UsersComponent extends Component
         $user->save();
     }
 
+    public function deleteUser($id){
+        $user=User::find($id);
+        $user->delete();
+        session()->flash('message','User has been deleted successfully!');
+    }
+
     public function status_user($id){
         $user=User::find($id);
         if($user->status==0){

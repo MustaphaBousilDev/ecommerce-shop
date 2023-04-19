@@ -1274,9 +1274,10 @@ body.dark-theme {
 .navbar__home .bottom-navbar .links-page a:hover {
   color: #ef4444;
 }
-.navbar__home .bottom-navbar .links-page li:first-child a {
-  color: #ef4444;
+.navbar__home .bottom-navbar .links-page a.active{
+  color:#ef4444
 }
+
 .navbar__home .bottom-navbar .links-page .list-account-nav {
   border: 1px solid #f2f1f1;
   visibility: hidden;
@@ -2317,7 +2318,7 @@ body {
   width: 25%;
 }
 .products__secondaires-details .product__secondary-detail img {
-  opacity: 0.5;
+  opacity: 0.9;
   transform: scale(0.97);
 }
 .products__secondaires-details .product__secondary-detail img.active {

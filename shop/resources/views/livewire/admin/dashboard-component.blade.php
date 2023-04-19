@@ -148,6 +148,31 @@
         </div>
         
     </div>
+    <div class='flex:col flex-wrap md:flex-row content__dashboard-statistique rounded-md flex mt-9'>
+        <div style='height:400px' class='content__chart border border-color-gray-background-light w-[100%] md:w-[40%] overflow-y-scroll rounded-lg shadow-sm'>
+            <h2 class='p-3 text-sm md:text-lg'>Top Selling Products</h2>
+            <hr class='border-none h-[1px] bg-color-gray-background-light'>
+            @foreach($statistique_sales as $key=>$salling)
+                
+                <div class='sallings_selling flex justify-start gap-8 md:justify-between items-center p-1 md:p-4'>
+                    <div class='quantity-selling'>
+                        <h2 class='text-sm md:text-xl flex  items-center justify-between gap-3 font-bold'>
+                            <span class='text-[#bef264]'>{{$salling['day']}}</span>
+                            <span class= 'text-xs md:text-md text-color-gray-background-light'>{{$salling['total']}}</span>
+                        </h2>
+                    </div>
+                    <div class='id__counter'>
+                        <h2 class='text-sm md:text-lg text-color-gray-dark font-bold bg-[#f5f3ff] w-[30px] 
+                        h-[30px] p-5 rounded-md flex justify-center items-center'>#1</h2>
+                    </div>
+                </div>
+                <hr class='border-none h-[1px] bg-color-gray-background-light'>
+            @endforeach 
+        </div>
+        <div style='height:400px' class='chart__1 w-[100%] md:w-[55%] '>
+            <canvas id="line-chart"></canvas>
+        </div>
+    </div>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -168,14 +193,24 @@
     document.querySelectorAll('.brands_selling').forEach((brand)=>{
         brand_name.push(brand.querySelector('.product--dash p').textContent);
     });
-    console.log(brand_name)
 
 
     let brand_quantity=[]
     document.querySelectorAll('.brands_selling').forEach((brand)=>{
         brand_quantity.push(brand.querySelector('.quantity-selling h2 span').textContent);
     });
-    console.log(brand_quantity)
+
+    let salling_day=[]
+    document.querySelectorAll('.sallings_selling').forEach((salling)=>{
+        salling_day.push(salling.querySelector('.quantity-selling h2 span').textContent);
+    });
+    console.log(salling_day)
+
+    let salling_total=[]
+    document.querySelectorAll('.sallings_selling').forEach((salling)=>{
+        salling_total.push(salling.querySelector('.quantity-selling h2 span:nth-child(2)').textContent);
+    });
+    console.log(salling_total)
 
 
     const ctx = document.getElementById('myChart');
@@ -249,9 +284,9 @@
             labels: 'Red',
             datasets: [{
                 label: 'My First Dataset',
-                data: [65, 59, 80, 81, 56, 55, 40],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
+                data:salling_total,
+                fill:true,
+                borderColor: 'rgb(249, 201, 210)',
                 tension: 0.1
             }]
 

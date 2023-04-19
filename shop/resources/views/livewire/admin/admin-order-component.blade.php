@@ -24,7 +24,7 @@
              <div class='left__product-header flex justify-between'>
                   <h1 class='text-xl md:text-3xl font-bold'>Products</h1>
                   <a href="{{route('admin.add.coupons')}}">
-                     <button onClick="console.log('fuck that shet ')" class='bg-color-red-button opacity-80 transition hover:opacity-100
+                     <button onClick="" class='bg-color-red-button opacity-80 transition hover:opacity-100
                      cursor-pointer outline-none border-none rounded-md text-while py-1 px-3 add-button'>
                          <span class='font-bold'>+</span> Add
                      </button>

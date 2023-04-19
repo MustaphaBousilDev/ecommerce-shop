@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Product;
+use App\Models\Sale;
 use App\Models\Image;
 //color
 use App\Models\Color;
@@ -32,9 +33,12 @@ class ProductDetailComponent extends Component
 
     public function size($size){
         $this->size_id=$size;
+       
+        
     }
     public function color($color){
         $this->color_id=$color;
+        
     }
     //store in cart shopping
     public function store($product_id,$product_name,$product_price){
@@ -72,12 +76,16 @@ class ProductDetailComponent extends Component
     public function render(){
         
         $product = Product::with('tags')->with('sizes')->where('slug',$this->slug)->first();
+        $carousel_product_offre=Product::where('status',1)
+        ->whereNull('deleted_at')
+        ->where('sale_price','>',0)->inRandomOrder()->get()->take(10);
+        $sale=Sale::find(1);
         //slider product 
         //$sliderProducts=Product::where('sub_category_id',$product->sub_category_id)->inRandomOrder()->limit(10)->get();
         $nporduct=Product::latest()->take(4)->get();
         $images = Image::all();
         $colors=Color::where('status',1)->whereNull('deleted_at')->get();
         $sizes=Size::where('status',1)->whereNull('deleted_at')->get();
-        return view('livewire.product-detail-component',['product'=>$product,'images'=>$images,'colors'=>$colors,'sizes'=>$sizes]);
+        return view('livewire.product-detail-component',['product'=>$product,'images'=>$images,'colors'=>$colors,'sizes'=>$sizes,'carousel_product_offre'=>$carousel_product_offre,'sale' => $sale]);
     }
 }

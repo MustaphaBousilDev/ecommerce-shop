@@ -150,7 +150,7 @@ class CategoryController extends Controller
     }
     public function forceDelete(Request $request){
         $categories=Category::withTrashed()->find($request->id);
-        //force delete
+        //force delete using for delete data from database
         $categories->forceDelete();
         return response()->json([
             'status'=>"success force delete categories"

@@ -199,6 +199,7 @@ class DashboardComponent extends Component
         $total=[];
         foreach($orders as $key=>$order){
             $total[$key]['total']=$order->total;
+            //total day of month (date has date and this month and this year)
             $total[$key]['day']=date('d',strtotime($order->created_at));
         }   
         $unique_total = array();
@@ -214,12 +215,14 @@ class DashboardComponent extends Component
                 $unique_total[$day] = $total;
             }
         }
-        dd($unique_total);
+        //create array for day of month
+        $new_aaray=[];
+        foreach($unique_total as $key=>$value){
+            $new_aaray[$key]['day']=$key;
+            $new_aaray[$key]['total']=$value;
+        }
         //get total from orders group by day of month
-        
-
-        
-        
+        $statistique_sales=$new_aaray;
         //i have quantity min and max i will transofm to quantity max 
 
         return view('livewire.admin.dashboard-component',[
@@ -235,6 +238,7 @@ class DashboardComponent extends Component
             'brands_sale2'=>$brands_sale2,
             'brands_sale2_name'=>$brands_sale2_name,
             'brands_sale2_quantity'=>$brands_sale2_quantity,
+            'statistique_sales'=>$statistique_sales,
         ])->layout('layouts.base');
 
     }

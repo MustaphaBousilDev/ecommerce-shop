@@ -4,7 +4,7 @@
                <div class='header__product-lists'>
                     <div class='left__product-header flex justify-between'>
                          <h1 class='text-xl md:text-3xl font-bold'>Products</h1>
-                         <button onClick="console.log('fuck that shet ')" class='bg-color-red-button opacity-80 transition hover:opacity-100
+                         <button onClick="" class='bg-color-red-button opacity-80 transition hover:opacity-100
                          cursor-pointer outline-none border-none rounded-md text-while py-1 px-3 add-button'>
                               <span class='font-bold'>+</span> Add
                          </button>
@@ -152,8 +152,6 @@ crossorigin="anonymous"></script>
     $(document).ready(function(){
         $(document).on('click','.save_button',function (e){
         e.preventDefault()
-        //get data from form
-        //console.log(image)
         $.ajax({
             url: "{{route('brands-add')}}",
             type: 'POST',
@@ -169,7 +167,7 @@ crossorigin="anonymous"></script>
                     //console.log(response)
                     $('.body__table').empty()
                     $.each(response.brands,function(key,value){
-                        console.log(value)
+                        //console.log(value)
                         //empty table 
                         $('.body__table').append(`
                         <tr class="bg-blue-500 border-b border-b-color-gray-background-light border-blue-400">
@@ -205,7 +203,7 @@ crossorigin="anonymous"></script>
 
                     
                 }
-                console.log(response)
+                //console.log(response)
             },
             error: function (error){
                 console.log("error")
@@ -477,7 +475,6 @@ crossorigin="anonymous"></script>
     //hidden and ashow button 
     ///////////////////////////////////////////////////////////////////////////////
     document.querySelector('.add-button').addEventListener('click',()=>{
-    console.log('ffuckk')
     document.querySelector('.overlay').classList.remove('active-showing')
     document.querySelector('.model_form').classList.remove('active-showing')
     })

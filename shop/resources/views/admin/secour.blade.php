@@ -122,7 +122,6 @@ function add(file){
                   formData.append(`image${counter}`,file)
                   //send data to server
                   if(counter==4){
-                    console.log('fuck ready')
                     $.ajax({
                          url:"{{route('image-add')}}",
                          type:'post',
