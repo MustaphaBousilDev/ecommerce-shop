@@ -25,6 +25,7 @@ class OffresProductsComponent extends Component
     public $products;
     public $offres;
     public $sub_id;
+    public $percent;
     public $max;
     //sorting
     public $pageSize=15;
@@ -86,6 +87,7 @@ class OffresProductsComponent extends Component
         //get $offre and get subcategory_id and get products
         $this->offres=Offre::where('name',$offre)->first();
         $this->sub_id=$this->offres->sub_category_id;
+        $this->percent=$this->offres->percent;
         $this->products=Product::where('sub_category_id',$this->sub_id)->get();
         
         

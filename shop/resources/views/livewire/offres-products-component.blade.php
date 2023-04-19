@@ -27,7 +27,10 @@
                     <div class="product">
                         @foreach ($images as $image)
                             @if ($product->img_id == $image->id)
-                                <a href="{{route('product.details',['slug'=>$product->slug])}}">
+                                <a class="relative" href="{{route('product.details',['slug'=>$product->slug])}}">
+                                    <span style="background: rgb(255, 244, 202);color:rgb(246, 184, 41);" class="absolute z-50 flex p-1 px-3 my-2 mx-3 rounded-2xl">
+                                        -{{$percent}}%
+                                    </span>
                                     <div class="header-product bg-cover bg-center  h-[50%] bg-color-rating ">
                                         <img style='width:100%;height:100%' src="{{asset("products/".$image->img)}}" alt="">
                                     </div>
@@ -56,7 +59,11 @@
                                 </div>
                                 <div class="btns-cart-wish flex">
                                     <button class="btn__cart-shopping">
-                                        <a wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->sale_price}})" 
+                                        
+                                        @php 
+                                        $new_price=$product->sale_price - ($product->sale_price * $percent)/100;
+                                        @endphp 
+                                        <a wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$new_price}})" 
                                             href="#"><i class='bx bx-cart-alt'></i>
                                         </a>
                                     </button>
