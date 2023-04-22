@@ -83,6 +83,11 @@ class OffresProductsComponent extends Component
             }
         }
     }
+
+    //i set input date date depart and date fin i want to compare if date depart and date fin is in table offre
+    //if date depart and date fin is in table offre i want to get subcategory_id and get products
+    //give me orm for check date if between date depart and date fin 
+    
     public function mount($offre){
         //get $offre and get subcategory_id and get products
         $this->offres=Offre::where('name',$offre)->first();
